@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Alexandria', sans-serif;
+  --font-alexandria: 'Alexandria', sans-serif;
+  --color-neon: #b2e01e;
+  --color-neon-hover: #9ec71b;
+  --color-court-blue: #005cd7;
+  --color-navy: #003b8b;
+  --color-navy-dark: #002661;
+}
+
+:root,
+[data-theme="court-blue"] {
+  --font-primary: 'Alexandria', sans-serif;
+  --bg-gradient: linear-gradient(145deg, #0066EE 0%, #0046B5 50%, #002661 100%);
+  --court-lines: rgba(255, 255, 255, 0.08);
+  --navy: #003B8B;
+  --navy-dark: #002661;
+  --surface-card: linear-gradient(180deg, rgba(0, 59, 139, 0.8) 0%, rgba(0, 38, 97, 0.9) 100%);
+  --surface-card-subtle: rgba(0, 38, 97, 0.95);
+  --surface-card-solid: #003B8B;
+  --sidebar-from: #003882;
+  --sidebar-via: #002B6D;
+  --sidebar-to: #001F52;
+  --card-border: rgba(255, 255, 255, 0.16);
+  --ink: #FFFFFF;
+  --ink-secondary: #E2E8F0;
+  --accent: #B2E01E;
+  --accent-text: #002661;
+  --accent-hover: #9EC71B;
+  --lavender: #D3D7FA;
+  --ink-faint: rgba(255, 255, 255, 0.15);
+  --ink-muted: rgba(255, 255, 255, 0.75);
+}
+
+[data-theme="athletic-pink"] {
+  --font-primary: 'Alexandria', sans-serif;
+  --bg-gradient: linear-gradient(145deg, #A21350 0%, #680A38 50%, #3B0421 100%);
+  --court-lines: rgba(255, 255, 255, 0.06);
+  --navy: #880E4F;
+  --navy-dark: #3B0421;
+  --surface-card: linear-gradient(180deg, rgba(120, 14, 65, 0.75) 0%, rgba(65, 8, 38, 0.85) 100%);
+  --surface-card-subtle: rgba(58, 4, 33, 0.95);
+  --surface-card-solid: #680A38;
+  --sidebar-from: #880E4F;
+  --sidebar-via: #680A3C;
+  --sidebar-to: #3B0421;
+  --card-border: rgba(255, 255, 255, 0.15);
+  --ink: #FFFFFF;
+  --ink-secondary: #FFFFFF;
+  --accent: #B2E01E;
+  --accent-text: #002661;
+  --accent-hover: #9EC71B;
+  --lavender: #FBCFE8;
+  --ink-faint: rgba(255, 255, 255, 0.2);
+  --ink-muted: rgba(255, 255, 255, 0.85);
+}
+
+*,
+*::before,
+*::after,
+html,
+body {
+  font-family: 'Alexandria', sans-serif !important;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: 'Alexandria', sans-serif !important;
+    line-height: 1.6;
+    background-color: var(--bg);
+    color: var(--ink);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html[dir="rtl"],
+  body[dir="rtl"],
+  [dir="rtl"],
+  [lang="ar"] {
+    font-family: 'Alexandria', sans-serif !important;
+    line-height: 1.6;
+  }
+}
+
+.font-alexandria,
+.font-mono-tag {
+  font-family: 'Alexandria', sans-serif !important;
+}
+
+.label-mono {
+  font-family: 'Alexandria', sans-serif !important;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--navy-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ec71b;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+/* Viewport Background */
+.theme-viewport-bg {
+  background: var(--bg-gradient);
+  transition: background 0.3s ease;
+}
+
+/* Card Styling */
+.card-dark {
+  background: var(--surface-card);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-dark:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar Theme Gradient */
+.theme-sidebar {
+  background: linear-gradient(180deg, var(--sidebar-from) 0%, var(--sidebar-via) 50%, var(--sidebar-to) 100%);
+  border-color: var(--card-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Sub-card & container */
+.theme-subcard {
+  background: var(--surface-card-subtle);
+  border: 1px solid var(--card-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-card-solid {
+  background: var(--surface-card-solid);
+  border: 1px solid var(--card-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-neon {
+  background: var(--accent);
+  color: #002255;
+  font-weight: 900;
+  border-radius: 8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 18px rgba(178, 224, 30, 0.35);
+}
+
+.btn-neon:hover {
+  transform: translateY(-2px);
+  background: #9ec71b;
+  box-shadow: 0 6px 24px rgba(178, 224, 30, 0.5);
+}
+
+.btn-outline-ink {
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 8px;
+  background: var(--surface-card);
+  transition: all 0.2s ease;
+}
+
+.btn-outline-ink:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
