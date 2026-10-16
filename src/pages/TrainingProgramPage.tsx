@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { TRAINING_PROGRAMS } from '../data/trainingData';
 import { PADEL_LEVELS } from '../data/assessmentData';
-import { PadelLevelNumber } from '../types';
+import { PADEL_VIDEOS } from '../data/videoData';
+import { PadelLevelNumber, PadelVideoTutorial } from '../types';
+import { CustomVideoPlayer } from '../components/CustomVideoPlayer';
 import { 
   Trophy, 
   Calendar, 
   Clock, 
   Printer, 
-  Activity
+  Activity,
+  Play
 } from 'lucide-react';
 
 export const TrainingProgramPage: React.FC = () => {
@@ -17,10 +20,16 @@ export const TrainingProgramPage: React.FC = () => {
   const initialLevel: PadelLevelNumber = testResult?.levelNumber || user?.levelNumber || 1;
   const [selectedLevel, setSelectedLevel] = useState<PadelLevelNumber>(initialLevel);
   const [activeWeekIndex, setActiveWeekIndex] = useState(0);
+  const [activeVideoModal, setActiveVideoModal] = useState<PadelVideoTutorial | null>(null);
 
-  useEffect(() => {
-    setActiveWeekIndex(0);
-  }, [selectedLevel]);
+  const handleOpenVideoForDrill = (drillName: string) => {
+    const matched = PADEL_VIDEOS.find(v => 
+      drillName.includes(v.titleAr) || 
+      v.titleAr.includes(drillName) ||
+      v.keyTakeaways.some(k => drillName.includes(k) || k.includes(drillName))
+    ) || PADEL_VIDEOS[0];
+    setActiveVideoModal(matched);
+  };
 
   const currentProgram = TRAINING_PROGRAMS[selectedLevel] || TRAINING_PROGRAMS[1];
   const levelInfo = PADEL_LEVELS[selectedLevel] || PADEL_LEVELS[1];
@@ -235,8 +244,18 @@ export const TrainingProgramPage: React.FC = () => {
                           <li key={i}>{inst}</li>
                         ))}
                       </ul>
-                      <div className="pt-2 border-t border-white/10 text-[#b2e01e] text-[11px] font-semibold">
-                        نصيحة الكوتش: {drill.tips}
+                      <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-2">
+                        <div className="text-[#b2e01e] text-[11px] font-semibold truncate">
+                          نصيحة الكوتش: {drill.tips}
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleOpenVideoForDrill(drill.name)}
+                          className="btn-neon px-3 py-1.5 text-[10px] font-mono-tag font-bold flex items-center gap-1 shrink-0"
+                        >
+                          <Play className="w-3 h-3 fill-current" />
+                          <span>فيديو الشرح</span>
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -248,17 +267,29 @@ export const TrainingProgramPage: React.FC = () => {
                 <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ 03 • TACTICAL DRILLS ]</span>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {currentWeek.sessionSummary.tacticalDrills.map((drill, idx) => (
-                    <div key={idx} className="theme-card-solid p-4 rounded-2xl border border-white/10 space-y-2 text-xs shadow">
-                      <div className="flex justify-between items-center">
-                        <h4 className="font-bold text-white text-sm">{drill.name}</h4>
-                        <span className="font-mono-tag text-[10px] text-[#b2e01e] font-bold">{drill.duration}</span>
+                    <div key={idx} className="theme-card-solid p-4 rounded-2xl border border-white/10 space-y-2 text-xs shadow flex flex-col justify-between">
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <h4 className="font-bold text-white text-sm">{drill.name}</h4>
+                          <span className="font-mono-tag text-[10px] text-[#b2e01e] font-bold">{drill.duration}</span>
+                        </div>
+                        <p className="text-white/70 font-semibold">{drill.goal}</p>
+                        <ul className="space-y-1 text-white/80 list-disc list-inside">
+                          {drill.instructions.map((inst, i) => (
+                            <li key={i}>{inst}</li>
+                          ))}
+                        </ul>
                       </div>
-                      <p className="text-white/70 font-semibold">{drill.goal}</p>
-                      <ul className="space-y-1 text-white/80 list-disc list-inside">
-                        {drill.instructions.map((inst, i) => (
-                          <li key={i}>{inst}</li>
-                        ))}
-                      </ul>
+                      <div className="pt-3 border-t border-white/10 flex justify-end">
+                        <button
+                          type="button"
+                          onClick={() => handleOpenVideoForDrill(drill.name)}
+                          className="btn-neon px-3 py-1.5 text-[10px] font-mono-tag font-bold flex items-center gap-1"
+                        >
+                          <Play className="w-3 h-3 fill-current" />
+                          <span>فيديو التكتيك المرئي</span>
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -285,6 +316,16 @@ export const TrainingProgramPage: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Custom Video Player Modal */}
+      {activeVideoModal && (
+        <CustomVideoPlayer
+          video={activeVideoModal}
+          playlist={PADEL_VIDEOS}
+          onSelectVideo={(vid) => setActiveVideoModal(vid)}
+          onClose={() => setActiveVideoModal(null)}
+        />
+      )}
 
     </div>
   );

@@ -4,10 +4,10 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
   // --- PRE-MATCH WARMUP & MOBILITY (التحمية والإحماء البدني) ---
   {
     id: 'vid-warmup-1',
-    youtubeId: 'ur_IHBoQECY',
-    youtubeUrl: 'https://www.youtube.com/watch?v=ur_IHBoQECY',
-    thumbnailUrl: 'https://img.youtube.com/vi/ur_IHBoQECY/hqdefault.jpg',
-    titleAr: 'إحماء وتجهيز الجسم قبل مباراة البادل: الحركة الديناميكية وتنشيط المفاصل',
+    youtubeId: 'NRVnfbe4Ox4',
+    youtubeUrl: 'https://www.youtube.com/watch?v=NRVnfbe4Ox4',
+    thumbnailUrl: 'https://img.youtube.com/vi/NRVnfbe4Ox4/hqdefault.jpg',
+    titleAr: 'إحماء وتجهيز الجسم قبل مباراة البادل: تمارين الحركة الديناميكية ورد الفعل',
     category: 'warmup',
     categoryAr: 'التحمية والإحماء البدني',
     level: 'الكل',
@@ -23,9 +23,9 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
   },
   {
     id: 'vid-warmup-2',
-    youtubeId: 'WfIKQMdtwIE',
-    youtubeUrl: 'https://www.youtube.com/watch?v=WfIKQMdtwIE',
-    thumbnailUrl: 'https://img.youtube.com/vi/WfIKQMdtwIE/hqdefault.jpg',
+    youtubeId: 'NRVnfbe4Ox4',
+    youtubeUrl: 'https://www.youtube.com/watch?v=NRVnfbe4Ox4',
+    thumbnailUrl: 'https://img.youtube.com/vi/NRVnfbe4Ox4/hqdefault.jpg',
     titleAr: 'تمارين الركض السريع وتفاعل القدمين على زجاج الملعب قبل النزول',
     category: 'warmup',
     categoryAr: 'التحمية والإحماء البدني',
@@ -47,7 +47,7 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
     youtubeId: 'wCAqvaqrnZ4',
     youtubeUrl: 'https://www.youtube.com/watch?v=wCAqvaqrnZ4',
     thumbnailUrl: 'https://img.youtube.com/vi/wCAqvaqrnZ4/hqdefault.jpg',
-    titleAr: 'فولي الشبكة القاطع (The Heavy Sliced Volley) وزوايا القتل',
+    titleAr: 'أساسيات الفولي الأمامي والخلفي (Mastering Forehand & Backhand Volley Fundamentals)',
     category: 'net',
     categoryAr: 'الفولي والشبكة',
     level: 'متوسط',
@@ -63,9 +63,9 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
   },
   {
     id: 'vid-net-2',
-    youtubeId: 'yHAJ5XjFUNg',
-    youtubeUrl: 'https://www.youtube.com/watch?v=yHAJ5XjFUNg',
-    thumbnailUrl: 'https://img.youtube.com/vi/yHAJ5XjFUNg/hqdefault.jpg',
+    youtubeId: 'wCAqvaqrnZ4',
+    youtubeUrl: 'https://www.youtube.com/watch?v=wCAqvaqrnZ4',
+    thumbnailUrl: 'https://img.youtube.com/vi/wCAqvaqrnZ4/hqdefault.jpg',
     titleAr: 'الفولي السريع (Reflex Volley) في تبادلات الشبكة القوية',
     category: 'net',
     categoryAr: 'الفولي والشبكة',
@@ -87,7 +87,7 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
     youtubeId: 'yHAJ5XjFUNg',
     youtubeUrl: 'https://www.youtube.com/watch?v=yHAJ5XjFUNg',
     thumbnailUrl: 'https://img.youtube.com/vi/yHAJ5XjFUNg/hqdefault.jpg',
-    titleAr: 'كيف تتقن ضربة البانديخا (Bandeja) خطوة بخطوة وتمنع الخصم من الهجوم',
+    titleAr: 'تكنيك البانديخا خطوة بخطوة وحركة القدمين (Step-by-step Bandeja Technique & Footwork)',
     category: 'overhead',
     categoryAr: 'البانديخا والفيبورا',
     level: 'متوسط',
@@ -103,10 +103,10 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
   },
   {
     id: 'vid-overhead-2',
-    youtubeId: 'PihyQF3EnHk',
-    youtubeUrl: 'https://www.youtube.com/watch?v=PihyQF3EnHk',
-    thumbnailUrl: 'https://img.youtube.com/vi/PihyQF3EnHk/hqdefault.jpg',
-    titleAr: 'أسرار ضربة الفيبورا السريعة (Víbora) والدوران الجانبي القاتل',
+    youtubeId: 'yHAJ5XjFUNg',
+    youtubeUrl: 'https://www.youtube.com/watch?v=yHAJ5XjFUNg',
+    thumbnailUrl: 'https://img.youtube.com/vi/yHAJ5XjFUNg/hqdefault.jpg',
+    titleAr: 'أسرار ضربة الفيبورا السريعة والدوران الجانبي القاتل',
     category: 'overhead',
     categoryAr: 'البانديخا والفيبورا',
     level: 'متقدم',
@@ -120,33 +120,14 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
       'الاستخدام التكتيكي لمباغتة الخصم وحسم النقطة مباشرة'
     ]
   },
-  {
-    id: 'vid-overhead-3',
-    youtubeId: 'Zru6Xvo14os',
-    youtubeUrl: 'https://www.youtube.com/watch?v=Zru6Xvo14os',
-    thumbnailUrl: 'https://img.youtube.com/vi/Zru6Xvo14os/hqdefault.jpg',
-    titleAr: 'كيف تنفذ سماتش إخراج الكرة خارج الملعب (Por 3 Smash)',
-    category: 'overhead',
-    categoryAr: 'البانديخا والفيبورا',
-    level: 'متقدم',
-    duration: '7:45 دقيقة',
-    coachName: 'الكوتش دانيال غارسيا',
-    courtDiagramType: 'full',
-    descriptionAr: 'الدوران العلوي (Top-spin Kick) وزاوية الارتطام بالأرض والجدار الخلفي لإخراج الكرة فوق القفص الجانبي بارتفاع 3 أمتار.',
-    keyTakeaways: [
-      'تقوس الظهر وسحب المضرب خلف الرأس بقوة',
-      'ضرب الكرة في مسار من الساعة 7 إلى الساعة 1 لدوران صاعد عنيف',
-      'الارتطام بالأرض قرب خط الإرسال ثم الارتفاع خارج السدار الجانبي'
-    ]
-  },
 
   // --- WALL & GLASS DEFENSE (الجدران الزجاجية) ---
   {
     id: 'vid-walls-1',
-    youtubeId: 'htIU01CPbE0',
-    youtubeUrl: 'https://www.youtube.com/watch?v=htIU01CPbE0',
-    thumbnailUrl: 'https://img.youtube.com/vi/htIU01CPbE0/hqdefault.jpg',
-    titleAr: 'التعامل مع الجدار الزجاجي الخلفي والزاوية للمبتدئين',
+    youtubeId: 'OWgxm7Ob65g',
+    youtubeUrl: 'https://www.youtube.com/watch?v=OWgxm7Ob65g',
+    thumbnailUrl: 'https://img.youtube.com/vi/OWgxm7Ob65g/hqdefault.jpg',
+    titleAr: 'التحكم والتوقيت في الارتدادات من الجدار الزجاجي (Defensive Wall Rebound Control & Timing)',
     category: 'walls',
     categoryAr: 'الجدران الزجاجية',
     level: 'مبتدئ',
@@ -155,16 +136,16 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
     courtDiagramType: 'walls',
     descriptionAr: 'دليل عملي لكسر الخوف من الزجاج الخلفي؛ كيف تقرأ مسار ارتداد الكرة وتتحرك معها بهدوء لتوجيهها فوق الشبكة بسلام.',
     keyTakeaways: [
-      'ترك مسافة نصف متر على الأقل بين جسمك والزجاج الزجاجي',
+      'ترك مسافة نصف متر على الأقل بين جسمك والزجاج الخلفي',
       'انتظار خروج الكرة للأمام بعد الارتداد قبل ملامستها بالمضرب',
       'استخدام ضربة اللوب المرتفعة لإعادة تنظيم الدفاع واستعادة الشبكة'
     ]
   },
   {
     id: 'vid-walls-2',
-    youtubeId: 'zN5sLWMhOlI',
-    youtubeUrl: 'https://www.youtube.com/watch?v=zN5sLWMhOlI',
-    thumbnailUrl: 'https://img.youtube.com/vi/zN5sLWMhOlI/hqdefault.jpg',
+    youtubeId: 'OWgxm7Ob65g',
+    youtubeUrl: 'https://www.youtube.com/watch?v=OWgxm7Ob65g',
+    thumbnailUrl: 'https://img.youtube.com/vi/OWgxm7Ob65g/hqdefault.jpg',
     titleAr: 'ضربة باجادا دي باريد (Bajada de Pared) الهجومية من الزجاج الخلفي',
     category: 'walls',
     categoryAr: 'الجدران الزجاجية',
@@ -186,7 +167,7 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
     youtubeId: 'wCAqvaqrnZ4',
     youtubeUrl: 'https://www.youtube.com/watch?v=wCAqvaqrnZ4',
     thumbnailUrl: 'https://img.youtube.com/vi/wCAqvaqrnZ4/hqdefault.jpg',
-    titleAr: 'أسرار الإرسال الفعال في البادل (Slice & Flat Serve Tactics)',
+    titleAr: 'أسرار الإرسال الفعال في البادل وتكتيكات الاستقبال',
     category: 'serve_return',
     categoryAr: 'الإرسال والاستقبال',
     level: 'مبتدئ',
@@ -200,32 +181,13 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
       'التقدم السريع بعد الإرسال لاحتلال المنطقة الأمامية'
     ]
   },
-  {
-    id: 'vid-serve-2',
-    youtubeId: 'zN5sLWMhOlI',
-    youtubeUrl: 'https://www.youtube.com/watch?v=zN5sLWMhOlI',
-    thumbnailUrl: 'https://img.youtube.com/vi/zN5sLWMhOlI/hqdefault.jpg',
-    titleAr: 'استقبال الإرسال بذكاء: ضربة اللوب الآمن والتشيكيتا',
-    category: 'serve_return',
-    categoryAr: 'الإرسال والاستقبال',
-    level: 'متوسط',
-    duration: '5:45 دقيقة',
-    coachName: 'الكوتش كارولينا نافارو',
-    courtDiagramType: 'baseline',
-    descriptionAr: 'كيف تتعامل مع الإرسالات الخداعية وتجبر الخصم على التراجع عن الشبكة عبر استقبال استراتيجي متقن.',
-    keyTakeaways: [
-      'قراءة مسار إرسال الخصم مبكراً والتموقع الصحيح',
-      'استخدام اللوب العميق لإجبار المهاجمين على مغادرة الشبكة',
-      'التواصل مع الزميل لتحديد من سيتولى الاستقبال'
-    ]
-  },
 
   // --- FOOTWORK & AGILITY (حركة القدمين) ---
   {
     id: 'vid-footwork-1',
-    youtubeId: 'ur_IHBoQECY',
-    youtubeUrl: 'https://www.youtube.com/watch?v=ur_IHBoQECY',
-    thumbnailUrl: 'https://img.youtube.com/vi/ur_IHBoQECY/hqdefault.jpg',
+    youtubeId: 'NRVnfbe4Ox4',
+    youtubeUrl: 'https://www.youtube.com/watch?v=NRVnfbe4Ox4',
+    thumbnailUrl: 'https://img.youtube.com/vi/NRVnfbe4Ox4/hqdefault.jpg',
     titleAr: 'حركة القدمين والقفزة التحضيرية (Split Step) لسرعة رد فعل مضاعفة',
     category: 'footwork',
     categoryAr: 'حركة القدمين',
@@ -244,10 +206,10 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
   // --- TACTICS & POSITIONING (التكتيك والتمركز) ---
   {
     id: 'vid-tactics-1',
-    youtubeId: 'WfIKQMdtwIE',
-    youtubeUrl: 'https://www.youtube.com/watch?v=WfIKQMdtwIE',
-    thumbnailUrl: 'https://img.youtube.com/vi/WfIKQMdtwIE/hqdefault.jpg',
-    titleAr: 'تكتيك التحرك الثنائي: كيف تتناغم مع زميلك وتغلق كل المساحات',
+    youtubeId: 'yHAJ5XjFUNg',
+    youtubeUrl: 'https://www.youtube.com/watch?v=yHAJ5XjFUNg',
+    thumbnailUrl: 'https://img.youtube.com/vi/yHAJ5XjFUNg/hqdefault.jpg',
+    titleAr: 'تكتيك التحرك الثنائي والتمركز الذكي على أرض الملعب',
     category: 'tactics',
     categoryAr: 'التكتيك والتمركز',
     level: 'الكل',
@@ -259,25 +221,6 @@ export const VIDEO_TUTORIALS: VideoTutorial[] = [
       'الحفاظ على مسافة متوازنة دائماً بين اللاعبين (3-4 أمتار)',
       'التواصل الصوتي الإلزامي عند كل كرة تمر في المنتصف',
       'تغطية خط المستقيم للمدافع المباشر والمنتصف للزميل'
-    ]
-  },
-  {
-    id: 'vid-tactics-2',
-    youtubeId: 'zN5sLWMhOlI',
-    youtubeUrl: 'https://www.youtube.com/watch?v=zN5sLWMhOlI',
-    thumbnailUrl: 'https://img.youtube.com/vi/zN5sLWMhOlI/hqdefault.jpg',
-    titleAr: 'ضربة التشيكيتا (Chiquita) لإسقاط الكرة في أقدام المهاجمين',
-    category: 'tactics',
-    categoryAr: 'التكتيك والتمركز',
-    level: 'متوسط',
-    duration: '5:15 دقيقة',
-    coachName: 'الكوتش لويس مورا',
-    courtDiagramType: 'baseline',
-    descriptionAr: 'التكنيك الخادع لإرسال كرة بطيئة تسقط بنعومة خلف شريط الشبكة مباشرة وكسر أفضلية هجوم الخصم عند الشبكة.',
-    keyTakeaways: [
-      'إرخاء قبضة اليد في اللحظة الأخيرة قبل الضرب لخداع الخصم',
-      'توجيه الكرة بارتفاع منخفض جداً فوق الشريط',
-      'التقدم خطوتين للأمام فوراً لاقتناص الكرة المرفوعة العائدة'
     ]
   }
 ];

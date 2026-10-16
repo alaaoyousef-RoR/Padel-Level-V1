@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AppProvider, useApp } from './context/AppContext';
-import { Header, Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
 import { AuthModal } from './components/AuthModal';
-import { LoginLandingGateway } from './components/LoginLandingGateway';
+import { Variation3Layout } from './components/Variation3Layout';
+import { Footer } from './components/Footer';
 
-import { HomePage } from './pages/HomePage';
 import { LevelTestPage } from './pages/LevelTestPage';
 import { TestResultPage } from './pages/TestResultPage';
 import { TrainingProgramPage } from './pages/TrainingProgramPage';
@@ -16,31 +14,31 @@ import { DashboardPage } from './pages/DashboardPage';
 import { AboutPage } from './pages/AboutPage';
 import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
+import { RacketsPage } from './pages/RacketsPage';
 
 const AppContent: React.FC = () => {
-  const { currentPage, isAuthenticated, isAuthLoading } = useApp();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { currentPage, isAuthenticated, isAuthLoading, testResult } = useApp();
 
   if (isAuthLoading) {
     return (
-      <div className="min-h-screen theme-viewport-bg flex items-center justify-center font-alexandria text-white">
+      <div className="min-h-screen bg-[#0b0b0d] flex items-center justify-center font-inter text-white">
         <div className="text-center space-y-3">
-          <div className="w-12 h-12 rounded-full border-4 border-[#b2e01e] border-t-transparent animate-spin mx-auto"></div>
-          <p className="text-xs text-white/70">جاري تحميل بيانات المنصة...</p>
+          <div className="w-10 h-10 border-2 border-[#b2e01e] border-t-transparent animate-spin mx-auto"></div>
+          <p className="text-xs text-[#f2f7ff]/70 font-jetbrains">جاري تحميل منصة PadelLevel Pro...</p>
         </div>
       </div>
     );
   }
 
-  // Protected Entry Gate: Unauthenticated visitors must see the landing and login gateway first
-  if (!isAuthenticated) {
-    return <LoginLandingGateway />;
-  }
-
   const renderCurrentPage = () => {
+    // When a visitor first lands unauthenticated without having completed the test, display the streamlined assessment
+    if (!isAuthenticated && !testResult && (currentPage === 'home' || currentPage === 'dashboard')) {
+      return <LevelTestPage />;
+    }
+
     switch (currentPage) {
       case 'home':
-        // Authenticated athletes land directly on the full command center dashboard
+      case 'dashboard':
         return <DashboardPage />;
       case 'level-test':
         return <LevelTestPage />;
@@ -55,46 +53,27 @@ const AppContent: React.FC = () => {
         return <VideoTutorialsPage />;
       case 'progress-tracker':
         return <ProgressTrackerPage />;
-      case 'dashboard':
-        return <DashboardPage />;
       case 'about':
         return <AboutPage />;
       case 'faq':
         return <FaqPage />;
       case 'contact':
         return <ContactPage />;
+      case 'rackets':
+        return <RacketsPage />;
       default:
-        return <DashboardPage />;
+        return isAuthenticated ? <DashboardPage /> : <LevelTestPage />;
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col theme-viewport-bg text-white font-sans">
-      {/* Top Header Navigation - Official Brand Anchor across mobile and desktop */}
-      <Header 
-        isMobileMenuOpen={isMobileMenuOpen} 
-        setIsMobileMenuOpen={setIsMobileMenuOpen} 
-      />
-
-      {/* Main Body Container: Sidebar Navigation + Content Area */}
-      <div className="flex-1 flex flex-col lg:flex-row min-w-0">
-        <Navbar 
-          isMobileMenuOpen={isMobileMenuOpen} 
-          setIsMobileMenuOpen={setIsMobileMenuOpen} 
-        />
-
-        {/* Main Content Area with independent scroll */}
-        <div className="flex-1 min-w-0 flex flex-col overflow-y-auto min-h-[calc(100vh-65px)] theme-viewport-bg">
-          <main className="flex-1 p-4 sm:p-8 lg:p-12 max-w-7xl w-full mx-auto">
-            {renderCurrentPage()}
-          </main>
-          <Footer />
-        </div>
-      </div>
-
-      {/* Authentication Dialog */}
+    <>
+      <Variation3Layout>
+        {renderCurrentPage()}
+        <Footer />
+      </Variation3Layout>
       <AuthModal />
-    </div>
+    </>
   );
 };
 

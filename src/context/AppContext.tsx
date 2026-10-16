@@ -174,7 +174,14 @@ const DEFAULT_DEMO_SESSIONS: TrainingSession[] = [
 ];
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentPage, setCurrentPage] = useState<PageRoute>('dashboard');
+  const [currentPage, setCurrentPage] = useState<PageRoute>(() => {
+    try {
+      const saved = localStorage.getItem('padellevel_user');
+      return saved ? 'dashboard' : 'level-test';
+    } catch {
+      return 'level-test';
+    }
+  });
   const [selectedTechniqueSlug, setSelectedTechniqueSlug] = useState<string | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalTab, setAuthModalTab] = useState<'login' | 'register'>('login');

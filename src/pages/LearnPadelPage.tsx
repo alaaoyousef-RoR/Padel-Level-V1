@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { PADEL_TECHNIQUES } from '../data/techniquesData';
 import { PADEL_GLOSSARY_ITEMS, GlossaryTerm } from '../data/glossaryData';
-import { PadelTechnique } from '../types';
+import { PADEL_VIDEOS } from '../data/videoData';
+import { PadelTechnique, PadelVideoTutorial } from '../types';
+import { CustomVideoPlayer } from '../components/CustomVideoPlayer';
 import { 
   BookOpen, 
   Search, 
@@ -11,7 +13,8 @@ import {
   HelpCircle,
   BookMarked,
   ShieldCheck,
-  Compass
+  Compass,
+  Play
 } from 'lucide-react';
 
 export const LearnPadelPage: React.FC = () => {
@@ -21,6 +24,16 @@ export const LearnPadelPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeModalTechnique, setActiveModalTechnique] = useState<PadelTechnique | null>(null);
+  const [activeVideoModal, setActiveVideoModal] = useState<PadelVideoTutorial | null>(null);
+
+  const handleOpenVideoForTechnique = (tech: PadelTechnique) => {
+    const matched = PADEL_VIDEOS.find(v => 
+      v.titleAr.includes(tech.titleAr) || 
+      v.category === tech.category ||
+      v.titleAr.includes(tech.titleOriginal)
+    ) || PADEL_VIDEOS[0];
+    setActiveVideoModal(matched);
+  };
 
   // Glossary state
   const [glossarySearch, setGlossarySearch] = useState('');
@@ -182,20 +195,30 @@ export const LearnPadelPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-white/10 space-y-3">
+                <div className="pt-4 border-t border-white/10 space-y-2.5">
                   <div className="text-[11px] text-white/60 flex items-center gap-1.5 truncate">
                     <Zap className="w-3.5 h-3.5 text-[#b2e01e] flex-shrink-0" />
                     <span className="truncate">{tech.proTips}</span>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={() => setActiveModalTechnique(tech)}
-                    className="w-full py-2.5 btn-outline-ink hover:bg-[#b2e01e] hover:text-[#002255] text-white rounded-xl text-xs font-mono-tag font-bold transition-all flex items-center justify-center gap-2"
-                  >
-                    <span>[ VIEW SPECIFICATIONS ]</span>
-                    <ArrowLeft className="w-3.5 h-3.5" />
-                  </button>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleOpenVideoForTechnique(tech)}
+                      className="py-2.5 btn-neon text-xs font-mono-tag font-black transition-all flex items-center justify-center gap-1.5"
+                    >
+                      <Play className="w-3.5 h-3.5 fill-current" />
+                      <span>شاهد الفيديو</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveModalTechnique(tech)}
+                      className="py-2.5 btn-outline-ink hover:bg-white/10 text-white rounded-xl text-xs font-mono-tag font-bold transition-all flex items-center justify-center gap-1.5"
+                    >
+                      <span>التفاصيل</span>
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -475,6 +498,16 @@ export const LearnPadelPage: React.FC = () => {
 
           </div>
         </div>
+      )}
+
+      {/* Custom Video Player Modal */}
+      {activeVideoModal && (
+        <CustomVideoPlayer
+          video={activeVideoModal}
+          playlist={PADEL_VIDEOS}
+          onSelectVideo={(vid) => setActiveVideoModal(vid)}
+          onClose={() => setActiveVideoModal(null)}
+        />
       )}
 
     </div>

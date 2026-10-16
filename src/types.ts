@@ -206,4 +206,6 @@ export type PageRoute =
   | 'dashboard'
   | 'about'
   | 'faq'
-  | 'contact';
+  | 'contact'
+  | 'rackets';
+

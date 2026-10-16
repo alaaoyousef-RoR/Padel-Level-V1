@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { PadelBrandLogo } from './PadelBrandLogo';
 import { ThemeToggle } from './ThemeToggle';
-import { WhatsAppVector, DeveloperVector } from './BrandEquipmentVectors';
+import { WhatsAppVector, DeveloperVector, PadelRacketOfficialVector } from './BrandEquipmentVectors';
 import { 
   Trophy, 
   Menu, 
@@ -103,6 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: 'تعلّم البادل والتكنيك', page: 'learn-padel', code: '04', icon: <BookOpen className="w-4 h-4" /> },
     { label: 'فيديوهات التمارين', page: 'video-tutorials', code: '05', icon: <PlayCircle className="w-4 h-4" /> },
     { label: 'متتبع التقدم والتمارين', page: 'progress-tracker', code: '06', icon: <TrendingUp className="w-4 h-4 text-[#b2e01e]" /> },
+    { label: 'مضارب البادل المختارة', page: 'rackets', code: '07', icon: <PadelRacketOfficialVector className="w-4 h-4" /> },
   ];
 
   const handleNavClick = (page: PageRoute) => {
