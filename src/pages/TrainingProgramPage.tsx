@@ -22,6 +22,29 @@ export const TrainingProgramPage: React.FC = () => {
   const [activeWeekIndex, setActiveWeekIndex] = useState(0);
   const [activeVideoModal, setActiveVideoModal] = useState<PadelVideoTutorial | null>(null);
 
+  // Drill completion state stored in localStorage / state
+  const [completedDrills, setCompletedDrills] = useState<Record<string, boolean>>(() => {
+    try {
+      const saved = localStorage.getItem('padel_completed_drills');
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('padel_completed_drills', JSON.stringify(completedDrills));
+    } catch {}
+  }, [completedDrills]);
+
+  const toggleDrillComplete = (drillKey: string) => {
+    setCompletedDrills(prev => ({
+      ...prev,
+      [drillKey]: !prev[drillKey]
+    }));
+  };
+
   const handleOpenVideoForDrill = (drillName: string) => {
     const matched = PADEL_VIDEOS.find(v => 
       drillName.includes(v.titleAr) || 
@@ -35,6 +58,18 @@ export const TrainingProgramPage: React.FC = () => {
   const levelInfo = PADEL_LEVELS[selectedLevel] || PADEL_LEVELS[1];
   const currentWeek = currentProgram.weeks[activeWeekIndex] || currentProgram.weeks[0];
   const code = selectedLevel < 10 ? `0${selectedLevel}` : `${selectedLevel}`;
+
+  // Calculate completion percentage for the current week
+  const weekTechnicalDrills = currentWeek?.sessionSummary.technicalDrills || [];
+  const weekTacticalDrills = currentWeek?.sessionSummary.tacticalDrills || [];
+  const totalWeekDrills = weekTechnicalDrills.length + weekTacticalDrills.length;
+  
+  const completedCount = [
+    ...weekTechnicalDrills.map((_, i) => `${selectedLevel}-${activeWeekIndex}-tech-${i}`),
+    ...weekTacticalDrills.map((_, i) => `${selectedLevel}-${activeWeekIndex}-tact-${i}`)
+  ].filter(key => completedDrills[key]).length;
+
+  const weekCompletionPercent = totalWeekDrills > 0 ? Math.round((completedCount / totalWeekDrills) * 100) : 0;
 
   const handlePrint = () => {
     window.print();
@@ -171,9 +206,25 @@ export const TrainingProgramPage: React.FC = () => {
 
       {/* Weekly Breakdown Navigation */}
       <div className="space-y-4 sm:space-y-5 min-w-0">
-        <div>
-          <span className="label-mono mb-0.5" style={{ color: '#b2e01e' }}>[ WEEKLY CURRICULUM ]</span>
-          <h2 className="font-alexandria font-black text-xl sm:text-2xl text-white break-words">الجدول التدريبي الأسبوعي المفصل</h2>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <span className="label-mono mb-0.5" style={{ color: '#b2e01e' }}>[ WEEKLY CURRICULUM ]</span>
+            <h2 className="font-alexandria font-black text-xl sm:text-2xl text-white break-words">الجدول التدريبي الأسبوعي المفصل</h2>
+          </div>
+
+          {/* Week Progress Status Badge */}
+          <div className="bg-[#16161a] border border-[var(--card-border)] px-3 py-2 rounded flex items-center gap-3 shrink-0">
+            <div className="text-left">
+              <span className="text-[10px] font-mono-tag text-white/60 block">WEEK COMPLETION</span>
+              <span className="text-xs font-bold text-[#b2e01e]">{completedCount} / {totalWeekDrills} Drills Done</span>
+            </div>
+            <div className="w-16 bg-[#0b0b0d] h-2 rounded overflow-hidden border border-[var(--card-border)]">
+              <div 
+                className="bg-[#b2e01e] h-full transition-all duration-300"
+                style={{ width: `${weekCompletionPercent}%` }}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Week Buttons */}
@@ -234,37 +285,74 @@ export const TrainingProgramPage: React.FC = () => {
 
               {/* 2. Technical Drills */}
               <div className="space-y-3 min-w-0">
-                <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ 02 • TECHNICAL DRILLS ]</span>
+                <div className="flex items-center justify-between">
+                  <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ 02 • TECHNICAL DRILLS ]</span>
+                  <span className="text-[10px] font-mono-tag text-white/60">انقر على زر الإنجاز لتتبع تقدمك</span>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 min-w-0">
-                  {currentWeek.sessionSummary.technicalDrills.map((drill, idx) => (
-                    <div key={idx} className="bg-[#0b0b0d] p-4 rounded border border-[var(--card-border)] space-y-2.5 text-xs flex flex-col justify-between min-w-0">
-                      <div className="space-y-2 min-w-0">
-                        <div className="flex justify-between items-center gap-2">
-                          <h4 className="font-bold text-white text-xs sm:text-sm truncate break-words">{drill.name}</h4>
-                          <span className="font-mono-tag text-[10px] text-[#b2e01e] font-bold shrink-0">{drill.duration}</span>
+                  {currentWeek.sessionSummary.technicalDrills.map((drill, idx) => {
+                    const drillKey = `${selectedLevel}-${activeWeekIndex}-tech-${idx}`;
+                    const isCompleted = !!completedDrills[drillKey];
+
+                    return (
+                      <div key={idx} className={`bg-[#0b0b0d] p-4 rounded border transition-all space-y-3 text-xs flex flex-col justify-between min-w-0 ${
+                        isCompleted ? 'border-[#b2e01e]/60 bg-[#b2e01e]/[0.03]' : 'border-[var(--card-border)]'
+                      }`}>
+                        <div className="space-y-2 min-w-0">
+                          <div className="flex justify-between items-center gap-2">
+                            <h4 className={`font-bold text-xs sm:text-sm truncate break-words ${isCompleted ? 'text-[#b2e01e] line-through opacity-90' : 'text-white'}`}>
+                              {drill.name}
+                            </h4>
+                            <span className="font-mono-tag text-[10px] text-[#b2e01e] font-bold shrink-0">{drill.duration}</span>
+                          </div>
+                          <p className="text-[#f2f7ff]/70 font-semibold break-words">{drill.goal}</p>
+                          <ul className="space-y-1 text-[#f2f7ff]/80 list-disc list-inside break-words">
+                            {drill.instructions.map((inst, i) => (
+                              <li key={i}>{inst}</li>
+                            ))}
+                          </ul>
                         </div>
-                        <p className="text-[#f2f7ff]/70 font-semibold break-words">{drill.goal}</p>
-                        <ul className="space-y-1 text-[#f2f7ff]/80 list-disc list-inside break-words">
-                          {drill.instructions.map((inst, i) => (
-                            <li key={i}>{inst}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="pt-3 border-t border-[var(--card-border)] flex flex-wrap items-center justify-between gap-2 min-w-0">
-                        <div className="text-[#b2e01e] text-[11px] font-semibold truncate max-w-[200px]">
-                          نصيحة الكوتش: {drill.tips}
+
+                        {/* Interactive Progress Bar & Completion Button */}
+                        <div className="space-y-2 pt-2 border-t border-[var(--card-border)] min-w-0">
+                          <div className="flex items-center justify-between text-[10px] font-mono-tag">
+                            <span className={isCompleted ? 'text-[#b2e01e] font-bold' : 'text-white/50'}>
+                              {isCompleted ? '✓ تم إنجاز هذا التمرين' : 'قيد التطوير والتدريب'}
+                            </span>
+                            <span className="text-[#b2e01e] font-bold">{isCompleted ? '100%' : '0%'}</span>
+                          </div>
+                          <div className="w-full bg-[#16161a] h-1.5 rounded overflow-hidden border border-[var(--card-border)]">
+                            <div 
+                              className={`h-full transition-all duration-300 ${isCompleted ? 'bg-[#b2e01e] w-full' : 'bg-transparent w-0'}`}
+                            />
+                          </div>
                         </div>
-                        <button
-                          type="button"
-                          onClick={() => handleOpenVideoForDrill(drill.name)}
-                          className="btn-neon px-3 py-1.5 text-[10px] font-mono-tag font-bold flex items-center gap-1 shrink-0 cursor-pointer"
-                        >
-                          <Play className="w-3 h-3 fill-current" />
-                          <span>فيديو الشرح</span>
-                        </button>
+
+                        <div className="pt-2 flex flex-wrap items-center justify-between gap-2 min-w-0">
+                          <button
+                            type="button"
+                            onClick={() => toggleDrillComplete(drillKey)}
+                            className={`px-3 py-1.5 rounded text-[10px] font-mono-tag font-bold transition-colors cursor-pointer shrink-0 ${
+                              isCompleted 
+                                ? 'bg-[#b2e01e] text-[#0b0b0d]' 
+                                : 'bg-[#16161a] text-white hover:bg-white/10 border border-[var(--card-border)]'
+                            }`}
+                          >
+                            {isCompleted ? '✓ مكتمل' : 'وضع علامة مكتمل'}
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => handleOpenVideoForDrill(drill.name)}
+                            className="btn-neon px-3 py-1.5 text-[10px] font-mono-tag font-bold flex items-center gap-1 shrink-0 cursor-pointer"
+                          >
+                            <Play className="w-3 h-3 fill-current" />
+                            <span>فيديو الشرح</span>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
@@ -272,32 +360,69 @@ export const TrainingProgramPage: React.FC = () => {
               <div className="space-y-3 min-w-0">
                 <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ 03 • TACTICAL DRILLS ]</span>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 min-w-0">
-                  {currentWeek.sessionSummary.tacticalDrills.map((drill, idx) => (
-                    <div key={idx} className="bg-[#0b0b0d] p-4 rounded border border-[var(--card-border)] space-y-2.5 text-xs flex flex-col justify-between min-w-0">
-                      <div className="space-y-2 min-w-0">
-                        <div className="flex justify-between items-center gap-2">
-                          <h4 className="font-bold text-white text-xs sm:text-sm truncate break-words">{drill.name}</h4>
-                          <span className="font-mono-tag text-[10px] text-[#b2e01e] font-bold shrink-0">{drill.duration}</span>
+                  {currentWeek.sessionSummary.tacticalDrills.map((drill, idx) => {
+                    const drillKey = `${selectedLevel}-${activeWeekIndex}-tact-${idx}`;
+                    const isCompleted = !!completedDrills[drillKey];
+
+                    return (
+                      <div key={idx} className={`bg-[#0b0b0d] p-4 rounded border transition-all space-y-3 text-xs flex flex-col justify-between min-w-0 ${
+                        isCompleted ? 'border-[#b2e01e]/60 bg-[#b2e01e]/[0.03]' : 'border-[var(--card-border)]'
+                      }`}>
+                        <div className="space-y-2 min-w-0">
+                          <div className="flex justify-between items-center gap-2">
+                            <h4 className={`font-bold text-xs sm:text-sm truncate break-words ${isCompleted ? 'text-[#b2e01e] line-through opacity-90' : 'text-white'}`}>
+                              {drill.name}
+                            </h4>
+                            <span className="font-mono-tag text-[10px] text-[#b2e01e] font-bold shrink-0">{drill.duration}</span>
+                          </div>
+                          <p className="text-[#f2f7ff]/70 font-semibold break-words">{drill.goal}</p>
+                          <ul className="space-y-1 text-[#f2f7ff]/80 list-disc list-inside break-words">
+                            {drill.instructions.map((inst, i) => (
+                              <li key={i}>{inst}</li>
+                            ))}
+                          </ul>
                         </div>
-                        <p className="text-[#f2f7ff]/70 font-semibold break-words">{drill.goal}</p>
-                        <ul className="space-y-1 text-[#f2f7ff]/80 list-disc list-inside break-words">
-                          {drill.instructions.map((inst, i) => (
-                            <li key={i}>{inst}</li>
-                          ))}
-                        </ul>
+
+                        {/* Interactive Progress Bar & Completion Button */}
+                        <div className="space-y-2 pt-2 border-t border-[var(--card-border)] min-w-0">
+                          <div className="flex items-center justify-between text-[10px] font-mono-tag">
+                            <span className={isCompleted ? 'text-[#b2e01e] font-bold' : 'text-white/50'}>
+                              {isCompleted ? '✓ تم إنجاز هذا التمرين' : 'قيد التطوير والتكتيك'}
+                            </span>
+                            <span className="text-[#b2e01e] font-bold">{isCompleted ? '100%' : '0%'}</span>
+                          </div>
+                          <div className="w-full bg-[#16161a] h-1.5 rounded overflow-hidden border border-[var(--card-border)]">
+                            <div 
+                              className={`h-full transition-all duration-300 ${isCompleted ? 'bg-[#b2e01e] w-full' : 'bg-transparent w-0'}`}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="pt-2 flex flex-wrap items-center justify-between gap-2 min-w-0">
+                          <button
+                            type="button"
+                            onClick={() => toggleDrillComplete(drillKey)}
+                            className={`px-3 py-1.5 rounded text-[10px] font-mono-tag font-bold transition-colors cursor-pointer shrink-0 ${
+                              isCompleted 
+                                ? 'bg-[#b2e01e] text-[#0b0b0d]' 
+                                : 'bg-[#16161a] text-white hover:bg-white/10 border border-[var(--card-border)]'
+                            }`}
+                          >
+                            {isCompleted ? '✓ مكتمل' : 'وضع علامة مكتمل'}
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => handleOpenVideoForDrill(drill.name)}
+                            className="btn-neon px-3 py-1.5 text-[10px] font-mono-tag font-bold flex items-center gap-1 shrink-0 cursor-pointer"
+                          >
+                            <Play className="w-3 h-3 fill-current" />
+                            <span>فيديو التكتيك المرئي</span>
+                          </button>
+                        </div>
                       </div>
-                      <div className="pt-3 border-t border-[var(--card-border)] flex justify-end min-w-0">
-                        <button
-                          type="button"
-                          onClick={() => handleOpenVideoForDrill(drill.name)}
-                          className="btn-neon px-3 py-1.5 text-[10px] font-mono-tag font-bold flex items-center gap-1 shrink-0 cursor-pointer"
-                        >
-                          <Play className="w-3 h-3 fill-current" />
-                          <span>فيديو التكتيك المرئي</span>
-                        </button>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

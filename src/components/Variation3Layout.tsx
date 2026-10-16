@@ -6,6 +6,8 @@ import { PadelBrandLogo } from './PadelBrandLogo';
 import { 
   Menu, 
   X, 
+  ChevronRight,
+  ChevronLeft,
   Activity, 
   Sparkles, 
   Trophy, 
@@ -16,7 +18,9 @@ import {
   Mail, 
   LogOut,
   UserCheck,
-  LogIn
+  LogIn,
+  MessageCircle,
+  ExternalLink
 } from 'lucide-react';
 
 export interface Variation3LayoutProps {
@@ -24,8 +28,9 @@ export interface Variation3LayoutProps {
 }
 
 export const Variation3Layout: React.FC<Variation3LayoutProps> = ({ children }) => {
-  const { user, testResult, trainingSessions, masteredSkills, currentPage, navigateTo, logout, openAuthModal } = useApp();
+  const { user, testResult, currentPage, navigateTo, logout, openAuthModal } = useApp();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   const isGuest = !user;
   const playerName = user?.fullName || (isGuest ? 'رياضي جديد (Guest)' : 'كابتن البادل');
@@ -51,7 +56,7 @@ export const Variation3Layout: React.FC<Variation3LayoutProps> = ({ children }) 
   ];
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-[#0b0b0d] text-[#f2f7ff] flex flex-col lg:grid lg:grid-cols-[80px_1fr_320px] font-inter select-none relative">
+    <div className="h-screen w-screen overflow-hidden bg-[#0b0b0d] text-[#f2f7ff] flex flex-col lg:flex-row font-inter select-none relative">
       
       {/* MOBILE TOP BAR */}
       <header className="lg:hidden flex items-center justify-between px-3.5 py-2.5 bg-[#16161a] border-b border-[var(--card-border)] shrink-0 z-30 min-w-0">
@@ -124,7 +129,7 @@ export const Variation3Layout: React.FC<Variation3LayoutProps> = ({ children }) 
 
             {/* Navigation Items */}
             <div className="space-y-1.5 flex-1 min-w-0">
-              <div className="text-[10px] font-jetbrains text-white/50 mb-1.5 tracking-wider uppercase">NAVIGATION RAIL</div>
+              <div className="text-[10px] font-jetbrains text-white/50 mb-1.5 tracking-wider uppercase">NAVIGATION MENU</div>
               {railItems.map(item => (
                 <button
                   key={item.page}
@@ -142,6 +147,30 @@ export const Variation3Layout: React.FC<Variation3LayoutProps> = ({ children }) 
                   <span className="font-jetbrains text-[10px] shrink-0">[{item.code}]</span>
                 </button>
               ))}
+            </div>
+
+            {/* Official WhatsApp Community Access Link */}
+            <div className="p-3 rounded bg-[#0b0b0d] border border-[#25d366]/40 space-y-1.5 min-w-0">
+              <div className="flex items-center justify-between gap-1 text-[10px] font-jetbrains text-[#25d366] font-bold">
+                <span className="flex items-center gap-1">
+                  <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+                  <span>WHATSAPP COMMUNITY</span>
+                </span>
+                <span className="text-[9px] bg-[#25d366]/20 px-1.5 py-0.5 rounded text-[#25d366]">500+ لاعب</span>
+              </div>
+              <p className="text-[11px] text-[#f2f7ff]/75 leading-tight">
+                مجتمع لاعبي البادل لتنسيق المباريات والبطولات.
+              </p>
+              <a
+                href="https://chat.whatsapp.com/CoOQR4oN1jzBrNaLCNOfP5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-1.5 rounded font-black text-xs flex items-center justify-center gap-1.5 transition mt-1"
+                style={{ backgroundColor: '#25d366', color: '#0b0b0d', textDecoration: 'none' }}
+              >
+                <span>الانضمام للمجتمع</span>
+                <ExternalLink className="w-3 h-3 shrink-0" />
+              </a>
             </div>
 
             {/* Bottom Drawer Actions */}
@@ -169,18 +198,103 @@ export const Variation3Layout: React.FC<Variation3LayoutProps> = ({ children }) 
         </div>
       )}
 
-      {/* 1. RAIL (Desktop Column 1) */}
-      <nav className="rail hidden lg:flex h-full overflow-y-auto">
-        <div 
-          onClick={() => navigateTo('level-test')}
-          className="w-11 h-11 rounded bg-[#b2e01e] text-[#0b0b0d] font-syne font-black flex items-center justify-center text-base cursor-pointer hover:bg-[#9ec71b] transition shrink-0"
-          title="PadelLevel Pro"
-        >
-          PL
+      {/* 1. COLLAPSIBLE / EXPANDABLE DRAWER PANEL (Desktop Left Nav) */}
+      <nav 
+        className={`hidden lg:flex flex-col h-full overflow-y-auto border-l border-[var(--card-border)] bg-[#0b0b0d] transition-all duration-300 z-30 shrink-0 select-none ${
+          isNavExpanded ? 'w-72 p-4' : 'w-[74px] py-4 px-2.5 items-center'
+        }`}
+      >
+        {/* Toggle & Brand Header */}
+        <div className={`flex items-center shrink-0 mb-4 ${isNavExpanded ? 'justify-between w-full border-b border-[var(--card-border)] pb-3' : 'flex-col gap-3'}`}>
+          <div 
+            onClick={() => navigateTo('level-test')}
+            className="flex items-center gap-2 cursor-pointer focus:outline-none"
+            title="PadelLevel Pro"
+          >
+            <div className="w-10 h-10 rounded bg-[#b2e01e] text-[#0b0b0d] font-syne font-black flex items-center justify-center text-sm hover:bg-[#9ec71b] transition shrink-0">
+              PL
+            </div>
+            {isNavExpanded && (
+              <div className="min-w-0">
+                <div className="font-syne font-black text-sm text-white tracking-wider">PADEL LEVEL</div>
+                <div className="text-[10px] font-jetbrains text-[#b2e01e]">BENCHMARK PRO</div>
+              </div>
+            )}
+          </div>
+
+          {/* Clean Expand/Collapse Toggle Button */}
+          <button
+            onClick={() => setIsNavExpanded(!isNavExpanded)}
+            className={`rounded border border-[var(--card-border)] bg-[#16161a] hover:border-[#b2e01e] hover:text-[#b2e01e] text-white flex items-center justify-center transition cursor-pointer shrink-0 ${
+              isNavExpanded ? 'px-2.5 py-1.5 text-xs gap-1.5' : 'w-10 h-10'
+            }`}
+            title={isNavExpanded ? "تصغير القائمة (إغلاق)" : "توسيع القائمة (فتح)"}
+            aria-label={isNavExpanded ? "إغلاق القائمة" : "فتح القائمة"}
+          >
+            {isNavExpanded ? (
+              <>
+                <X className="w-4 h-4 text-[#b2e01e] shrink-0" />
+                <span className="text-[11px] font-bold">إغلاق القائمة</span>
+              </>
+            ) : (
+              <Menu className="w-5 h-5 text-[#b2e01e] shrink-0" />
+            )}
+          </button>
         </div>
-        <div className="flex flex-col gap-2.5 mt-2 flex-1">
+
+        {/* Athlete Quick Status Widget (when expanded) */}
+        {isNavExpanded && (
+          <div className="w-full mb-4 p-3 rounded bg-[#16161a] border border-[var(--card-border)] space-y-1.5 shrink-0 min-w-0">
+            <div className="flex items-center justify-between text-[10px] font-jetbrains text-[#b2e01e]">
+              <span>ATHLETE</span>
+              <span className="text-white/50">{isGuest ? 'GUEST' : 'PRO'}</span>
+            </div>
+            <div className="font-syne font-bold text-sm text-white truncate break-words">{playerName}</div>
+            <div className="flex items-center justify-between gap-2 pt-1">
+              <span className="label-pill-var3 bg-[#b2e01e] text-[#0b0b0d] border-none font-bold">
+                {isGuest ? 'تقييم غير مكتمل' : `Level ${levelNum} Pro`}
+              </span>
+              {isGuest && (
+                <button
+                  onClick={() => openAuthModal('login')}
+                  className="text-[11px] text-[#005cd7] hover:underline font-bold shrink-0 cursor-pointer"
+                >
+                  تسجيل الدخول
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Navigation Items List */}
+        <div className={`flex flex-col gap-2 flex-1 w-full min-w-0 ${isNavExpanded ? '' : 'items-center'}`}>
+          {isNavExpanded && (
+            <div className="text-[10px] font-jetbrains text-white/50 mb-1 tracking-wider uppercase">NAVIGATION</div>
+          )}
+
           {railItems.map(item => {
             const isActive = currentPage === item.page;
+            
+            if (isNavExpanded) {
+              return (
+                <button
+                  key={item.page}
+                  onClick={() => navigateTo(item.page)}
+                  className={`w-full flex items-center justify-between p-2.5 rounded border text-xs font-bold transition cursor-pointer min-w-0 ${
+                    isActive 
+                      ? 'border-[#b2e01e] bg-[#b2e01e] text-[#0b0b0d]' 
+                      : 'border-[var(--card-border)] bg-[#16161a] text-[#f2f7ff] hover:border-white/30'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <span className="shrink-0">{item.icon}</span>
+                    <span className="truncate">{item.label}</span>
+                  </div>
+                  <span className="font-jetbrains text-[10px] shrink-0">[{item.code}]</span>
+                </button>
+              );
+            }
+
             return (
               <button
                 key={item.page}
@@ -193,153 +307,80 @@ export const Variation3Layout: React.FC<Variation3LayoutProps> = ({ children }) 
             );
           })}
         </div>
-        <div className="mt-auto flex flex-col gap-2 items-center shrink-0">
+
+        {/* WhatsApp Official Community Access Button (Expanded) */}
+        {isNavExpanded && (
+          <div className="w-full my-3 p-3 rounded bg-[#16161a] border border-[#25d366]/40 space-y-1.5 shrink-0 min-w-0">
+            <div className="flex items-center justify-between text-[10px] font-jetbrains text-[#25d366] font-bold">
+              <span className="flex items-center gap-1">
+                <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+                <span>WHATSAPP COMMUNITY</span>
+              </span>
+              <span className="text-[9px] bg-[#25d366]/20 px-1 py-0.5 rounded text-[#25d366]">500+</span>
+            </div>
+            <p className="text-[10px] text-[#f2f7ff]/70 leading-tight">
+              مجتمع لاعبي البادل لتنسيق المباريات والبطولات.
+            </p>
+            <a
+              href="https://chat.whatsapp.com/CoOQR4oN1jzBrNaLCNOfP5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-1.5 rounded font-black text-xs flex items-center justify-center gap-1.5 transition mt-1"
+              style={{ backgroundColor: '#25d366', color: '#0b0b0d', textDecoration: 'none' }}
+            >
+              <span>انضم للمجتمع</span>
+              <ExternalLink className="w-3 h-3 shrink-0" />
+            </a>
+          </div>
+        )}
+
+        {/* Theme Toggle & Bottom Actions */}
+        <div className={`mt-auto pt-3 border-t border-[var(--card-border)] flex flex-col gap-2 shrink-0 ${isNavExpanded ? 'w-full' : 'items-center'}`}>
+          {isNavExpanded ? (
+            <div className="space-y-1.5 w-full">
+              <div className="text-[10px] font-jetbrains text-white/50 tracking-wider uppercase">PALETTE</div>
+              <ThemeToggle />
+            </div>
+          ) : (
+            <ThemeToggle compactOnMobile={true} />
+          )}
+
           {!isGuest ? (
             <button
               onClick={logout}
-              className="rail-icon text-red-400 border-red-900 bg-red-950 hover:bg-red-900"
+              className={
+                isNavExpanded
+                  ? "w-full py-2 px-3 rounded bg-red-950 text-red-200 border border-red-800 font-bold text-xs flex items-center justify-center gap-2 hover:bg-red-900 transition cursor-pointer"
+                  : "rail-icon text-red-400 border-red-900 bg-red-950 hover:bg-red-900"
+              }
               title="تسجيل الخروج"
             >
-              ⎋
+              <LogOut className="w-4 h-4 shrink-0" />
+              {isNavExpanded && <span>تسجيل الخروج</span>}
             </button>
           ) : (
             <button
               onClick={() => openAuthModal('login')}
-              className="rail-icon text-[#b2e01e] border-[#b2e01e] hover:bg-[#b2e01e] hover:text-[#0b0b0d]"
+              className={
+                isNavExpanded
+                  ? "w-full py-2 px-3 rounded bg-[#005cd7] text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#004bb0] transition cursor-pointer"
+                  : "rail-icon text-[#b2e01e] border-[#b2e01e] hover:bg-[#b2e01e] hover:text-[#0b0b0d]"
+              }
               title="تسجيل الدخول"
             >
-              <LogIn className="w-4 h-4" />
+              <LogIn className="w-4 h-4 shrink-0" />
+              {isNavExpanded && <span>تسجيل الدخول</span>}
             </button>
           )}
         </div>
       </nav>
 
-      {/* 2. VIEWPORT (Middle Column & Mobile Main Content) */}
+      {/* 2. VIEWPORT MAIN CONTENT (Responsive vertical scrolling container with complete freedom from overlaps) */}
       <main className="viewport-var3 flex-1 flex flex-col min-w-0 w-full overflow-y-auto px-3.5 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-6 pb-24 lg:pb-8">
         <div className="max-w-5xl w-full mx-auto flex-1 min-w-0">
           {children}
         </div>
       </main>
-
-      {/* 3. SIDEBAR INFO AREA (Desktop Column 3) */}
-      <aside className="sidebar-var3 hidden lg:flex h-full overflow-y-auto">
-        {/* Profile Card */}
-        <div className="pb-4 border-b border-[var(--card-border)] min-w-0">
-          <div className="flex items-center justify-between mb-2 gap-2">
-            <span className="font-jetbrains text-[10px] text-[#b2e01e] tracking-widest uppercase">Athlete Profile</span>
-            {isGuest ? (
-              <span className="text-[10px] font-bold text-[#f2f7ff]/50 shrink-0">وضع الضيف</span>
-            ) : (
-              <span className="text-[10px] font-bold text-[#b2e01e] flex items-center gap-1 shrink-0">
-                <UserCheck className="w-3 h-3" />
-                <span>حساب موثق</span>
-              </span>
-            )}
-          </div>
-          <h2 className="font-syne text-xl font-extrabold text-white truncate break-words">{playerName}</h2>
-          
-          <div className="flex items-center gap-2 mt-2 flex-wrap">
-            <div className="label-pill-var3 bg-[#b2e01e] text-[#0b0b0d] border-none font-bold">
-              {isGuest ? 'تقييم المستوى قيد الإجراء' : `Rank: Level ${levelNum} Pro`}
-            </div>
-            {isGuest && (
-              <button
-                onClick={() => openAuthModal('login')}
-                className="text-[10px] text-[#005cd7] hover:underline font-bold"
-              >
-                تسجيل الدخول
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Theme Selector */}
-        <div className="space-y-1.5 min-w-0">
-          <div className="font-jetbrains text-[10px] text-[#b2e01e] tracking-widest uppercase">Color Palette</div>
-          <ThemeToggle />
-        </div>
-
-        {/* WhatsApp Community Card */}
-        <div className="card-var3 border-[#25d366]/40 bg-[#16161a] min-w-0">
-          <div className="font-jetbrains text-[10px] text-[#25d366] mb-1 font-bold">COMMUNITY ACCESS</div>
-          <h3 className="font-syne text-sm font-bold text-white mb-1">مجتمع الواتساب الرسمي</h3>
-          <p className="text-[11px] text-[#f2f7ff]/75 mb-3 leading-relaxed break-words">
-            انضم لـ 500+ لاعب بادل لتنسيق المباريات والبطولات في الرياض وجدة.
-          </p>
-          <a
-            href="https://chat.whatsapp.com/CoOQR4oN1jzBrNaLCNOfP5"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-action-var3 text-xs block text-center border-none"
-            style={{ backgroundColor: '#25d366', color: '#0b0b0d', textDecoration: 'none' }}
-          >
-            JOIN NOW
-          </a>
-        </div>
-
-        {/* Command Hub Quick Navigation */}
-        <div className="space-y-2 min-w-0">
-          <div className="font-jetbrains text-[10px] text-white/50 tracking-widest uppercase">Command Hub</div>
-          <div className="grid gap-2 text-xs">
-            <button 
-              onClick={() => navigateTo('level-test')}
-              className={`card-var3 p-2.5 text-right transition cursor-pointer font-bold flex items-center justify-between min-w-0 ${
-                currentPage === 'level-test' ? 'border-[#b2e01e] text-[#b2e01e]' : 'border-[var(--card-border)] text-[#f2f7ff]'
-              }`}
-            >
-              <span className="truncate">اختبار تقييم المستوى</span>
-              <span className="font-jetbrains text-[10px] text-[#b2e01e] shrink-0 mr-2">[02]</span>
-            </button>
-            <button 
-              onClick={() => navigateTo('my-training-program')}
-              className={`card-var3 p-2.5 text-right transition cursor-pointer font-bold flex items-center justify-between min-w-0 ${
-                currentPage === 'my-training-program' ? 'border-[#b2e01e] text-[#b2e01e]' : 'border-[var(--card-border)] text-[#f2f7ff]'
-              }`}
-            >
-              <span className="truncate">برنامجي التدريبي</span>
-              <span className="font-jetbrains text-[10px] text-[#b2e01e] shrink-0 mr-2">[03]</span>
-            </button>
-            <button 
-              onClick={() => navigateTo('learn-padel')}
-              className={`card-var3 p-2.5 text-right transition cursor-pointer font-bold flex items-center justify-between min-w-0 ${
-                currentPage === 'learn-padel' ? 'border-[#b2e01e] text-[#b2e01e]' : 'border-[var(--card-border)] text-[#f2f7ff]'
-              }`}
-            >
-              <span className="truncate">موسوعة التكنيك والمصطلحات</span>
-              <span className="font-jetbrains text-[10px] text-[#b2e01e] shrink-0 mr-2">[04]</span>
-            </button>
-            <button 
-              onClick={() => navigateTo('video-tutorials')}
-              className={`card-var3 p-2.5 text-right transition cursor-pointer font-bold flex items-center justify-between min-w-0 ${
-                currentPage === 'video-tutorials' ? 'border-[#b2e01e] text-[#b2e01e]' : 'border-[var(--card-border)] text-[#f2f7ff]'
-              }`}
-            >
-              <span className="truncate">فيديوهات التمارين والتحمية</span>
-              <span className="font-jetbrains text-[10px] text-[#b2e01e] shrink-0 mr-2">[05]</span>
-            </button>
-            <button 
-              onClick={() => navigateTo('rackets')}
-              className={`card-var3 p-2.5 text-right transition cursor-pointer font-bold flex items-center justify-between min-w-0 ${
-                currentPage === 'rackets' ? 'border-[#b2e01e] text-[#b2e01e]' : 'border-[var(--card-border)] text-[#f2f7ff]'
-              }`}
-            >
-              <span className="truncate">مضارب البادل المختارة</span>
-              <span className="font-jetbrains text-[10px] text-[#b2e01e] shrink-0 mr-2">[07]</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Evaluation Pending Meter */}
-        <div className="mt-auto pt-4 border-t border-[var(--card-border)] shrink-0 min-w-0">
-          <div className="font-jetbrains text-[10px] text-white/60 mb-1.5">EVALUATION METRIC</div>
-          <div className="h-2 w-full bg-[#0b0b0d] border border-[var(--card-border)] rounded overflow-hidden">
-            <div className="h-full bg-[#b2e01e]" style={{ width: testResult ? '100%' : '20%' }} />
-          </div>
-          <p className="text-[10px] text-[#f2f7ff]/70 mt-1.5 leading-relaxed break-words">
-            {testResult ? 'التصنيف الرسمي مفعل ومكتمل بنجاح.' : 'أكمل الـ 20 سؤالاً لتفعيل التصنيف الرسمي.'}
-          </p>
-        </div>
-      </aside>
 
       {/* MOBILE BOTTOM NAVIGATION BAR */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#16161a] border-t border-[var(--card-border)] py-1.5 px-2 flex items-center justify-around">
@@ -363,3 +404,4 @@ export const Variation3Layout: React.FC<Variation3LayoutProps> = ({ children }) 
     </div>
   );
 };
+

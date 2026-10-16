@@ -20,7 +20,12 @@ import {
   Maximize2,
   Lock,
   User,
-  Check
+  Check,
+  Trophy,
+  TrendingUp,
+  BookmarkCheck,
+  ExternalLink,
+  MessageCircle
 } from 'lucide-react';
 
 const PADEL_TERMS_MAP: Record<number, { term: string; termEn: string; definition: string }[]> = {
@@ -92,7 +97,7 @@ const PADEL_TERMS_MAP: Record<number, { term: string; termEn: string; definition
 };
 
 export const LevelTestPage: React.FC = () => {
-  const { user, saveTestResult, navigateTo, loginWithUsername } = useApp();
+  const { user, saveTestResult, navigateTo, loginWithUsername, openAuthModal } = useApp();
   
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -461,41 +466,135 @@ export const LevelTestPage: React.FC = () => {
 
       </div>
 
-      {/* 3. Streamlined Save / Login Section */}
-      <div className="card-dark p-4 sm:p-6 rounded border border-[var(--card-border)] bg-[#16161a] space-y-3.5 sm:space-y-4 min-w-0">
-        <div className="space-y-1 min-w-0">
+      {/* 3. DEDICATED LOGIN / AUTHENTICATION & CORE BENEFITS CARD */}
+      <div className="card-dark p-4 sm:p-6 md:p-8 rounded border border-[var(--card-border)] bg-[#16161a] space-y-6 min-w-0">
+        
+        {/* Header & Badges */}
+        <div className="space-y-2 min-w-0 border-b border-[var(--card-border)] pb-4">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="w-2 h-2 rounded-full bg-[#b2e01e] shrink-0"></span>
             <span className="font-jetbrains text-[10px] text-[#b2e01e] font-bold uppercase tracking-wider">
-              ACCOUNT & DATA PRESERVATION
+              [ ATHLETE AUTHENTICATION & CORE BENEFITS ]
+            </span>
+            <span className="bg-[#0b0b0d] border border-[#005cd7] text-white/70 text-[10px] font-jetbrains px-2 py-0.5 rounded">
+              PERMANENT DATA PRESERVATION
             </span>
           </div>
-          <h3 className="font-alexandria font-bold text-sm sm:text-base text-white break-words">
-            Log in with any username to save your results, track your daily training progress, and access customized drill plans.
-          </h3>
-          <p className="text-xs text-[#f2f7ff]/70 leading-relaxed break-words">
-            سجّل الدخول بأي اسم مستخدم لحفظ نتائجك، وتتبع تقدمك التدريبي اليومي، والوصول إلى خطط التمارين المخصصة.
+          <h2 className="font-alexandria font-black text-base sm:text-xl md:text-2xl text-white tracking-tight leading-snug break-words">
+            سجّل دخولك لحفظ تصنيفك الرسمي وفتح البرامج التدريبية المتقدمة
+          </h2>
+          <p className="text-xs sm:text-sm text-[#f2f7ff]/75 leading-relaxed break-words">
+            سواء كنت لاعباً جديداً أو كابتناً متمرساً، تسجيل الدخول يضمن توثيق مستواك ومتابعة تقدمك التدريبي على المدى الطويل من أي جهاز.
           </p>
         </div>
 
-        {user ? (
-          <div className="p-3 sm:p-3.5 rounded bg-[#0b0b0d] border border-[#005cd7] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 min-w-0">
-            <div className="text-xs text-[#f2f7ff] min-w-0">
-              <span className="text-white/80">أنت مسجّل الدخول كـ: </span>
-              <strong className="text-[#b2e01e] font-bold break-words">{user.fullName || user.email}</strong>
-              <span className="text-white/60 block text-[11px] mt-0.5">
-                نتائج تقييمك ستحفظ وتحدث فورياً في سجلك الرياضي.
-              </span>
+        {/* 3 Core Highlights / Benefits Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 min-w-0">
+          
+          {/* Benefit 1 */}
+          <div className="p-3.5 sm:p-4 rounded bg-[#0b0b0d] border border-[var(--card-border)] hover:border-[#b2e01e]/60 transition-colors space-y-2 min-w-0 flex flex-col justify-between">
+            <div className="space-y-1.5 min-w-0">
+              <div className="w-8 h-8 rounded bg-[#b2e01e]/10 border border-[#b2e01e]/30 flex items-center justify-center shrink-0">
+                <BookmarkCheck className="w-4 h-4 text-[#b2e01e]" />
+              </div>
+              <h3 className="font-alexandria font-bold text-xs sm:text-sm text-white break-words">
+                حفظ التقدم وتصنيف Playtomic
+              </h3>
+              <p className="text-[11px] sm:text-xs text-[#f2f7ff]/70 leading-relaxed break-words">
+                تثبيت نتيجة تقييمك (من Level 1.0 إلى 7.0) وعدم فقدان بيانات الاختبار عند إغلاق المتصفح أو تغيير الجهاز.
+              </p>
             </div>
-            <button
-              onClick={() => navigateTo('dashboard')}
-              className="btn-neon text-xs px-4 py-2 font-bold shrink-0 self-stretch sm:self-auto text-center justify-center"
-            >
-              لوحة التحكم
-            </button>
+            <span className="font-jetbrains text-[9px] text-[#b2e01e] font-bold tracking-wider">
+              • INSTANT CLOUD SYNC
+            </span>
+          </div>
+
+          {/* Benefit 2 */}
+          <div className="p-3.5 sm:p-4 rounded bg-[#0b0b0d] border border-[var(--card-border)] hover:border-[#b2e01e]/60 transition-colors space-y-2 min-w-0 flex flex-col justify-between">
+            <div className="space-y-1.5 min-w-0">
+              <div className="w-8 h-8 rounded bg-[#b2e01e]/10 border border-[#b2e01e]/30 flex items-center justify-center shrink-0">
+                <Trophy className="w-4 h-4 text-[#b2e01e]" />
+              </div>
+              <h3 className="font-alexandria font-bold text-xs sm:text-sm text-white break-words">
+                برامج تدريبية متقدمة ومخصصة
+              </h3>
+              <p className="text-[11px] sm:text-xs text-[#f2f7ff]/70 leading-relaxed break-words">
+                فتح جدول التدريب الأسبوعي المصمم خصيصاً لمستواك الدقيق لعلاج نقاط الضعف الفنية والتكتيكية.
+              </p>
+            </div>
+            <span className="font-jetbrains text-[9px] text-[#b2e01e] font-bold tracking-wider">
+              • 4-WEEK CURRICULUM
+            </span>
+          </div>
+
+          {/* Benefit 3 */}
+          <div className="p-3.5 sm:p-4 rounded bg-[#0b0b0d] border border-[var(--card-border)] hover:border-[#b2e01e]/60 transition-colors space-y-2 min-w-0 flex flex-col justify-between">
+            <div className="space-y-1.5 min-w-0">
+              <div className="w-8 h-8 rounded bg-[#b2e01e]/10 border border-[#b2e01e]/30 flex items-center justify-center shrink-0">
+                <TrendingUp className="w-4 h-4 text-[#b2e01e]" />
+              </div>
+              <h3 className="font-alexandria font-bold text-xs sm:text-sm text-white break-words">
+                تتبع مؤشرات الأداء (Benchmarks)
+              </h3>
+              <p className="text-[11px] sm:text-xs text-[#f2f7ff]/70 leading-relaxed break-words">
+                تسجيل الحصص ومتابعة إتقان المهارات (الإرسال، الفولي، البانديخا، الزجاج) ورسم منحنى صعود مستواك.
+              </p>
+            </div>
+            <span className="font-jetbrains text-[9px] text-[#b2e01e] font-bold tracking-wider">
+              • PERFORMANCE ANALYTICS
+            </span>
+          </div>
+
+        </div>
+
+        {/* Authentication Form or Verified Athlete Status */}
+        {user ? (
+          <div className="p-4 rounded bg-[#0b0b0d] border border-[#005cd7] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 min-w-0">
+            <div className="space-y-1 text-xs text-[#f2f7ff] min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#b2e01e]"></span>
+                <span className="text-white/70">أنت متصل بحساب موثق:</span>
+                <strong className="text-[#b2e01e] font-bold break-words">{user.fullName || user.email}</strong>
+              </div>
+              <p className="text-white/60 text-[11px] leading-relaxed">
+                نتائج تقييمك والمحاور المكتملة مرتبطة بملفك الرياضي الدائم ومحدثة فورياً.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 shrink-0 self-stretch sm:self-auto">
+              <button
+                onClick={() => navigateTo('my-training-program')}
+                className="btn-outline-ink text-xs px-4 py-2 font-bold cursor-pointer transition flex-1 sm:flex-initial text-center justify-center"
+              >
+                برنامجي التدريبي
+              </button>
+              <button
+                onClick={() => navigateTo('dashboard')}
+                className="btn-neon text-xs px-4 py-2 font-bold cursor-pointer transition flex-1 sm:flex-initial text-center justify-center"
+              >
+                لوحة التحكم
+              </button>
+            </div>
           </div>
         ) : (
-          <form onSubmit={handleInlineSaveLogin} className="space-y-3 pt-2 border-t border-[var(--card-border)] min-w-0">
+          <form onSubmit={handleInlineSaveLogin} className="p-4 sm:p-5 rounded bg-[#0b0b0d] border border-[var(--card-border)] space-y-4 min-w-0">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+              <div>
+                <span className="font-alexandria font-bold text-xs sm:text-sm text-white block">
+                  تسجيل الدخول السريع (Quick Login / Save)
+                </span>
+                <span className="text-[11px] text-[#f2f7ff]/60">
+                  أدخل أي اسم مستخدم وكلمة مرور لحفظ نتائج هذا الاختبار ومتابعة البرنامج.
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => openAuthModal('login')}
+                className="text-xs text-[#b2e01e] hover:underline font-bold self-start sm:self-auto cursor-pointer"
+              >
+                نافذة تسجيل الدخول (Login Modal)
+              </button>
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 min-w-0">
               <div className="min-w-0">
                 <label className="block text-[11px] text-[#f2f7ff]/80 font-bold mb-1">
@@ -507,9 +606,9 @@ export const LevelTestPage: React.FC = () => {
                     required
                     value={loginUsername}
                     onChange={(e) => setLoginUsername(e.target.value)}
-                    placeholder="مثال: ahmad_padel"
+                    placeholder="مثال: captain_padel"
                     dir="ltr"
-                    className="w-full bg-[#0b0b0d] border border-[var(--card-border)] rounded py-2 px-3 pr-8 text-xs text-white placeholder-white/30 outline-none focus:border-[#b2e01e] font-jetbrains text-right"
+                    className="w-full bg-[#16161a] border border-[var(--card-border)] rounded py-2 px-3 pr-8 text-xs text-white placeholder-white/30 outline-none focus:border-[#b2e01e] font-jetbrains text-right"
                   />
                   <User className="w-3.5 h-3.5 text-white/40 absolute top-2.5 right-2.5 pointer-events-none" />
                 </div>
@@ -526,7 +625,7 @@ export const LevelTestPage: React.FC = () => {
                     onChange={(e) => setLoginPassword(e.target.value)}
                     placeholder="••••••••"
                     dir="ltr"
-                    className="w-full bg-[#0b0b0d] border border-[var(--card-border)] rounded py-2 px-3 pr-8 text-xs text-white placeholder-white/30 outline-none focus:border-[#b2e01e] font-jetbrains text-right"
+                    className="w-full bg-[#16161a] border border-[var(--card-border)] rounded py-2 px-3 pr-8 text-xs text-white placeholder-white/30 outline-none focus:border-[#b2e01e] font-jetbrains text-right"
                   />
                   <Lock className="w-3.5 h-3.5 text-white/40 absolute top-2.5 right-2.5 pointer-events-none" />
                 </div>
@@ -541,18 +640,90 @@ export const LevelTestPage: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-1 min-w-0">
               <span className="text-[10px] text-[#f2f7ff]/50 leading-relaxed break-words">
-                * يدعم تسجيل الدخول المباشر أو إنشاء حساب تلقائي فوري دون تعقيد.
+                * يدعم تسجيل الدخول المباشر أو إنشاء الحساب تلقائياً دون متطلبات معقدة.
               </span>
               <button
                 type="submit"
                 disabled={isLoggingIn}
-                className="btn-neon px-5 py-2 text-xs font-black rounded cursor-pointer disabled:opacity-50 w-full sm:w-auto shrink-0 text-center justify-center"
+                className="btn-neon px-6 py-2.5 text-xs font-black rounded cursor-pointer disabled:opacity-50 w-full sm:w-auto shrink-0 text-center justify-center flex items-center gap-2"
               >
-                {isLoggingIn ? 'جاري الحفظ والتحقق...' : 'حفظ ومتابعة (Save & Continue)'}
+                {isLoggingIn ? (
+                  <span>جاري الحفظ والتحقق...</span>
+                ) : (
+                  <>
+                    <span>حفظ ومتابعة (Save & Continue)</span>
+                    <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
+                  </>
+                )}
               </button>
             </div>
           </form>
         )}
+
+      </div>
+
+      {/* 4. PROMINENT OFFICIAL WHATSAPP COMMUNITY CARD */}
+      <div className="card-dark p-4 sm:p-6 md:p-7 rounded border border-[#25d366]/40 bg-[#16161a] space-y-4 min-w-0 relative overflow-hidden">
+        {/* Subtle decorative accent */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 min-w-0">
+          
+          <div className="space-y-2 min-w-0 flex-1">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="font-jetbrains text-[10px] text-[#25d366] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+                <span>OFFICIAL WHATSAPP COMMUNITY</span>
+              </span>
+              <span className="bg-[#25d366]/20 border border-[#25d366]/50 text-[#25d366] text-[10px] font-bold px-2 py-0.5 rounded shrink-0">
+                500+ لاعب نشط في المملكة
+              </span>
+            </div>
+
+            <h3 className="font-alexandria font-black text-base sm:text-xl text-white tracking-tight leading-snug break-words">
+              انضم إلى مجتمع لاعبي البادل الرسمي عبر الواتساب
+            </h3>
+
+            <p className="text-xs sm:text-sm text-[#f2f7ff]/75 leading-relaxed break-words">
+              تواصل مع أكثر من 500 لاعب بادل في المملكة (الرياض، جدة، الشرقية). نسق مباريات وتحديات تنافسية بحسب تصنيفك الدقيق، شارك في بطولات التصنيف والفعاليات الأسبوعية، وتبادل النصائح الفنية واختيار المضارب مع الكباتن.
+            </p>
+
+            {/* Quick feature tags */}
+            <div className="flex items-center gap-2 flex-wrap pt-1">
+              <span className="bg-[#0b0b0d] border border-white/10 text-white/80 text-[10px] px-2.5 py-1 rounded">
+                🎾 تنسيق مباريات يومية
+              </span>
+              <span className="bg-[#0b0b0d] border border-white/10 text-white/80 text-[10px] px-2.5 py-1 rounded">
+                🏆 إعلانات بطولات التصنيف
+              </span>
+              <span className="bg-[#0b0b0d] border border-white/10 text-white/80 text-[10px] px-2.5 py-1 rounded">
+                ⚡ استشارات المضارب والمعدات
+              </span>
+            </div>
+          </div>
+
+          {/* Prominent High-Impact WhatsApp Button */}
+          <div className="shrink-0 flex flex-col items-stretch md:items-end justify-center">
+            <a
+              href="https://chat.whatsapp.com/CoOQR4oN1jzBrNaLCNOfP5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 px-6 sm:px-8 rounded font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition hover:opacity-95 cursor-pointer text-center"
+              style={{ 
+                backgroundColor: '#25d366', 
+                color: '#0b0b0d', 
+                textDecoration: 'none',
+                boxShadow: 'none'
+              }}
+            >
+              <MessageCircle className="w-4 h-4 shrink-0" />
+              <span>انضم الآن لمجتمع الواتساب (JOIN NOW)</span>
+              <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+            </a>
+            <span className="text-[10px] text-white/50 text-center md:text-left mt-1.5 font-jetbrains">
+              رابط دعوة رسمي مباشر ومجاني
+            </span>
+          </div>
+
+        </div>
       </div>
 
     </div>

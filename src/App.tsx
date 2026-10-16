@@ -31,8 +31,8 @@ const AppContent: React.FC = () => {
   }
 
   const renderCurrentPage = () => {
-    // When a visitor first lands unauthenticated without having completed the test, display the streamlined assessment
-    if (!isAuthenticated && !testResult && (currentPage === 'home' || currentPage === 'dashboard')) {
+    // When a guest lands on home or has not yet completed the test, display the guest level assessment test
+    if (!isAuthenticated && (currentPage === 'home' || !testResult)) {
       return <LevelTestPage />;
     }
 

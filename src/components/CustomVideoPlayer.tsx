@@ -154,92 +154,83 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
           </div>
         </div>
 
-        {/* Custom Video Player Stage with YouTube Embed & Overlay Controls */}
-        <div className="relative aspect-video w-full rounded overflow-hidden bg-black border border-[var(--card-border)] group min-w-0">
-          
+        {/* Responsive 16:9 Video Embed Player Stage */}
+        <div className="relative aspect-video w-full rounded overflow-hidden bg-black border border-[var(--card-border)] min-w-0">
           <iframe
             className="w-full h-full border-0 absolute inset-0 pointer-events-auto"
-            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=${isPlaying ? 1 : 0}&mute=${isMuted ? 1 : 0}&controls=1&modestbranding=1&rel=0&playbackRate=${playbackSpeed}`}
+            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&controls=1&modestbranding=1&rel=0`}
             title={video.titleAr}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
+        </div>
 
-          {/* Custom Overlay Bottom Bar */}
-          <div className="absolute bottom-0 left-0 right-0 bg-black/80 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end space-y-2 pointer-events-none">
-            
-            {/* Scrub Bar */}
-            <div className="w-full bg-white/20 h-1.5 rounded overflow-hidden relative cursor-pointer pointer-events-auto">
-              <div 
-                className="bg-[#b2e01e] h-full transition-all duration-300"
-                style={{ width: '45%' }}
-              ></div>
-            </div>
+        {/* Video Player Helper Toolbar */}
+        <div className="flex flex-wrap items-center justify-between gap-2.5 p-2.5 sm:p-3 bg-[#0b0b0d] rounded border border-[var(--card-border)] min-w-0 text-xs text-white">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="font-mono-tag text-[10px] sm:text-xs text-[#b2e01e] font-bold shrink-0">
+              HD 1080p • {video.duration}
+            </span>
+            <span className="text-white/40 hidden sm:inline">•</span>
+            <span className="text-white/70 text-[11px] truncate hidden sm:inline">
+              المدرب: {video.coachName}
+            </span>
+          </div>
 
-            <div className="flex items-center justify-between text-xs text-white pointer-events-auto min-w-0">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <button
-                  type="button"
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-7 h-7 rounded bg-[#b2e01e] text-[#0b0b0d] flex items-center justify-center font-bold transition-transform cursor-pointer shrink-0"
-                >
-                  {isPlaying ? <Pause className="w-3.5 h-3.5 fill-[#0b0b0d]" /> : <Play className="w-3.5 h-3.5 fill-[#0b0b0d]" />}
-                </button>
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Speed Selector */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setShowSpeedMenu(!showSpeedMenu)}
+                className="px-2.5 py-1 rounded bg-[#16161a] border border-[var(--card-border)] text-[10px] font-mono-tag text-[#b2e01e] font-bold flex items-center gap-1 cursor-pointer hover:border-[#b2e01e] transition-colors"
+                title="سرعة التشغيل"
+              >
+                <span>السرعة: {playbackSpeed}x</span>
+              </button>
 
-                <button
-                  type="button"
-                  onClick={() => setIsMuted(!isMuted)}
-                  className="text-white/80 hover:text-[#b2e01e] transition-colors cursor-pointer shrink-0"
-                >
-                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
-                </button>
-
-                <span className="font-mono-tag text-[10px] text-white/85 truncate">
-                  HD 1080p • {video.duration}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2 shrink-0">
-                {/* Speed Selector */}
-                <div className="relative">
-                  <button
-                    type="button"
-                    onClick={() => setShowSpeedMenu(!showSpeedMenu)}
-                    className="px-2 py-0.5 rounded bg-[#0b0b0d] border border-[var(--card-border)] text-[10px] font-mono-tag text-[#b2e01e] font-bold flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>{playbackSpeed}x</span>
-                  </button>
-
-                  {showSpeedMenu && (
-                    <div className="absolute bottom-full right-0 mb-1.5 bg-[#0b0b0d] rounded border border-[var(--card-border)] p-1 flex flex-col gap-1 min-w-[65px] z-30">
-                      {speeds.map((s) => (
-                        <button
-                          key={s}
-                          onClick={() => {
-                            setPlaybackSpeed(s);
-                            setShowSpeedMenu(false);
-                          }}
-                          className={`px-2 py-0.5 rounded text-center text-xs font-mono-tag font-bold transition-colors cursor-pointer ${
-                            playbackSpeed === s ? 'bg-[#b2e01e] text-[#0b0b0d]' : 'text-white/80 hover:bg-white/10'
-                          }`}
-                        >
-                          {s}x
-                        </button>
-                      ))}
-                    </div>
-                  )}
+              {showSpeedMenu && (
+                <div className="absolute bottom-full right-0 mb-1.5 bg-[#16161a] rounded border border-[var(--card-border)] p-1 flex flex-col gap-1 min-w-[75px] z-30 shadow-xl">
+                  {speeds.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => {
+                        setPlaybackSpeed(s);
+                        setShowSpeedMenu(false);
+                      }}
+                      className={`px-2 py-1 rounded text-center text-xs font-mono-tag font-bold transition-colors cursor-pointer ${
+                        playbackSpeed === s ? 'bg-[#b2e01e] text-[#0b0b0d]' : 'text-white/80 hover:bg-white/10'
+                      }`}
+                    >
+                      {s}x
+                    </button>
+                  ))}
                 </div>
-
-                <button
-                  type="button"
-                  onClick={toggleFullscreen}
-                  className="text-white/80 hover:text-[#b2e01e] transition-colors p-1 cursor-pointer"
-                >
-                  {isFullscreen ? <Minimize className="w-3.5 h-3.5" /> : <Maximize className="w-3.5 h-3.5" />}
-                </button>
-              </div>
+              )}
             </div>
 
+            {/* Direct YouTube Link */}
+            <a
+              href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-1 rounded bg-[#16161a] border border-[var(--card-border)] text-[10px] font-mono-tag text-white/80 hover:text-white hover:border-red-500 transition-colors flex items-center gap-1 cursor-pointer"
+              title="مشاهدة على YouTube مباشرة"
+            >
+              <Youtube className="w-3.5 h-3.5 text-red-500 shrink-0" />
+              <span className="hidden sm:inline">YouTube</span>
+              <Share2 className="w-3 h-3 shrink-0" />
+            </a>
+
+            {/* Fullscreen Button */}
+            <button
+              type="button"
+              onClick={toggleFullscreen}
+              className="p-1.5 rounded bg-[#16161a] border border-[var(--card-border)] text-white/80 hover:text-[#b2e01e] hover:border-[#b2e01e] transition-colors cursor-pointer"
+              title={isFullscreen ? "تصغير الشاشة" : "ملء الشاشة"}
+            >
+              {isFullscreen ? <Minimize className="w-3.5 h-3.5" /> : <Maximize className="w-3.5 h-3.5" />}
+            </button>
           </div>
         </div>
 
