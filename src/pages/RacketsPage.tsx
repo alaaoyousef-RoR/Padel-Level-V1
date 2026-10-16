@@ -13,7 +13,6 @@ import {
   WhatsAppVector,
   PadelBallVector
 } from '../components/BrandEquipmentVectors';
-import { PadelRacketImage } from '../components/PadelRacketImage';
 import { 
   Search, 
   SlidersHorizontal, 
@@ -123,68 +122,63 @@ export const RacketsPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-10 pb-16 font-sans">
+    <div className="w-full max-w-7xl mx-auto py-2 sm:py-4 text-right space-y-5 sm:space-y-6 font-alexandria min-w-0">
       
       {/* 1. HERO SECTION & HEADER */}
-      <div className="relative rounded-3xl p-6 sm:p-10 theme-card-solid border border-white/15 overflow-hidden shadow-2xl">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#b2e01e]/10 rounded-full blur-3xl -z-10 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#005cd7]/15 rounded-full blur-3xl -z-10 pointer-events-none" />
+      <div className="card-dark p-4 sm:p-6 md:p-8 rounded border border-[var(--card-border)] bg-[#16161a] space-y-4 relative overflow-hidden min-w-0">
+        <div className="absolute top-0 right-0 w-2 h-full bg-[#b2e01e]"></div>
 
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
-          <div className="space-y-3 max-w-2xl">
-            <div className="flex items-center gap-2 text-xs font-mono-tag text-[#b2e01e]">
-              <span>[ EQUIPMENT SHOWCASE & GUIDE ]</span>
-              <span aria-hidden="true">·</span>
-              <span>مضارب البادل الرسمية 2024 - 2025</span>
-            </div>
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 relative z-10 min-w-0">
+          <div className="space-y-2 max-w-2xl min-w-0 flex-1">
+            <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ EQUIPMENT SHOWCASE & GUIDE ]</span>
 
-            <h1 className="text-2xl sm:text-4xl font-black font-alexandria text-white tracking-tight leading-tight">
-              دليل ومضارب البادل المختارة حسب المستوى
+            <h1 className="text-xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight break-words">
+              دليل ومضارب البادل <span className="text-[#b2e01e]">المختارة حسب المستوى</span>
             </h1>
 
-            <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#f2f7ff]/80 leading-relaxed font-medium break-words">
               اختر المضرب الأنسب الذي يرفع كفاءة أدائك ويحمي ذراعك. استكشف نخبة مضارب كبرى العلامات العالمية (Bullpadel, Nox, Babolat, Head, Wilson) المصنفة بدقة علمية للاعبين المبتدئين والمتوسطين والمحترفين.
             </p>
 
             {/* Quick stats indicators */}
-            <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-white/70">
-              <div className="flex items-center gap-1.5">
+            <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-[#f2f7ff]/70 font-mono-tag min-w-0">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <ShieldCheck className="w-4 h-4 text-[#b2e01e]" />
                 <span>مواصفات رسمية معتمدة</span>
               </div>
               <span aria-hidden="true" className="text-white/30">·</span>
-              <div className="flex items-center gap-1.5">
-                <Target className="w-4 h-4 text-[#38bdf8]" />
+              <div className="flex items-center gap-1.5 shrink-0">
+                <Target className="w-4 h-4 text-[#b2e01e]" />
                 <span>3 مستويات مهارية دقيقة</span>
               </div>
               <span aria-hidden="true" className="text-white/30">·</span>
-              <div className="flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-[#fbbf24]" />
+              <div className="flex items-center gap-1.5 shrink-0">
+                <Sparkles className="w-4 h-4 text-[#b2e01e]" />
                 <span>استشارة مباشرة مع الكوتش</span>
               </div>
             </div>
           </div>
 
           {/* Quick Actions */}
-          <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0">
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 w-full sm:w-auto shrink-0">
             <button
               onClick={() => {
                 setIsQuizOpen(!isQuizOpen);
                 if (!quizResult) handleRunQuiz();
               }}
-              className="btn-neon px-5 py-3 text-xs font-black flex items-center justify-center gap-2 shadow-xl cursor-pointer"
+              className="btn-neon px-5 py-3 text-xs font-black flex items-center justify-center gap-2 cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 fill-current" />
+              <Sparkles className="w-4 h-4 text-[#0b0b0d] shrink-0" />
               <span>{isQuizOpen ? 'إغلاق مساعد الاختيار' : 'مساعد اختيار المضرب المثالي'}</span>
             </button>
 
             {compareList.length > 0 && (
               <button
                 onClick={() => setIsCompareModalOpen(true)}
-                className="px-5 py-3 text-xs font-bold rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 flex items-center justify-center gap-2 transition cursor-pointer"
+                className="btn-outline-ink px-5 py-2.5 text-xs font-bold text-white flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>مقارنة المضارب المختارة</span>
-                <span className="w-5 h-5 rounded-full bg-[#b2e01e] text-[#002661] font-black text-[10px] flex items-center justify-center">
+                <span className="w-5 h-5 rounded bg-[#b2e01e] text-[#0b0b0d] font-black text-[10px] flex items-center justify-center">
                   {compareList.length}
                 </span>
               </button>
@@ -195,31 +189,31 @@ export const RacketsPage: React.FC = () => {
 
       {/* 2. SMART QUIZ / RACKET FINDER ACCORDION */}
       {isQuizOpen && (
-        <div className="card-dark p-6 sm:p-8 rounded-3xl border border-[#b2e01e]/30 shadow-2xl space-y-6 animate-in slide-in-from-top-4 duration-200">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#b2e01e]/20 text-[#b2e01e] flex items-center justify-center">
-                <Sparkles className="w-5 h-5" />
+        <div className="card-dark p-4 sm:p-6 md:p-7 rounded border border-[#b2e01e] bg-[#16161a] space-y-5 min-w-0">
+          <div className="flex items-center justify-between border-b border-[var(--card-border)] pb-3 min-w-0 gap-2">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="w-8 h-8 rounded bg-[#b2e01e] text-[#0b0b0d] flex items-center justify-center shrink-0">
+                <Sparkles className="w-4 h-4" />
               </div>
-              <div>
-                <h2 className="font-alexandria font-bold text-base text-white">مساعد اختيار المضرب الذكي (Smart Racket Finder)</h2>
-                <p className="text-xs text-white/70">أجب على 3 أسئلة سريعة لنرشح لك المضرب الهندسي الأنسب لأسلوب لعبك</p>
+              <div className="min-w-0">
+                <h2 className="font-alexandria font-bold text-sm sm:text-base text-white truncate">مساعد اختيار المضرب الذكي (Smart Racket Finder)</h2>
+                <p className="text-xs text-[#f2f7ff]/70 truncate">أجب على 3 أسئلة سريعة لنرشح لك المضرب الهندسي الأنسب لأسلوب لعبك</p>
               </div>
             </div>
             <button
               onClick={() => setIsQuizOpen(false)}
-              className="text-white/60 hover:text-white p-2"
+              className="text-white/60 hover:text-white p-1.5 rounded bg-[#0b0b0d] border border-[var(--card-border)] cursor-pointer shrink-0"
               title="إغلاق"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 text-[#b2e01e]" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 min-w-0">
             {/* Step 1: Level */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-white block">1. ما هو مستواك الحالي في البادل؟</label>
-              <div className="space-y-1.5">
+            <div className="space-y-2 min-w-0">
+              <label className="text-xs font-bold text-white block font-mono-tag">1. ما هو مستواك الحالي في البادل؟</label>
+              <div className="space-y-1.5 min-w-0">
                 {[
                   { id: 'beginner', label: 'مبتدئ (Level 1-2)', desc: 'أتعلم الأساسيات وضرب الكرة' },
                   { id: 'intermediate', label: 'متوسط (Level 3)', desc: 'ألعب بانتظام وأتحكم في الراليات' },
@@ -228,23 +222,23 @@ export const RacketsPage: React.FC = () => {
                   <button
                     key={opt.id}
                     onClick={() => { setQuizLevel(opt.id as RacketLevel); }}
-                    className={`w-full text-right p-3 rounded-xl border text-xs transition cursor-pointer ${
+                    className={`w-full text-right p-2.5 rounded border text-xs transition cursor-pointer min-w-0 ${
                       quizLevel === opt.id
-                        ? 'border-[#b2e01e] bg-[#b2e01e]/15 text-white font-bold'
-                        : 'border-white/10 hover:border-white/20 text-white/70 bg-white/5'
+                        ? 'border-[#b2e01e] bg-[#0b0b0d] text-white font-bold'
+                        : 'border-[var(--card-border)] hover:border-white/30 text-white/70 bg-[#0b0b0d]'
                     }`}
                   >
-                    <div className="font-bold text-white">{opt.label}</div>
-                    <div className="text-[11px] text-white/60">{opt.desc}</div>
+                    <div className="font-bold text-white truncate">{opt.label}</div>
+                    <div className="text-[11px] text-[#f2f7ff]/60 break-words">{opt.desc}</div>
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Step 2: Play Style */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-white block">2. ما هو أسلوب لعبك وتمركزك المفضل؟</label>
-              <div className="space-y-1.5">
+            <div className="space-y-2 min-w-0">
+              <label className="text-xs font-bold text-white block font-mono-tag">2. ما هو أسلوب لعبك وتمركزك المفضل؟</label>
+              <div className="space-y-1.5 min-w-0">
                 {[
                   { id: 'control', label: 'دفاع وتحكم (Control & Defense)', desc: 'أفضل بناء النقطة وتفادي الأخطاء' },
                   { id: 'balanced', label: 'تكتيكي شامل (All-Round Player)', desc: 'توازن بين الدفاع وسرعة الفولي' },
@@ -253,23 +247,23 @@ export const RacketsPage: React.FC = () => {
                   <button
                     key={opt.id}
                     onClick={() => { setQuizStyle(opt.id as any); }}
-                    className={`w-full text-right p-3 rounded-xl border text-xs transition cursor-pointer ${
+                    className={`w-full text-right p-2.5 rounded border text-xs transition cursor-pointer min-w-0 ${
                       quizStyle === opt.id
-                        ? 'border-[#b2e01e] bg-[#b2e01e]/15 text-white font-bold'
-                        : 'border-white/10 hover:border-white/20 text-white/70 bg-white/5'
+                        ? 'border-[#b2e01e] bg-[#0b0b0d] text-white font-bold'
+                        : 'border-[var(--card-border)] hover:border-white/30 text-white/70 bg-[#0b0b0d]'
                     }`}
                   >
-                    <div className="font-bold text-white">{opt.label}</div>
-                    <div className="text-[11px] text-white/60">{opt.desc}</div>
+                    <div className="font-bold text-white truncate">{opt.label}</div>
+                    <div className="text-[11px] text-[#f2f7ff]/60 break-words">{opt.desc}</div>
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Step 3: Priority */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-white block">3. ما هي أولويتك القصوى عند اختيار المضرب؟</label>
-              <div className="space-y-1.5">
+            <div className="space-y-2 min-w-0">
+              <label className="text-xs font-bold text-white block font-mono-tag">3. ما هي أولويتك القصوى عند اختيار المضرب؟</label>
+              <div className="space-y-1.5 min-w-0">
                 {[
                   { id: 'comfort', label: 'راحة الذراع ونقطة ضرب واسعة', desc: 'حماية المرفق وسهولة رد الكرات' },
                   { id: 'versatility', label: 'تعدد الاستخدامات وسرعة الحركة', desc: 'مضرب رشيق يخدمني في كل المواقف' },
@@ -278,38 +272,38 @@ export const RacketsPage: React.FC = () => {
                   <button
                     key={opt.id}
                     onClick={() => { setQuizPriority(opt.id as any); }}
-                    className={`w-full text-right p-3 rounded-xl border text-xs transition cursor-pointer ${
+                    className={`w-full text-right p-2.5 rounded border text-xs transition cursor-pointer min-w-0 ${
                       quizPriority === opt.id
-                        ? 'border-[#b2e01e] bg-[#b2e01e]/15 text-white font-bold'
-                        : 'border-white/10 hover:border-white/20 text-white/70 bg-white/5'
+                        ? 'border-[#b2e01e] bg-[#0b0b0d] text-white font-bold'
+                        : 'border-[var(--card-border)] hover:border-white/30 text-white/70 bg-[#0b0b0d]'
                     }`}
                   >
-                    <div className="font-bold text-white">{opt.label}</div>
-                    <div className="text-[11px] text-white/60">{opt.desc}</div>
+                    <div className="font-bold text-white truncate">{opt.label}</div>
+                    <div className="text-[11px] text-[#f2f7ff]/60 break-words">{opt.desc}</div>
                   </button>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[var(--card-border)] min-w-0">
             <button
               onClick={handleRunQuiz}
-              className="btn-neon px-6 py-2.5 text-xs font-black flex items-center gap-2 cursor-pointer w-full sm:w-auto"
+              className="btn-neon px-5 py-2.5 text-xs font-black flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto shrink-0"
             >
-              <Zap className="w-4 h-4" />
+              <Zap className="w-4 h-4 text-[#0b0b0d] shrink-0" />
               <span>تحديث النتيجة المقترحة</span>
             </button>
 
             {quizResult && (
-              <div className="flex items-center gap-4 p-3 rounded-2xl bg-white/10 border border-[#b2e01e]/40 w-full sm:w-auto">
-                <div className="text-right">
-                  <span className="text-[10px] font-mono-tag text-[#b2e01e] block">المضرب الأنسب لك بنسبة 98%:</span>
-                  <span className="text-xs font-bold text-white">{quizResult.brand} {quizResult.modelName}</span>
+              <div className="flex items-center gap-3 p-2.5 rounded border border-[#b2e01e] bg-[#0b0b0d] w-full sm:w-auto min-w-0 justify-between sm:justify-start">
+                <div className="text-right min-w-0">
+                  <span className="text-[10px] font-mono-tag text-[#b2e01e] block truncate">المضرب الأنسب لك بنسبة 98%:</span>
+                  <span className="text-xs font-bold text-white truncate block">{quizResult.brand} {quizResult.modelName}</span>
                 </div>
                 <button
                   onClick={() => setActiveModalRacket(quizResult)}
-                  className="px-3 py-1.5 text-xs font-bold rounded-lg bg-[#b2e01e] text-[#002661] hover:bg-[#9ec71b] transition whitespace-nowrap cursor-pointer"
+                  className="px-3 py-1.5 text-xs font-black rounded bg-[#b2e01e] text-[#0b0b0d] transition whitespace-nowrap cursor-pointer shrink-0"
                 >
                   فحص التفاصيل
                 </button>
@@ -320,60 +314,60 @@ export const RacketsPage: React.FC = () => {
       )}
 
       {/* 3. SHAPE & SPECS GUIDE BANNER (Round vs Teardrop vs Diamond) */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Info className="w-5 h-5 text-[#b2e01e]" />
-            <h2 className="text-lg sm:text-xl font-bold font-alexandria text-white">
+      <div className="space-y-3 min-w-0">
+        <div className="flex items-center justify-between min-w-0">
+          <div className="flex items-center gap-2 min-w-0">
+            <Info className="w-4 h-4 text-[#b2e01e] shrink-0" />
+            <h2 className="text-base sm:text-lg font-bold font-alexandria text-white truncate">
               دليل الأشكال الهندسية لمضارب البادل (Racket Shapes 101)
             </h2>
           </div>
-          <span className="text-xs font-mono-tag text-white/50 hidden sm:inline">TECHNICAL ARCHITECTURE</span>
+          <span className="text-xs font-mono-tag text-[#b2e01e] hidden sm:inline shrink-0">[ TECHNICAL ARCHITECTURE ]</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 min-w-0">
           {RACKET_SHAPE_GUIDES.map((guide) => {
             const isSelected = selectedShape === guide.shape;
             return (
               <div 
                 key={guide.shape}
                 onClick={() => setSelectedShape(isSelected ? 'all' : guide.shape)}
-                className={`card-dark p-5 rounded-2xl border transition-all cursor-pointer group hover:scale-[1.01] ${
+                className={`card-dark p-4 sm:p-5 rounded border transition-colors cursor-pointer group bg-[#16161a] min-w-0 ${
                   isSelected 
-                    ? 'border-[#b2e01e] ring-1 ring-[#b2e01e]/50 bg-white/[0.08]' 
-                    : 'border-white/10 hover:border-white/25'
+                    ? 'border-[#b2e01e]' 
+                    : 'border-[var(--card-border)] hover:border-[#b2e01e]'
                 }`}
               >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-alexandria font-bold text-sm text-white group-hover:text-[#b2e01e] transition-colors">
+                <div className="flex items-center justify-between mb-2 gap-2 min-w-0">
+                  <span className="font-alexandria font-bold text-sm text-white group-hover:text-[#b2e01e] transition-colors truncate">
                     {guide.titleAr}
                   </span>
-                  <span className={`text-[10px] font-mono-tag px-2 py-0.5 rounded-full ${
-                    isSelected ? 'bg-[#b2e01e] text-[#002661] font-black' : 'bg-white/10 text-white/70'
+                  <span className={`text-[10px] font-mono-tag px-2 py-0.5 rounded shrink-0 ${
+                    isSelected ? 'bg-[#b2e01e] text-[#0b0b0d] font-black' : 'bg-[#0b0b0d] text-white/70 border border-[var(--card-border)]'
                   }`}>
                     {guide.shape.toUpperCase()}
                   </span>
                 </div>
 
-                <p className="text-xs text-[#b2e01e] font-semibold mb-2">{guide.subtitleAr}</p>
-                <p className="text-xs text-white/70 leading-relaxed mb-3">{guide.sweetSpotDescAr}</p>
+                <p className="text-xs text-[#b2e01e] font-semibold mb-1.5 truncate">{guide.subtitleAr}</p>
+                <p className="text-xs text-[#f2f7ff]/75 leading-relaxed mb-3 break-words">{guide.sweetSpotDescAr}</p>
 
-                <div className="space-y-2 pt-2 border-t border-white/10 text-[11px]">
-                  <div className="flex items-center justify-between text-white/80">
-                    <span className="text-white/50">المستوى الأنسب:</span>
-                    <span className="font-semibold text-right">{guide.idealLevelAr}</span>
+                <div className="space-y-1.5 pt-2 border-t border-[var(--card-border)] text-[11px] min-w-0">
+                  <div className="flex items-center justify-between text-white/80 gap-2 min-w-0">
+                    <span className="text-white/50 shrink-0">المستوى الأنسب:</span>
+                    <span className="font-semibold text-right truncate">{guide.idealLevelAr}</span>
                   </div>
-                  <div className="flex items-center justify-between text-white/80">
-                    <span className="text-white/50">توزيع التوازن:</span>
-                    <span className="font-semibold">{guide.balanceDescAr.split('،')[0]}</span>
+                  <div className="flex items-center justify-between text-white/80 gap-2 min-w-0">
+                    <span className="text-white/50 shrink-0">توزيع التوازن:</span>
+                    <span className="font-semibold truncate">{guide.balanceDescAr.split('،')[0]}</span>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-                  <span className="text-white/60 group-hover:text-white transition">
+                <div className="mt-3 pt-2.5 border-t border-[var(--card-border)] flex items-center justify-between text-xs">
+                  <span className="text-white/60 group-hover:text-white transition truncate">
                     {isSelected ? 'إلغاء الفلترة' : 'عرض مضارب هذا الشكل فقط'}
                   </span>
-                  <span className="text-[#b2e01e] font-bold">→</span>
+                  <span className="text-[#b2e01e] font-bold shrink-0">←</span>
                 </div>
               </div>
             );
@@ -382,13 +376,13 @@ export const RacketsPage: React.FC = () => {
       </div>
 
       {/* 4. FILTERING & SEARCH CONTROLS */}
-      <div className="card-dark p-5 sm:p-6 rounded-2xl border border-white/15 shadow-xl space-y-4">
+      <div className="card-dark p-4 sm:p-5 rounded border border-[var(--card-border)] bg-[#16161a] space-y-3.5 min-w-0">
         
         {/* Row 1: Skill Level Filter Tabs (Buttons) & Search Input */}
-        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 min-w-0">
           
-          {/* Level Filter Tabs (Interactive Segmented Control) */}
-          <div className="flex items-center gap-1.5 p-1 bg-black/40 rounded-xl border border-white/10 overflow-x-auto">
+          {/* Level Filter Tabs */}
+          <div className="flex items-center gap-1.5 p-1 bg-[#0b0b0d] rounded border border-[var(--card-border)] overflow-x-auto min-w-0">
             {[
               { id: 'all', label: 'جميع المستويات' },
               { id: 'beginner', label: 'مبتدئ (Beginner)' },
@@ -398,10 +392,10 @@ export const RacketsPage: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setSelectedLevel(tab.id as any)}
-                className={`px-3.5 py-2 text-xs font-bold rounded-lg transition-all whitespace-nowrap cursor-pointer ${
+                className={`px-3 py-1.5 text-xs font-bold rounded transition-colors whitespace-nowrap cursor-pointer shrink-0 ${
                   selectedLevel === tab.id
-                    ? 'bg-[#b2e01e] text-[#002661] shadow font-black'
-                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                    ? 'bg-[#b2e01e] text-[#0b0b0d] font-black'
+                    : 'text-[#f2f7ff]/70 hover:text-white'
                 }`}
               >
                 {tab.label}
@@ -410,19 +404,19 @@ export const RacketsPage: React.FC = () => {
           </div>
 
           {/* Search Box */}
-          <div className="relative flex-1 max-w-md">
-            <Search className="w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
+          <div className="relative flex-1 max-w-md min-w-0">
+            <Search className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="ابحث باسم الموديل، الماركة (Bullpadel, Nox)، أو اللاعب..."
-              className="w-full bg-white/5 border border-white/15 focus:border-[#b2e01e] rounded-xl pr-10 pl-4 py-2.5 text-xs text-white placeholder-white/40 outline-none transition"
+              className="w-full bg-[#0b0b0d] border border-[var(--card-border)] focus:border-[#b2e01e] rounded pr-9 pl-4 py-2 text-xs text-white placeholder-white/40 outline-none transition font-medium"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-xs"
+                className="absolute left-2.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-xs cursor-pointer"
               >
                 مسح
               </button>
@@ -431,16 +425,16 @@ export const RacketsPage: React.FC = () => {
         </div>
 
         {/* Row 2: Secondary Dropdown Filters (Shape, Brand, Reset) */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10 text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[var(--card-border)] text-xs min-w-0">
           
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3 min-w-0">
             {/* Shape Select */}
-            <div className="flex items-center gap-2">
-              <span className="text-white/60">الشكل:</span>
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-[#f2f7ff]/60">الشكل:</span>
               <select
                 value={selectedShape}
                 onChange={(e) => setSelectedShape(e.target.value as any)}
-                className="bg-black/50 border border-white/15 text-white rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-[#b2e01e]"
+                className="bg-[#0b0b0d] border border-[var(--card-border)] text-white rounded px-2.5 py-1.5 text-xs outline-none focus:border-[#b2e01e] cursor-pointer"
               >
                 <option value="all">كل الأشكال</option>
                 <option value="round">دائري (Round)</option>
@@ -450,12 +444,12 @@ export const RacketsPage: React.FC = () => {
             </div>
 
             {/* Brand Select */}
-            <div className="flex items-center gap-2">
-              <span className="text-white/60">العلامة التجارية:</span>
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-[#f2f7ff]/60">العلامة التجارية:</span>
               <select
                 value={selectedBrand}
                 onChange={(e) => setSelectedBrand(e.target.value)}
-                className="bg-black/50 border border-white/15 text-white rounded-lg px-2.5 py-1.5 text-xs outline-none focus:border-[#b2e01e]"
+                className="bg-[#0b0b0d] border border-[var(--card-border)] text-white rounded px-2.5 py-1.5 text-xs outline-none focus:border-[#b2e01e] cursor-pointer"
               >
                 <option value="all">جميع الماركات</option>
                 {brands.map(b => (
@@ -490,12 +484,12 @@ export const RacketsPage: React.FC = () => {
 
       {/* 5. RACKETS GRID SHOWCASE */}
       {filteredRackets.length === 0 ? (
-        <div className="card-dark p-12 rounded-3xl border border-white/10 text-center space-y-4">
-          <div className="w-16 h-16 rounded-full bg-white/10 text-white/60 flex items-center justify-center mx-auto">
-            <Search className="w-8 h-8" />
+        <div className="card-dark p-8 sm:p-12 rounded border border-[var(--card-border)] bg-[#16161a] text-center space-y-4 min-w-0">
+          <div className="w-12 h-12 rounded bg-[#0b0b0d] border border-[var(--card-border)] text-white/60 flex items-center justify-center mx-auto">
+            <Search className="w-6 h-6 text-[#b2e01e]" />
           </div>
-          <h3 className="font-alexandria font-bold text-lg text-white">لم نجد مضارب تطابق خيارات البحث</h3>
-          <p className="text-xs text-white/70 max-w-md mx-auto">
+          <h3 className="font-alexandria font-bold text-base sm:text-lg text-white">لم نجد مضارب تطابق خيارات البحث</h3>
+          <p className="text-xs text-[#f2f7ff]/70 max-w-md mx-auto break-words">
             يرجى تجربة تعديل الكلمات المفتاحية أو إعادة ضبط فلاتر المستوى والشكل والعلامة التجارية.
           </p>
           <button
@@ -505,101 +499,113 @@ export const RacketsPage: React.FC = () => {
               setSelectedBrand('all');
               setSearchQuery('');
             }}
-            className="btn-neon px-5 py-2.5 text-xs font-black"
+            className="btn-neon px-5 py-2 text-xs font-black cursor-pointer"
           >
             عرض كافة المضارب
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 min-w-0">
           {filteredRackets.map((racket) => {
             const isCompared = compareList.some(r => r.id === racket.id);
 
             return (
               <div 
                 key={racket.id}
-                className="card-dark rounded-3xl border border-white/15 overflow-hidden flex flex-col justify-between group hover:border-white/35 transition-all shadow-xl hover:-translate-y-1"
+                className="card-dark rounded border border-[var(--card-border)] bg-[#16161a] overflow-hidden flex flex-col justify-between group transition-colors hover:border-[#b2e01e] min-w-0"
               >
                 {/* Upper section: Image, Brand, Badges */}
-                <div>
-                  {/* Card Visual Header with Clean Metadata (No Pills Discipline) */}
-                  <div className="relative h-60 bg-gradient-to-b from-white/[0.08] to-transparent p-5 flex flex-col justify-between overflow-hidden border-b border-white/10">
+                <div className="min-w-0">
+                  {/* Card Visual Header with Clean Metadata */}
+                  <div className="relative min-h-[200px] sm:min-h-[220px] bg-[#0b0b0d] p-3.5 sm:p-4 flex flex-col justify-between overflow-hidden border-b border-[var(--card-border)] min-w-0">
                     
                     {/* Top Row: Clean Brand & Level Text */}
-                    <div className="flex items-center justify-between text-xs relative z-10">
-                      <div className="flex items-center gap-2">
-                        <span className="font-black text-sm tracking-wider uppercase" style={{ color: racket.colorAccent }}>
+                    <div className="flex items-center justify-between text-xs relative z-10 gap-2 min-w-0">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="font-black text-xs sm:text-sm tracking-wider uppercase truncate" style={{ color: racket.colorAccent }}>
                           {racket.brand}
                         </span>
                         <span aria-hidden="true" className="text-white/40">·</span>
-                        <span className="text-white/80 font-bold">{racket.levelAr.split(' ')[0]}</span>
+                        <span className="text-white/80 font-bold truncate">{racket.levelAr.split(' ')[0]}</span>
                       </div>
 
                       {/* Shape indicator text */}
-                      <span className="text-[11px] font-mono-tag text-white/70">
+                      <span className="text-[10px] sm:text-[11px] font-mono-tag text-white/70 shrink-0">
                         {racket.shapeAr.split(' ')[0]}
                       </span>
                     </div>
 
-                    {/* Product Presentation Artwork (Real High-Resolution Product Image with Ambient Glow & Graceful Fallback) */}
-                    <PadelRacketImage racket={racket} />
+                    {/* Product Presentation Artwork (Real High-Resolution Product Image) */}
+                    <div className="relative flex-1 flex items-center justify-center my-1.5 w-full min-h-[120px] max-h-40 overflow-hidden">
+                      <img
+                        src={racket.imageUrl}
+                        alt={`${racket.brand} ${racket.modelName}`}
+                        className="w-full h-32 sm:h-36 max-h-36 object-contain z-10 relative pointer-events-none group-hover:scale-105 transition-transform duration-200"
+                        loading="lazy"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.onerror = null;
+                          target.src = 'https://cdn.shopify.com/s/files/1/0646/3671/5163/files/8410.jpg';
+                        }}
+                      />
+                    </div>
 
                     {/* Bottom overlay: Pro Endorsement if available */}
                     {racket.proPlayerEndorsed && (
-                      <div className="relative z-10 text-[11px] text-white/90 flex items-center gap-1.5 bg-black/40 px-2.5 py-1 rounded-lg backdrop-blur-sm self-start">
-                        <Sparkles className="w-3 h-3 text-[#b2e01e]" />
-                        <span>مضرب النجم: {racket.proPlayerEndorsed}</span>
+                      <div className="relative z-10 text-[10px] text-white/90 flex items-center gap-1.5 bg-[#16161a] border border-[var(--card-border)] px-2 py-0.5 rounded self-start max-w-full truncate font-mono-tag">
+                        <Sparkles className="w-3 h-3 text-[#b2e01e] shrink-0" />
+                        <span className="truncate">نجم: {racket.proPlayerEndorsed}</span>
                       </div>
                     )}
                   </div>
 
                   {/* Body Content */}
-                  <div className="p-5 sm:p-6 space-y-4">
+                  <div className="p-4 sm:p-5 space-y-3.5 min-w-0">
                     {/* Title */}
-                    <div>
-                      <h3 className="font-alexandria font-bold text-base sm:text-lg text-white group-hover:text-[#b2e01e] transition-colors">
+                    <div className="min-w-0">
+                      <h3 className="font-alexandria font-bold text-sm sm:text-base text-white group-hover:text-[#b2e01e] transition-colors break-words leading-snug">
                         {racket.modelName}
                       </h3>
-                      <p className="text-xs text-white/60 font-mono-tag mt-0.5">
+                      <p className="text-[11px] text-[#f2f7ff]/60 font-mono-tag mt-0.5 truncate">
                         {racket.brand} Equipment Series
                       </p>
                     </div>
 
                     {/* Tier Suitability Summary: "لماذا يناسب هذا المستوى؟" */}
-                    <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
-                      <span className="text-[10px] font-mono-tag text-[#b2e01e] font-bold block">
+                    <div className="p-3 rounded bg-[#0b0b0d] border border-[var(--card-border)] space-y-1 min-w-0">
+                      <span className="text-[10px] font-mono-tag text-[#b2e01e] font-bold block truncate">
                         لماذا يناسب هذا المستوى؟
                       </span>
-                      <p className="text-xs text-white/85 leading-relaxed">
+                      <p className="text-xs text-[#f2f7ff]/80 leading-relaxed break-words font-medium">
                         {racket.tierSummaryAr}
                       </p>
                     </div>
 
                     {/* Key Technical Specs Grid */}
-                    <div className="grid grid-cols-2 gap-2 text-[11px] pt-1">
-                      <div className="p-2 rounded-xl bg-black/30 border border-white/5 space-y-0.5">
-                        <span className="text-white/40 block text-[10px]">الشكل والتوازن</span>
+                    <div className="grid grid-cols-2 gap-2 text-[11px] pt-0.5 min-w-0">
+                      <div className="p-2 rounded bg-[#0b0b0d] border border-[var(--card-border)] space-y-0.5 min-w-0">
+                        <span className="text-white/40 block text-[10px] truncate">الشكل والتوازن</span>
                         <span className="text-white font-medium block truncate">
                           {racket.shapeAr.split(' ')[0]} / {racket.balanceAr.split(' ')[0]}
                         </span>
                       </div>
 
-                      <div className="p-2 rounded-xl bg-black/30 border border-white/5 space-y-0.5">
-                        <span className="text-white/40 block text-[10px]">الوزن التقريبي</span>
-                        <span className="text-white font-medium block truncate">
+                      <div className="p-2 rounded bg-[#0b0b0d] border border-[var(--card-border)] space-y-0.5 min-w-0">
+                        <span className="text-white/40 block text-[10px] truncate">الوزن التقريبي</span>
+                        <span className="text-white font-medium block truncate font-mono-tag">
                           {racket.weight}
                         </span>
                       </div>
 
-                      <div className="p-2 rounded-xl bg-black/30 border border-white/5 space-y-0.5">
-                        <span className="text-white/40 block text-[10px]">مادة النواة (Core)</span>
+                      <div className="p-2 rounded bg-[#0b0b0d] border border-[var(--card-border)] space-y-0.5 min-w-0">
+                        <span className="text-white/40 block text-[10px] truncate">مادة النواة (Core)</span>
                         <span className="text-white font-medium block truncate" title={racket.coreMaterial}>
                           {racket.coreMaterial}
                         </span>
                       </div>
 
-                      <div className="p-2 rounded-xl bg-black/30 border border-white/5 space-y-0.5">
-                        <span className="text-white/40 block text-[10px]">مادة السطح (Face)</span>
+                      <div className="p-2 rounded bg-[#0b0b0d] border border-[var(--card-border)] space-y-0.5 min-w-0">
+                        <span className="text-white/40 block text-[10px] truncate">مادة السطح (Face)</span>
                         <span className="text-white font-medium block truncate" title={racket.faceMaterial}>
                           {racket.faceMaterial}
                         </span>
@@ -607,30 +613,30 @@ export const RacketsPage: React.FC = () => {
                     </div>
 
                     {/* Power vs Control Balance Bars */}
-                    <div className="space-y-2 pt-1 border-t border-white/10 text-xs">
+                    <div className="space-y-2 pt-1 border-t border-[var(--card-border)] text-xs min-w-0">
                       {/* Control */}
-                      <div className="space-y-1">
-                        <div className="flex items-center justify-between text-[11px]">
-                          <span className="text-white/70">التحكم والسيطرة (Control)</span>
-                          <span className="font-mono-tag text-white font-bold">{racket.controlRating}%</span>
+                      <div className="space-y-1 min-w-0">
+                        <div className="flex items-center justify-between text-[11px] min-w-0">
+                          <span className="text-[#f2f7ff]/70 truncate">التحكم والسيطرة (Control)</span>
+                          <span className="font-mono-tag text-white font-bold shrink-0">{racket.controlRating}%</span>
                         </div>
-                        <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-1.5 w-full bg-[#0b0b0d] rounded-full overflow-hidden border border-[var(--card-border)]">
                           <div 
-                            className="h-full bg-[#00d26a] rounded-full transition-all duration-500"
+                            className="h-full bg-[#00d26a] transition-all duration-300"
                             style={{ width: `${racket.controlRating}%` }}
                           />
                         </div>
                       </div>
 
                       {/* Power */}
-                      <div className="space-y-1">
-                        <div className="flex items-center justify-between text-[11px]">
-                          <span className="text-white/70">القوة والسحق (Power)</span>
-                          <span className="font-mono-tag text-white font-bold">{racket.powerRating}%</span>
+                      <div className="space-y-1 min-w-0">
+                        <div className="flex items-center justify-between text-[11px] min-w-0">
+                          <span className="text-[#f2f7ff]/70 truncate">القوة والسحق (Power)</span>
+                          <span className="font-mono-tag text-white font-bold shrink-0">{racket.powerRating}%</span>
                         </div>
-                        <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-1.5 w-full bg-[#0b0b0d] rounded-full overflow-hidden border border-[var(--card-border)]">
                           <div 
-                            className="h-full bg-[#b2e01e] rounded-full transition-all duration-500"
+                            className="h-full bg-[#b2e01e] transition-all duration-300"
                             style={{ width: `${racket.powerRating}%` }}
                           />
                         </div>
@@ -638,46 +644,46 @@ export const RacketsPage: React.FC = () => {
                     </div>
 
                     {/* Price Range & Est Market */}
-                    <div className="flex items-center justify-between pt-2 text-xs">
-                      <span className="text-white/50">متوسط السعر التقريبي:</span>
-                      <span className="font-bold text-[#b2e01e] font-mono-tag">{racket.priceRangeSAR}</span>
+                    <div className="flex items-center justify-between pt-1 text-xs min-w-0">
+                      <span className="text-white/50 truncate">متوسط السعر التقريبي:</span>
+                      <span className="font-bold text-[#b2e01e] font-mono-tag shrink-0">{racket.priceRangeSAR}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Card Action Footer */}
-                <div className="p-5 pt-0 space-y-2">
-                  <div className="grid grid-cols-2 gap-2">
+                <div className="p-4 sm:p-5 pt-0 space-y-2 min-w-0">
+                  <div className="grid grid-cols-2 gap-2 min-w-0">
                     <button
                       onClick={() => setActiveModalRacket(racket)}
-                      className="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition cursor-pointer flex items-center justify-center gap-1.5 border border-white/10"
+                      className="btn-outline-ink py-2 px-2.5 rounded text-white font-bold text-xs transition cursor-pointer flex items-center justify-center gap-1.5"
                     >
-                      <Info className="w-3.5 h-3.5 text-[#b2e01e]" />
-                      <span>عرض التفاصيل</span>
+                      <Info className="w-3.5 h-3.5 text-[#b2e01e] shrink-0" />
+                      <span className="truncate">عرض التفاصيل</span>
                     </button>
 
                     <a
                       href={getWhatsAppConsultationUrl(racket)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="py-2.5 px-3 rounded-xl bg-[#b2e01e] hover:bg-[#9ec71b] text-[#002661] font-black text-xs transition shadow flex items-center justify-center gap-1.5"
+                      className="btn-neon py-2 px-2.5 rounded text-[#0b0b0d] font-black text-xs transition flex items-center justify-center gap-1.5"
                     >
-                      <WhatsAppVector className="w-3.5 h-3.5 fill-[#002661]" />
-                      <span>استشارة الكابتن</span>
+                      <WhatsAppVector className="w-3.5 h-3.5 fill-[#0b0b0d] shrink-0" />
+                      <span className="truncate">استشارة الكابتن</span>
                     </a>
                   </div>
 
                   <button
                     onClick={() => toggleCompare(racket)}
-                    className={`w-full py-1.5 rounded-lg text-[11px] font-mono-tag transition flex items-center justify-center gap-1 cursor-pointer ${
+                    className={`w-full py-1.5 rounded text-[11px] font-mono-tag transition flex items-center justify-center gap-1 cursor-pointer ${
                       isCompared 
-                        ? 'text-[#b2e01e] bg-[#b2e01e]/15 font-bold' 
-                        : 'text-white/40 hover:text-white/80'
+                        ? 'text-[#0b0b0d] bg-[#b2e01e] font-black' 
+                        : 'text-white/50 hover:text-white bg-[#0b0b0d] border border-[var(--card-border)]'
                     }`}
                   >
                     {isCompared ? (
                       <>
-                        <Check className="w-3 h-3" />
+                        <Check className="w-3 h-3 text-[#0b0b0d] shrink-0" />
                         <span>مضاف للمقارنة (اضغط للإلغاء)</span>
                       </>
                     ) : (
@@ -692,17 +698,17 @@ export const RacketsPage: React.FC = () => {
       )}
 
       {/* 6. WHATSAPP & EXPERT CONSULTATION BANNER */}
-      <div className="card-dark p-6 sm:p-8 rounded-3xl border border-white/15 relative overflow-hidden shadow-2xl">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
-          <div className="space-y-2 text-center lg:text-right">
+      <div className="card-dark p-4 sm:p-6 md:p-8 rounded border border-[var(--card-border)] bg-[#16161a] relative overflow-hidden min-w-0">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-5 relative z-10 min-w-0">
+          <div className="space-y-2 text-center lg:text-right min-w-0 flex-1">
             <div className="flex items-center justify-center lg:justify-start gap-2 text-xs font-mono-tag text-[#25D366]">
-              <WhatsAppVector className="w-4 h-4 fill-[#25D366]" />
+              <WhatsAppVector className="w-4 h-4 fill-[#25D366] shrink-0" />
               <span>[ 1-ON-1 PADEL COACH CONSULTATION ]</span>
             </div>
-            <h3 className="font-alexandria font-bold text-lg sm:text-xl text-white">
+            <h3 className="font-alexandria font-bold text-base sm:text-xl text-white break-words">
               محتار بين مضربين؟ استشر مدرب Padel Level Pro مجاناً
             </h3>
-            <p className="text-xs sm:text-sm text-white/70 max-w-xl">
+            <p className="text-xs sm:text-sm text-[#f2f7ff]/80 max-w-xl font-medium break-words">
               أرسل لنا تصنيفك الحالي ونقاط قوتك في الملعب، وسيقوم الكابتن باقتراح المضرب ذي التوازن والوزن المثالي لحماية ذراعك ومضاعفة متعتك الرياضية.
             </p>
           </div>
@@ -711,9 +717,9 @@ export const RacketsPage: React.FC = () => {
             href="https://wa.me/966500365049?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%A8%20%D8%AD%D9%88%D9%84%20%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1%20%D9%85%D8%B6%D8%B1%D8%A8%20%D8%A7%D9%84%D8%A8%D8%A7%D8%AF%D9%84%20%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B3%D8%A8%20%D9%84%D9%85%D8%B3%D8%AA%D9%88%D8%A7%D9%8A."
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-neon px-6 py-3.5 text-xs font-black flex items-center justify-center gap-2.5 shadow-xl shrink-0 w-full sm:w-auto"
+            className="btn-neon px-6 py-3 text-xs font-black flex items-center justify-center gap-2.5 shrink-0 w-full sm:w-auto cursor-pointer"
           >
-            <WhatsAppVector className="w-4 h-4 fill-current" />
+            <WhatsAppVector className="w-4 h-4 fill-[#0b0b0d] shrink-0" />
             <span>تواصل مع كابتن البادل الآن (WhatsApp)</span>
           </a>
         </div>
@@ -721,76 +727,84 @@ export const RacketsPage: React.FC = () => {
 
       {/* 7. DETAILED RACKET MODAL */}
       {activeModalRacket && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="card-dark w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/20 shadow-2xl relative p-6 sm:p-8 space-y-6">
-            
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
+          <div 
+            className="card-dark w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded border border-[#b2e01e] bg-[#16161a] text-right p-4 sm:p-6 md:p-7 space-y-5 min-w-0"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Modal Header */}
-            <div className="flex items-start justify-between border-b border-white/10 pb-4">
-              <div>
-                <div className="flex items-center gap-2 text-xs font-mono-tag text-[#b2e01e]">
+            <div className="flex items-start justify-between border-b border-[var(--card-border)] pb-3 min-w-0 gap-2">
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 text-xs font-mono-tag text-[#b2e01e] truncate">
                   <span>{activeModalRacket.brand}</span>
                   <span aria-hidden="true">·</span>
                   <span>{activeModalRacket.levelAr}</span>
                 </div>
-                <h2 className="font-alexandria font-black text-xl sm:text-2xl text-white mt-1">
+                <h2 className="font-alexandria font-black text-lg sm:text-2xl text-white mt-1 break-words">
                   {activeModalRacket.modelName}
                 </h2>
               </div>
               <button
                 onClick={() => setActiveModalRacket(null)}
-                className="p-2 text-white/60 hover:text-white rounded-xl hover:bg-white/10 transition cursor-pointer"
+                className="p-1.5 text-white/60 hover:text-white rounded bg-[#0b0b0d] border border-[var(--card-border)] cursor-pointer shrink-0"
                 title="إغلاق"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 text-[#b2e01e]" />
               </button>
             </div>
 
             {/* Modal Content Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 min-w-0">
               
               {/* Left Column: Visual Artwork & Stats */}
-              <div className="space-y-4">
-                <div className="h-64 rounded-2xl bg-gradient-to-b from-white/10 to-transparent p-4 flex items-center justify-center relative border border-white/10 overflow-hidden">
-                  <PadelRacketImage 
-                    racket={activeModalRacket} 
-                    containerClassName="relative flex items-center justify-center w-full h-full"
-                    className="w-full h-56 max-h-56 object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.7)] relative z-10"
+              <div className="space-y-4 min-w-0">
+                <div className="min-h-[180px] max-h-56 rounded bg-[#0b0b0d] p-4 flex items-center justify-center relative border border-[var(--card-border)] overflow-hidden min-w-0">
+                  <img 
+                    src={activeModalRacket.imageUrl} 
+                    alt={`${activeModalRacket.brand} ${activeModalRacket.modelName}`}
+                    className="w-full h-44 max-h-48 object-contain relative z-10"
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.onerror = null;
+                      target.src = 'https://cdn.shopify.com/s/files/1/0646/3671/5163/files/8410.jpg';
+                    }}
                   />
                   <div 
-                    className="absolute bottom-3 right-3 text-[11px] font-mono-tag px-2.5 py-1 rounded-lg bg-black/60 text-white z-20"
+                    className="absolute bottom-2.5 right-2.5 text-[11px] font-mono-tag px-2 py-0.5 rounded bg-[#16161a] border border-[var(--card-border)] text-[#b2e01e] font-bold z-20"
                   >
                     {activeModalRacket.weight}
                   </div>
                 </div>
 
                 {/* Power / Control / Maneuverability */}
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3 text-xs">
-                  <div className="space-y-1">
-                    <div className="flex justify-between">
-                      <span className="text-white/70">التحكم والدقة</span>
-                      <span className="font-mono-tag font-bold text-[#00d26a]">{activeModalRacket.controlRating}%</span>
+                <div className="p-3.5 sm:p-4 rounded bg-[#0b0b0d] border border-[var(--card-border)] space-y-3 text-xs min-w-0">
+                  <div className="space-y-1 min-w-0">
+                    <div className="flex justify-between text-[11px] min-w-0">
+                      <span className="text-[#f2f7ff]/70 truncate">التحكم والدقة</span>
+                      <span className="font-mono-tag font-bold text-[#00d26a] shrink-0">{activeModalRacket.controlRating}%</span>
                     </div>
-                    <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-2 w-full bg-[#16161a] rounded overflow-hidden border border-[var(--card-border)]">
                       <div className="h-full bg-[#00d26a]" style={{ width: `${activeModalRacket.controlRating}%` }} />
                     </div>
                   </div>
 
-                  <div className="space-y-1">
-                    <div className="flex justify-between">
-                      <span className="text-white/70">القوة والإنهاء</span>
-                      <span className="font-mono-tag font-bold text-[#b2e01e]">{activeModalRacket.powerRating}%</span>
+                  <div className="space-y-1 min-w-0">
+                    <div className="flex justify-between text-[11px] min-w-0">
+                      <span className="text-[#f2f7ff]/70 truncate">القوة والإنهاء</span>
+                      <span className="font-mono-tag font-bold text-[#b2e01e] shrink-0">{activeModalRacket.powerRating}%</span>
                     </div>
-                    <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-2 w-full bg-[#16161a] rounded overflow-hidden border border-[var(--card-border)]">
                       <div className="h-full bg-[#b2e01e]" style={{ width: `${activeModalRacket.powerRating}%` }} />
                     </div>
                   </div>
 
-                  <div className="space-y-1">
-                    <div className="flex justify-between">
-                      <span className="text-white/70">سهولة المناورة والسرعة</span>
-                      <span className="font-mono-tag font-bold text-[#38bdf8]">{activeModalRacket.maneuverabilityRating}%</span>
+                  <div className="space-y-1 min-w-0">
+                    <div className="flex justify-between text-[11px] min-w-0">
+                      <span className="text-[#f2f7ff]/70 truncate">سهولة المناورة والسرعة</span>
+                      <span className="font-mono-tag font-bold text-[#38bdf8] shrink-0">{activeModalRacket.maneuverabilityRating}%</span>
                     </div>
-                    <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-2 w-full bg-[#16161a] rounded overflow-hidden border border-[var(--card-border)]">
                       <div className="h-full bg-[#38bdf8]" style={{ width: `${activeModalRacket.maneuverabilityRating}%` }} />
                     </div>
                   </div>
@@ -798,67 +812,67 @@ export const RacketsPage: React.FC = () => {
               </div>
 
               {/* Right Column: Deep Tech Breakdown */}
-              <div className="space-y-4 text-xs">
-                <div>
-                  <h4 className="font-bold text-white mb-1.5 text-sm">الوصف الهندسي الشامل:</h4>
-                  <p className="text-white/80 leading-relaxed">
+              <div className="space-y-3.5 text-xs min-w-0">
+                <div className="min-w-0">
+                  <h4 className="font-bold text-white mb-1 text-sm font-alexandria truncate">الوصف الهندسي الشامل:</h4>
+                  <p className="text-[#f2f7ff]/80 leading-relaxed break-words font-medium">
                     {activeModalRacket.fullDescriptionAr}
                   </p>
                 </div>
 
                 {/* Key Features List */}
-                <div className="space-y-2">
-                  <h4 className="font-bold text-[#b2e01e] text-xs">أبرز المزايا والتقنيات:</h4>
-                  <ul className="space-y-1.5">
+                <div className="space-y-1.5 min-w-0">
+                  <h4 className="font-bold text-[#b2e01e] text-xs font-mono-tag truncate">أبرز المزايا والتقنيات:</h4>
+                  <ul className="space-y-1 min-w-0">
                     {activeModalRacket.keyFeaturesAr.map((feat, i) => (
-                      <li key={i} className="flex items-start gap-2 text-white/85">
-                        <Check className="w-4 h-4 text-[#b2e01e] shrink-0 mt-0.5" />
-                        <span>{feat}</span>
+                      <li key={i} className="flex items-start gap-2 text-[#f2f7ff]/85 min-w-0">
+                        <Check className="w-3.5 h-3.5 text-[#b2e01e] shrink-0 mt-0.5" />
+                        <span className="break-words">{feat}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 {/* Specs Table */}
-                <div className="p-3.5 rounded-2xl bg-black/40 border border-white/10 space-y-2 text-[11px]">
-                  <div className="flex justify-between py-1 border-b border-white/5">
-                    <span className="text-white/50">الشكل الهندسي:</span>
-                    <span className="text-white font-semibold">{activeModalRacket.shapeAr}</span>
+                <div className="p-3 rounded bg-[#0b0b0d] border border-[var(--card-border)] space-y-1.5 text-[11px] min-w-0">
+                  <div className="flex justify-between py-0.5 border-b border-[var(--card-border)] min-w-0">
+                    <span className="text-white/50 truncate">الشكل الهندسي:</span>
+                    <span className="text-white font-semibold truncate">{activeModalRacket.shapeAr}</span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-white/5">
-                    <span className="text-white/50">نقطة التوازن:</span>
-                    <span className="text-white font-semibold">{activeModalRacket.balanceAr}</span>
+                  <div className="flex justify-between py-0.5 border-b border-[var(--card-border)] min-w-0">
+                    <span className="text-white/50 truncate">نقطة التوازن:</span>
+                    <span className="text-white font-semibold truncate">{activeModalRacket.balanceAr}</span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-white/5">
-                    <span className="text-white/50">تركيبة النواة:</span>
-                    <span className="text-white font-semibold">{activeModalRacket.coreMaterial}</span>
+                  <div className="flex justify-between py-0.5 border-b border-[var(--card-border)] min-w-0">
+                    <span className="text-white/50 truncate">تركيبة النواة:</span>
+                    <span className="text-white font-semibold truncate">{activeModalRacket.coreMaterial}</span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-white/5">
-                    <span className="text-white/50">مادة الوجه:</span>
-                    <span className="text-white font-semibold">{activeModalRacket.faceMaterial}</span>
+                  <div className="flex justify-between py-0.5 border-b border-[var(--card-border)] min-w-0">
+                    <span className="text-white/50 truncate">مادة الوجه:</span>
+                    <span className="text-white font-semibold truncate">{activeModalRacket.faceMaterial}</span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-white/5">
-                    <span className="text-white/50">نقطة التأثير (Sweetspot):</span>
-                    <span className="text-white font-semibold text-right">{activeModalRacket.sweetSpot}</span>
+                  <div className="flex justify-between py-0.5 border-b border-[var(--card-border)] min-w-0">
+                    <span className="text-white/50 truncate">نقطة التأثير (Sweetspot):</span>
+                    <span className="text-white font-semibold text-right truncate">{activeModalRacket.sweetSpot}</span>
                   </div>
-                  <div className="flex justify-between py-1">
-                    <span className="text-white/50">التمركز الأنسب:</span>
-                    <span className="text-[#b2e01e] font-semibold text-right">{activeModalRacket.courtPositionAr}</span>
+                  <div className="flex justify-between py-0.5 min-w-0">
+                    <span className="text-white/50 truncate">التمركز الأنسب:</span>
+                    <span className="text-[#b2e01e] font-semibold text-right truncate">{activeModalRacket.courtPositionAr}</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Modal Actions */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/10">
-              <div className="text-xs text-white/60">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[var(--card-border)] min-w-0">
+              <div className="text-xs text-[#f2f7ff]/70 min-w-0">
                 السعر التقديري: <span className="text-[#b2e01e] font-bold font-mono-tag">{activeModalRacket.priceRangeSAR}</span>
               </div>
 
-              <div className="flex items-center gap-3 w-full sm:w-auto">
+              <div className="flex items-center gap-2.5 w-full sm:w-auto min-w-0">
                 <button
                   onClick={() => setActiveModalRacket(null)}
-                  className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition flex-1 sm:flex-none cursor-pointer"
+                  className="btn-outline-ink px-4 py-2 text-xs font-mono-tag text-white transition flex-1 sm:flex-none cursor-pointer"
                 >
                   إغلاق النافذة
                 </button>
@@ -867,9 +881,9 @@ export const RacketsPage: React.FC = () => {
                   href={getWhatsAppConsultationUrl(activeModalRacket)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-neon px-5 py-2.5 text-xs font-black flex items-center justify-center gap-2 flex-1 sm:flex-none"
+                  className="btn-neon px-5 py-2 text-xs font-black flex items-center justify-center gap-2 flex-1 sm:flex-none cursor-pointer"
                 >
-                  <WhatsAppVector className="w-4 h-4 fill-current" />
+                  <WhatsAppVector className="w-3.5 h-3.5 fill-[#0b0b0d] shrink-0" />
                   <span>استشارة فورية حول هذا المضرب</span>
                 </a>
               </div>
@@ -881,73 +895,75 @@ export const RacketsPage: React.FC = () => {
 
       {/* 8. QUICK COMPARISON MODAL */}
       {isCompareModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="card-dark w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/20 shadow-2xl p-6 sm:p-8 space-y-6">
-            
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <div>
-                <h2 className="font-alexandria font-bold text-lg text-white">مقارنة المواصفات الفنية المباشرة</h2>
-                <p className="text-xs text-white/60 font-mono-tag">COMPARING {compareList.length} RACKETS</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
+          <div 
+            className="card-dark w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded border border-[#b2e01e] bg-[#16161a] text-right p-4 sm:p-6 md:p-7 space-y-4 min-w-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[var(--card-border)] pb-3 min-w-0 gap-2">
+              <div className="min-w-0">
+                <h2 className="font-alexandria font-bold text-base sm:text-lg text-white truncate">مقارنة المواصفات الفنية المباشرة</h2>
+                <p className="text-xs text-[#b2e01e] font-mono-tag truncate">COMPARING {compareList.length} RACKETS</p>
               </div>
               <button
                 onClick={() => setIsCompareModalOpen(false)}
-                className="p-2 text-white/60 hover:text-white"
+                className="p-1.5 text-white/60 hover:text-white rounded bg-[#0b0b0d] border border-[var(--card-border)] cursor-pointer shrink-0"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 text-[#b2e01e]" />
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 min-w-0">
               {compareList.map(item => (
-                <div key={item.id} className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3 text-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-sm text-white">{item.brand} {item.modelName}</span>
+                <div key={item.id} className="p-3.5 rounded bg-[#0b0b0d] border border-[var(--card-border)] space-y-3 text-xs min-w-0">
+                  <div className="flex items-center justify-between min-w-0 gap-2">
+                    <span className="font-bold text-sm text-white truncate">{item.brand} {item.modelName}</span>
                     <button
                       onClick={() => toggleCompare(item)}
-                      className="text-red-400 hover:text-red-300 text-xs"
+                      className="text-red-400 hover:text-red-300 text-xs shrink-0 cursor-pointer font-bold"
                       title="إزالة"
                     >
                       إزالة
                     </button>
                   </div>
 
-                  <div className="h-28 bg-black/40 rounded-xl flex items-center justify-center p-2 relative overflow-hidden">
+                  <div className="min-h-[100px] max-h-28 bg-[#16161a] rounded flex items-center justify-center p-2 relative overflow-hidden border border-[var(--card-border)] min-w-0">
                     <img
                       src={item.imageUrl}
                       alt={`${item.brand} ${item.modelName}`}
-                      className="h-24 w-full object-contain drop-shadow-md"
+                      className="h-20 sm:h-24 w-full object-contain"
                       loading="lazy"
                     />
                   </div>
 
-                  <div className="space-y-1.5 text-[11px]">
-                    <div className="flex justify-between py-1 border-b border-white/5">
-                      <span className="text-white/50">المستوى:</span>
-                      <span className="text-white font-bold">{item.levelAr.split(' ')[0]}</span>
+                  <div className="space-y-1.5 text-[11px] min-w-0">
+                    <div className="flex justify-between py-1 border-b border-[var(--card-border)] min-w-0">
+                      <span className="text-white/50 truncate">المستوى:</span>
+                      <span className="text-white font-bold truncate">{item.levelAr.split(' ')[0]}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-white/5">
-                      <span className="text-white/50">الشكل:</span>
-                      <span className="text-white font-bold">{item.shapeAr.split(' ')[0]}</span>
+                    <div className="flex justify-between py-1 border-b border-[var(--card-border)] min-w-0">
+                      <span className="text-white/50 truncate">الشكل:</span>
+                      <span className="text-white font-bold truncate">{item.shapeAr.split(' ')[0]}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-white/5">
-                      <span className="text-white/50">التوازن:</span>
-                      <span className="text-white font-bold">{item.balanceAr.split(' ')[0]}</span>
+                    <div className="flex justify-between py-1 border-b border-[var(--card-border)] min-w-0">
+                      <span className="text-white/50 truncate">التوازن:</span>
+                      <span className="text-white font-bold truncate">{item.balanceAr.split(' ')[0]}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-white/5">
-                      <span className="text-white/50">التحكم:</span>
-                      <span className="text-[#00d26a] font-bold">{item.controlRating}%</span>
+                    <div className="flex justify-between py-1 border-b border-[var(--card-border)] min-w-0">
+                      <span className="text-white/50 truncate">التحكم:</span>
+                      <span className="text-[#00d26a] font-bold shrink-0">{item.controlRating}%</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-white/5">
-                      <span className="text-white/50">القوة:</span>
-                      <span className="text-[#b2e01e] font-bold">{item.powerRating}%</span>
+                    <div className="flex justify-between py-1 border-b border-[var(--card-border)] min-w-0">
+                      <span className="text-white/50 truncate">القوة:</span>
+                      <span className="text-[#b2e01e] font-bold shrink-0">{item.powerRating}%</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-white/5">
-                      <span className="text-white/50">الوزن:</span>
-                      <span className="text-white font-bold">{item.weight}</span>
+                    <div className="flex justify-between py-1 border-b border-[var(--card-border)] min-w-0">
+                      <span className="text-white/50 truncate">الوزن:</span>
+                      <span className="text-white font-bold font-mono-tag shrink-0">{item.weight}</span>
                     </div>
-                    <div className="flex justify-between py-1">
-                      <span className="text-white/50">السعر:</span>
-                      <span className="text-[#b2e01e] font-bold font-mono-tag">{item.priceRangeSAR}</span>
+                    <div className="flex justify-between py-1 min-w-0">
+                      <span className="text-white/50 truncate">السعر:</span>
+                      <span className="text-[#b2e01e] font-bold font-mono-tag shrink-0">{item.priceRangeSAR}</span>
                     </div>
                   </div>
 
@@ -956,7 +972,7 @@ export const RacketsPage: React.FC = () => {
                       setIsCompareModalOpen(false);
                       setActiveModalRacket(item);
                     }}
-                    className="w-full py-2 rounded-xl bg-[#b2e01e] text-[#002661] font-black text-xs cursor-pointer"
+                    className="w-full py-2 rounded btn-neon text-[#0b0b0d] font-black text-xs cursor-pointer"
                   >
                     فحص كامل
                   </button>
@@ -964,10 +980,10 @@ export const RacketsPage: React.FC = () => {
               ))}
             </div>
 
-            <div className="flex justify-end pt-4 border-t border-white/10">
+            <div className="flex justify-end pt-3 border-t border-[var(--card-border)] min-w-0">
               <button
                 onClick={() => setIsCompareModalOpen(false)}
-                className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs"
+                className="btn-outline-ink px-5 py-2 text-xs font-mono-tag text-white cursor-pointer"
               >
                 إغلاق المقارنة
               </button>

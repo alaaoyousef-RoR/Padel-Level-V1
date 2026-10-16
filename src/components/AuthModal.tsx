@@ -72,28 +72,28 @@ export const AuthModal: React.FC = () => {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200 font-alexandria"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200 font-alexandria"
       onClick={closeAuthModal}
     >
       <div 
-        className="card-dark rounded-2xl max-w-md w-full shadow-2xl border-2 border-white/20 overflow-hidden relative text-right"
+        className="card-dark rounded max-w-md w-full border border-[#b2e01e] bg-[#16161a] overflow-hidden relative text-right min-w-0"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-6 border-b border-white/15 theme-card-solid relative">
+        <div className="p-4 sm:p-6 border-b border-[var(--card-border)] bg-[#16161a] relative min-w-0">
           <button
             onClick={closeAuthModal}
-            className="absolute top-5 left-5 text-white/60 hover:text-white p-1 rounded-md hover:bg-white/10 transition-colors"
+            className="absolute top-4 left-4 text-white/60 hover:text-white p-1.5 rounded bg-[#0b0b0d] border border-[var(--card-border)] transition-colors cursor-pointer"
             title="إغلاق"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 text-[#b2e01e]" />
           </button>
 
-          <span className="label-mono" style={{ color: '#b2e01e' }}>[ PADEL LEVEL AUTH ]</span>
-          <h3 className="font-alexandria font-black text-xl text-white mt-1">
+          <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ PADEL LEVEL AUTH ]</span>
+          <h3 className="font-alexandria font-black text-lg sm:text-xl text-white mt-1">
             PADEL <span className="text-[#b2e01e]">LEVEL</span>
           </h3>
-          <p className="text-xs text-[#f2f7ff]/75 mt-1">
+          <p className="text-xs text-[#f2f7ff]/75 mt-0.5 font-medium break-words">
             {authModalTab === 'login' ? 'سجل دخولك لحفظ مستواك وسجلات التدريب سحابياً' : 'أنشئ حساب لاعب جديد لحفظ تقدمك ومستواك'}
           </p>
 
@@ -102,7 +102,7 @@ export const AuthModal: React.FC = () => {
             type="button"
             onClick={handleGoogleSignIn}
             disabled={isGoogleLoading || isLoading}
-            className="mt-4 w-full bg-white hover:bg-neutral-100 text-[#002255] font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-3 transition-transform hover:scale-[1.01] shadow-lg cursor-pointer disabled:opacity-50"
+            className="mt-3.5 w-full bg-white hover:bg-neutral-100 text-[#0b0b0d] font-black text-xs py-2.5 px-4 rounded flex items-center justify-center gap-2.5 transition-colors cursor-pointer disabled:opacity-50"
           >
             {isGoogleLoading ? (
               <Loader2 className="w-4 h-4 animate-spin text-neutral-800" />
@@ -131,16 +131,16 @@ export const AuthModal: React.FC = () => {
         </div>
 
         {/* Tab switcher */}
-        <div className="flex border-b border-white/15 theme-subcard">
+        <div className="flex border-b border-[var(--card-border)] bg-[#0b0b0d]">
           <button
             type="button"
             onClick={() => {
               setErrorMsg('');
               openAuthModal('login');
             }}
-            className={`flex-1 py-3 text-xs font-bold transition-colors cursor-pointer ${
+            className={`flex-1 py-2.5 text-xs font-bold transition-colors cursor-pointer ${
               authModalTab === 'login'
-                ? 'text-[#b2e01e] border-b-2 border-[#b2e01e] bg-white/5'
+                ? 'text-[#0b0b0d] bg-[#b2e01e] font-black'
                 : 'text-white/60 hover:text-white'
             }`}
           >
@@ -152,9 +152,9 @@ export const AuthModal: React.FC = () => {
               setErrorMsg('');
               openAuthModal('register');
             }}
-            className={`flex-1 py-3 text-xs font-bold transition-colors cursor-pointer ${
+            className={`flex-1 py-2.5 text-xs font-bold transition-colors cursor-pointer ${
               authModalTab === 'register'
-                ? 'text-[#b2e01e] border-b-2 border-[#b2e01e] bg-white/5'
+                ? 'text-[#0b0b0d] bg-[#b2e01e] font-black'
                 : 'text-white/60 hover:text-white'
             }`}
           >
@@ -163,38 +163,38 @@ export const AuthModal: React.FC = () => {
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-3.5 min-w-0">
           {errorMsg && (
-            <div className="bg-red-950/80 border border-red-700 text-red-200 p-3 rounded-xl text-xs flex items-center gap-2">
+            <div className="bg-red-950/80 border border-red-700 text-red-200 p-2.5 rounded text-xs flex items-center gap-2 min-w-0">
               <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-400" />
-              <span>{errorMsg}</span>
+              <span className="break-words">{errorMsg}</span>
             </div>
           )}
 
           {authModalTab === 'register' && (
-            <div className="space-y-1.5">
-              <label className="text-xs text-[#f2f7ff]/80 font-semibold block">
+            <div className="space-y-1 min-w-0">
+              <label className="text-xs text-[#f2f7ff]/80 font-bold block font-mono-tag">
                 الاسم الكامل
               </label>
-              <div className="relative">
+              <div className="relative min-w-0">
                 <input
                   type="text"
                   required
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="مثال: تركي الصالح"
-                  className="w-full theme-card-solid border border-white/20 focus:border-[#b2e01e] focus:ring-1 focus:ring-[#b2e01e] rounded-xl py-3 px-3 pr-10 text-xs text-white placeholder-white/30 outline-none transition"
+                  className="w-full bg-[#0b0b0d] border border-[var(--card-border)] focus:border-[#b2e01e] rounded py-2 px-3 pr-9 text-xs text-white placeholder-white/30 outline-none transition font-medium"
                 />
-                <User className="w-4 h-4 text-white/50 absolute top-3.5 right-3 pointer-events-none" />
+                <User className="w-4 h-4 text-white/50 absolute top-2.5 right-2.5 pointer-events-none" />
               </div>
             </div>
           )}
 
-          <div className="space-y-1.5">
-            <label className="text-xs text-[#f2f7ff]/80 font-semibold block">
+          <div className="space-y-1 min-w-0">
+            <label className="text-xs text-[#f2f7ff]/80 font-bold block font-mono-tag">
               البريد الإلكتروني
             </label>
-            <div className="relative">
+            <div className="relative min-w-0">
               <input
                 type="email"
                 required
@@ -202,17 +202,17 @@ export const AuthModal: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
                 dir="ltr"
-                className="w-full theme-card-solid border border-white/20 focus:border-[#b2e01e] focus:ring-1 focus:ring-[#b2e01e] rounded-xl py-3 px-3 pr-10 text-xs text-white placeholder-white/30 outline-none transition text-right"
+                className="w-full bg-[#0b0b0d] border border-[var(--card-border)] focus:border-[#b2e01e] rounded py-2 px-3 pr-9 text-xs text-white placeholder-white/30 outline-none transition text-right font-mono"
               />
-              <Mail className="w-4 h-4 text-white/50 absolute top-3.5 right-3 pointer-events-none" />
+              <Mail className="w-4 h-4 text-white/50 absolute top-2.5 right-2.5 pointer-events-none" />
             </div>
           </div>
 
-          <div className="space-y-1.5">
-            <label className="text-xs text-[#f2f7ff]/80 font-semibold block">
+          <div className="space-y-1 min-w-0">
+            <label className="text-xs text-[#f2f7ff]/80 font-bold block font-mono-tag">
               كلمة المرور
             </label>
-            <div className="relative">
+            <div className="relative min-w-0">
               <input
                 type="password"
                 required
@@ -220,18 +220,18 @@ export const AuthModal: React.FC = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 dir="ltr"
-                className="w-full theme-card-solid border border-white/20 focus:border-[#b2e01e] focus:ring-1 focus:ring-[#b2e01e] rounded-xl py-3 px-3 pr-10 text-xs text-white placeholder-white/30 outline-none transition text-right"
+                className="w-full bg-[#0b0b0d] border border-[var(--card-border)] focus:border-[#b2e01e] rounded py-2 px-3 pr-9 text-xs text-white placeholder-white/30 outline-none transition text-right font-mono"
               />
-              <Lock className="w-4 h-4 text-white/50 absolute top-3.5 right-3 pointer-events-none" />
+              <Lock className="w-4 h-4 text-white/50 absolute top-2.5 right-2.5 pointer-events-none" />
             </div>
           </div>
 
           {authModalTab === 'register' && (
-            <div className="space-y-1.5">
-              <label className="text-xs text-[#f2f7ff]/80 font-semibold block">
+            <div className="space-y-1 min-w-0">
+              <label className="text-xs text-[#f2f7ff]/80 font-bold block font-mono-tag">
                 تأكيد كلمة المرور
               </label>
-              <div className="relative">
+              <div className="relative min-w-0">
                 <input
                   type="password"
                   required
@@ -239,23 +239,25 @@ export const AuthModal: React.FC = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
                   dir="ltr"
-                  className="w-full theme-card-solid border border-white/20 focus:border-[#b2e01e] focus:ring-1 focus:ring-[#b2e01e] rounded-xl py-3 px-3 pr-10 text-xs text-white placeholder-white/30 outline-none transition text-right"
+                  className="w-full bg-[#0b0b0d] border border-[var(--card-border)] focus:border-[#b2e01e] rounded py-2 px-3 pr-9 text-xs text-white placeholder-white/30 outline-none transition text-right font-mono"
                 />
-                <Lock className="w-4 h-4 text-white/50 absolute top-3.5 right-3 pointer-events-none" />
+                <Lock className="w-4 h-4 text-white/50 absolute top-2.5 right-2.5 pointer-events-none" />
               </div>
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={isLoading || isGoogleLoading}
-            className="w-full btn-neon py-3.5 text-xs font-black rounded-xl mt-2 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-          >
-            {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-            <span>
-              {authModalTab === 'login' ? 'دخول إلى الحساب' : 'إنشاء الحساب وتفعيل السحابة'}
-            </span>
-          </button>
+          <div className="pt-1">
+            <button
+              type="submit"
+              disabled={isLoading || isGoogleLoading}
+              className="w-full btn-neon py-2.5 text-xs font-black rounded flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+            >
+              {isLoading && <Loader2 className="w-4 h-4 animate-spin text-[#0b0b0d]" />}
+              <span>
+                {authModalTab === 'login' ? 'دخول إلى الحساب' : 'إنشاء الحساب وتفعيل السحابة'}
+              </span>
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -170,41 +170,41 @@ export const CoachFeedbackSection: React.FC = () => {
   // If user has not taken the test yet
   if (!testResult && !user?.testTaken) {
     return (
-      <div className="card-dark p-6 sm:p-8 rounded-2xl border border-white/15 space-y-6 relative overflow-hidden text-right shadow-xl">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
-          <div className="flex items-center gap-3">
-            <span className="p-2.5 rounded-xl bg-[#b2e01e]/15 text-[#b2e01e] border border-[#b2e01e]/30">
-              <Sparkles className="w-5 h-5" />
+      <div className="card-dark p-4 sm:p-6 md:p-8 rounded border border-[var(--card-border)] bg-[#16161a] space-y-5 relative overflow-hidden text-right min-w-0">
+        <div className="flex items-center justify-between border-b border-[var(--card-border)] pb-3 min-w-0 gap-2">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="p-2 rounded bg-[#0b0b0d] text-[#b2e01e] border border-[var(--card-border)] shrink-0">
+              <Sparkles className="w-4 h-4 text-[#b2e01e]" />
             </span>
-            <div>
-              <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ AI TACTICAL COACH • كوتش البادل الذكي ]</span>
-              <h2 className="font-alexandria font-bold text-lg text-white">
+            <div className="min-w-0">
+              <span className="label-mono mb-0 truncate" style={{ color: '#b2e01e' }}>[ AI TACTICAL COACH • كوتش البادل الذكي ]</span>
+              <h2 className="font-alexandria font-bold text-base sm:text-lg text-white truncate">
                 توجيهات الكوتش الذكي (AI Coach Feedback)
               </h2>
             </div>
           </div>
-          <span className="font-mono-tag text-xs text-white/60 border border-white/15 px-3 py-1 rounded-lg theme-card-solid">
+          <span className="font-mono-tag text-[10px] text-white/60 border border-[var(--card-border)] px-2.5 py-1 rounded bg-[#0b0b0d] shrink-0">
             GEMINI POWERED
           </span>
         </div>
 
-        <div className="py-8 text-center max-w-xl mx-auto space-y-4">
-          <div className="w-16 h-16 rounded-full bg-[#b2e01e]/15 border border-[#b2e01e]/30 mx-auto flex items-center justify-center text-[#b2e01e]">
-            <Target className="w-8 h-8" />
+        <div className="py-6 sm:py-8 text-center max-w-xl mx-auto space-y-3.5 min-w-0">
+          <div className="w-12 h-12 rounded bg-[#0b0b0d] border border-[var(--card-border)] mx-auto flex items-center justify-center text-[#b2e01e]">
+            <Target className="w-6 h-6 text-[#b2e01e]" />
           </div>
-          <h3 className="font-alexandria font-bold text-xl text-white">
+          <h3 className="font-alexandria font-bold text-base sm:text-xl text-white break-words">
             تحليل ذكي مخصص لنقاط قوتك وثغراتك الفنية
           </h3>
-          <p className="text-xs sm:text-sm text-white/75 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#f2f7ff]/75 leading-relaxed font-medium break-words">
             يستخدم الكوتش الذكي نموذج Gemini لتحليل إجاباتك عبر الركائز الخمس (الإرسال، الشبكة، الكرات العلوية، ارتداد الزجاج، والتمركز التكتيكي)، ويحدد بدقة المحور الذي سيعطي قفزة نوعية في تصنيفك على سلم Playtomic.
           </p>
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5 min-w-0">
             <button
               onClick={() => navigateTo('level-test')}
-              className="btn-neon px-6 py-3.5 text-xs font-black w-full sm:w-auto flex items-center justify-center gap-2"
+              className="btn-neon px-6 py-3 text-xs font-black w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>خوض اختبار تقييم المستوى (20 سؤالاً)</span>
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 text-[#0b0b0d]" />
             </button>
           </div>
         </div>
@@ -213,22 +213,22 @@ export const CoachFeedbackSection: React.FC = () => {
   }
 
   return (
-    <div className="card-dark p-6 sm:p-8 rounded-2xl border border-white/15 space-y-8 relative overflow-hidden text-right shadow-xl">
+    <div className="card-dark p-4 sm:p-6 md:p-8 rounded border border-[var(--card-border)] bg-[#16161a] space-y-5 sm:space-y-6 relative overflow-hidden text-right min-w-0">
       
       {/* Header bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-[#b2e01e]/15 border border-[#b2e01e]/30 text-[#b2e01e]">
-            <Sparkles className="w-5 h-5" />
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-[var(--card-border)] pb-4 min-w-0">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="p-2 rounded bg-[#0b0b0d] border border-[var(--card-border)] text-[#b2e01e] shrink-0">
+            <Sparkles className="w-4 h-4 text-[#b2e01e]" />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ AI TACTICAL ADVISORY ]</span>
-              <span className="text-[10px] font-mono-tag theme-card-solid border border-white/15 px-2 py-0.5 rounded text-white/70">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="label-mono mb-0 truncate" style={{ color: '#b2e01e' }}>[ AI TACTICAL ADVISORY ]</span>
+              <span className="text-[10px] font-mono-tag bg-[#0b0b0d] border border-[var(--card-border)] px-2 py-0.5 rounded text-white/70 shrink-0">
                 GEMINI POWERED
               </span>
             </div>
-            <h2 className="font-alexandria font-bold text-xl text-white mt-1">
+            <h2 className="font-alexandria font-bold text-base sm:text-xl text-white mt-0.5 truncate">
               توجيهات الكوتش الذكي وتحليل الأولويات
             </h2>
           </div>
@@ -237,7 +237,7 @@ export const CoachFeedbackSection: React.FC = () => {
         <button
           onClick={() => fetchCoachFeedback(true)}
           disabled={loading}
-          className="px-4 py-2 theme-card-solid hover:bg-white/10 border border-white/20 hover:border-white/40 rounded-lg text-xs font-mono-tag text-white flex items-center gap-2 transition-all disabled:opacity-50 self-end sm:self-auto font-bold"
+          className="btn-outline-ink px-3.5 py-1.5 rounded text-xs font-mono-tag text-white flex items-center gap-2 disabled:opacity-50 self-end sm:self-auto font-bold cursor-pointer shrink-0"
         >
           <RefreshCw className={`w-3.5 h-3.5 text-[#b2e01e] ${loading ? 'animate-spin' : ''}`} />
           <span>{loading ? 'جاري التحليل...' : 'تحديث التحليل الفني'}</span>
@@ -246,12 +246,12 @@ export const CoachFeedbackSection: React.FC = () => {
 
       {/* Loading Skeleton */}
       {loading && !feedback && (
-        <div className="py-12 text-center space-y-4">
-          <div className="w-12 h-12 border-2 border-[#b2e01e] border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="font-alexandria text-sm text-white/80">
+        <div className="py-10 text-center space-y-3 min-w-0">
+          <div className="w-10 h-10 border-2 border-[#b2e01e] border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="font-alexandria text-xs sm:text-sm text-white/80">
             يقوم كوتش الذكاء الاصطناعي بدراسة إجاباتك الفنية وتحليل أرقام Playtomic...
           </p>
-          <span className="text-xs text-white/50 font-mono-tag block">
+          <span className="text-[11px] text-white/50 font-mono-tag block">
             EVALUATING 5 TECHNICAL PILLARS & ERROR FREQUENCY
           </span>
         </div>
@@ -259,11 +259,11 @@ export const CoachFeedbackSection: React.FC = () => {
 
       {/* Error state */}
       {error && !feedback && (
-        <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-xs text-center space-y-2">
-          <p>{error}</p>
+        <div className="p-4 rounded bg-red-950/80 border border-red-700 text-red-200 text-xs text-center space-y-2 min-w-0">
+          <p className="break-words">{error}</p>
           <button
             onClick={() => fetchCoachFeedback(true)}
-            className="text-[#b2e01e] underline font-bold"
+            className="text-[#b2e01e] underline font-bold cursor-pointer"
           >
             إعادة المحاولة
           </button>
@@ -272,27 +272,27 @@ export const CoachFeedbackSection: React.FC = () => {
 
       {/* Content Display */}
       {feedback && (
-        <div className="space-y-6">
+        <div className="space-y-5 min-w-0">
           
           {/* Main Focus Pillar Banner (Structured Panel) */}
-          <div className="p-6 sm:p-7 rounded-xl theme-card-solid border border-white/20 relative overflow-hidden space-y-4 shadow-md">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="px-2.5 py-0.5 rounded bg-[#b2e01e] text-[#002255] text-[11px] font-mono-tag font-black tracking-wide">
+          <div className="p-4 sm:p-6 rounded bg-[#0b0b0d] border border-[var(--card-border)] relative overflow-hidden space-y-3.5 min-w-0">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[var(--card-border)] pb-3 min-w-0">
+              <div className="space-y-1 min-w-0">
+                <div className="flex items-center gap-2 flex-wrap min-w-0">
+                  <span className="px-2 py-0.5 rounded bg-[#b2e01e] text-[#0b0b0d] text-[10px] font-mono-tag font-black shrink-0">
                     PRIMARY PRIORITY
                   </span>
-                  <span className="text-xs font-mono-tag text-[#b2e01e] font-bold">
+                  <span className="text-xs font-mono-tag text-[#b2e01e] font-bold truncate">
                     [ المحور ذو الأولوية القصوى للتدريب ]
                   </span>
                 </div>
-                <h3 className="font-alexandria font-extrabold text-xl sm:text-2xl text-white">
+                <h3 className="font-alexandria font-extrabold text-lg sm:text-2xl text-white break-words">
                   {feedback.recommendedPillarNameAr}
                 </h3>
               </div>
 
-              <div className="flex items-center gap-2 theme-subcard border border-white/20 px-3.5 py-2 rounded-lg self-start md:self-auto">
-                <TrendingUp className="w-4 h-4 text-[#b2e01e]" />
+              <div className="flex items-center gap-2 bg-[#16161a] border border-[var(--card-border)] px-3 py-1.5 rounded self-start md:self-auto shrink-0">
+                <TrendingUp className="w-4 h-4 text-[#b2e01e] shrink-0" />
                 <span className="text-xs font-mono-tag font-bold text-white">
                   {feedback.playtomicGrowthPotential}
                 </span>
@@ -300,127 +300,126 @@ export const CoachFeedbackSection: React.FC = () => {
             </div>
 
             {/* Coach Headline & Urgency Rationale */}
-            <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <Flame className="w-5 h-5 text-[#b2e01e] shrink-0 mt-0.5" />
-                <h4 className="font-alexandria font-bold text-base sm:text-lg text-[#b2e01e] leading-snug">
+            <div className="space-y-2 min-w-0">
+              <div className="flex items-start gap-2.5 min-w-0">
+                <Flame className="w-4 h-4 text-[#b2e01e] shrink-0 mt-0.5" />
+                <h4 className="font-alexandria font-bold text-sm sm:text-base text-[#b2e01e] leading-snug break-words">
                   {feedback.headlineAr}
                 </h4>
               </div>
-              <p className="text-xs sm:text-sm text-white/80 leading-relaxed pr-8">
+              <p className="text-xs sm:text-sm text-[#f2f7ff]/80 leading-relaxed font-medium break-words">
                 {feedback.urgencyReasonAr}
               </p>
             </div>
           </div>
 
           {/* Detailed Tactical Evaluation */}
-          <div className="theme-card-solid p-6 rounded-xl border border-white/15 space-y-3 shadow-md">
-            <div className="flex items-center gap-2 text-white">
-              <Activity className="w-4 h-4 text-[#b2e01e]" />
-              <h4 className="font-alexandria font-bold text-sm">
+          <div className="bg-[#0b0b0d] p-4 sm:p-5 rounded border border-[var(--card-border)] space-y-2 min-w-0">
+            <div className="flex items-center gap-2 text-white min-w-0">
+              <Activity className="w-4 h-4 text-[#b2e01e] shrink-0" />
+              <h4 className="font-alexandria font-bold text-xs sm:text-sm truncate">
                 التقرير الفني الشامل لحركة الملعب:
               </h4>
             </div>
-            <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#f2f7ff]/75 leading-relaxed font-medium break-words">
               {feedback.detailedAnalysisAr}
             </p>
           </div>
 
           {/* Targeted Weekly Action Plan */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Target className="w-4 h-4 text-[#b2e01e]" />
-                <h4 className="font-alexandria font-bold text-sm text-white">
+          <div className="space-y-3 min-w-0">
+            <div className="flex items-center justify-between min-w-0">
+              <div className="flex items-center gap-2 min-w-0">
+                <Target className="w-4 h-4 text-[#b2e01e] shrink-0" />
+                <h4 className="font-alexandria font-bold text-xs sm:text-sm text-white truncate">
                   خطة التمارين الموجهة لهذا الأسبوع (Drills & Action Items):
                 </h4>
               </div>
-              <span className="text-[11px] font-mono-tag text-white/50">
-                {feedback.weeklyActionPlan?.length || 0} EXERCISES
+              <span className="text-[11px] font-mono-tag text-[#b2e01e] shrink-0">
+                [{feedback.weeklyActionPlan?.length || 0} EXERCISES]
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 min-w-0">
               {feedback.weeklyActionPlan?.map((item, index) => (
                 <div
                   key={index}
-                  className="theme-card-solid p-5 rounded-xl border border-white/15 hover:border-white/30 transition-all flex flex-col justify-between space-y-3 shadow-md"
+                  className="bg-[#0b0b0d] p-3.5 sm:p-4 rounded border border-[var(--card-border)] hover:border-[#b2e01e] transition-colors flex flex-col justify-between space-y-2.5 min-w-0"
                 >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono-tag text-[10px] text-[#b2e01e] bg-white/10 px-2 py-0.5 rounded border border-white/10 font-bold">
+                  <div className="space-y-2 min-w-0">
+                    <div className="flex items-center justify-between min-w-0">
+                      <span className="font-mono-tag text-[10px] text-[#0b0b0d] bg-[#b2e01e] px-2 py-0.5 rounded font-black shrink-0">
                         DRILL 0{index + 1}
                       </span>
-                      <span className="font-mono-tag text-[10px] text-white/60">
+                      <span className="font-mono-tag text-[10px] text-white/60 truncate">
                         {item.repsOrDuration}
                       </span>
                     </div>
 
-                    <h5 className="font-alexandria font-bold text-xs sm:text-sm text-white">
+                    <h5 className="font-alexandria font-bold text-xs sm:text-sm text-white break-words">
                       {item.titleAr}
                     </h5>
 
-                    <p className="text-[11px] text-white/70 leading-relaxed">
+                    <p className="text-xs text-[#f2f7ff]/75 leading-relaxed font-medium break-words">
                       {item.focusGoalAr}
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-white/10 flex items-start gap-1.5 text-[11px] text-[#b2e01e]">
+                  <div className="pt-2 border-t border-[var(--card-border)] flex items-start gap-1.5 text-[11px] text-[#b2e01e] font-medium min-w-0">
                     <Lightbulb className="w-3.5 h-3.5 shrink-0 mt-0.5" />
-                    <span>{item.proTipAr}</span>
+                    <span className="break-words">{item.proTipAr}</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Partner Synergy & Motivational Quote in 2 Columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Partner Synergy & Motivational Quote */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 min-w-0">
             {/* Partner Synergy */}
-            <div className="theme-card-solid p-5 rounded-xl border border-white/15 space-y-2 shadow-md">
-              <div className="flex items-center gap-2 text-white">
-                <Users className="w-4 h-4 text-[#b2e01e]" />
-                <h5 className="font-alexandria font-bold text-xs sm:text-sm">
+            <div className="bg-[#0b0b0d] p-3.5 sm:p-4 rounded border border-[var(--card-border)] space-y-2 min-w-0">
+              <div className="flex items-center gap-2 text-white min-w-0">
+                <Users className="w-4 h-4 text-[#b2e01e] shrink-0" />
+                <h5 className="font-alexandria font-bold text-xs sm:text-sm truncate">
                   التناغم مع الزميل في المباريات:
                 </h5>
               </div>
-              <p className="text-xs text-white/75 leading-relaxed">
+              <p className="text-xs text-[#f2f7ff]/75 leading-relaxed font-medium break-words">
                 {feedback.partnerTacticsAr}
               </p>
             </div>
 
             {/* Coach Motivational Quote */}
-            <div className="theme-card-solid p-5 rounded-xl border border-white/15 space-y-2 relative shadow-md">
-              <Quote className="w-5 h-5 text-white/20 absolute top-4 left-4" />
-              <div className="flex items-center gap-2 text-[#b2e01e]">
-                <Zap className="w-4 h-4" />
-                <h5 className="font-alexandria font-bold text-xs sm:text-sm">
+            <div className="bg-[#0b0b0d] p-3.5 sm:p-4 rounded border border-[var(--card-border)] space-y-2 min-w-0">
+              <div className="flex items-center gap-2 text-[#b2e01e] min-w-0">
+                <Zap className="w-4 h-4 shrink-0" />
+                <h5 className="font-alexandria font-bold text-xs sm:text-sm truncate">
                   عقلية البادل الاحترافية (Coach Mindset):
                 </h5>
               </div>
-              <p className="text-xs text-white/90 italic font-alexandria leading-relaxed">
+              <p className="text-xs text-[#f2f7ff]/85 italic font-alexandria leading-relaxed font-medium break-words">
                 "{feedback.motivationalQuoteAr}"
               </p>
             </div>
           </div>
 
           {/* Interactive "Ask Coach AI" Box */}
-          <div className="theme-card-solid p-6 rounded-xl border border-white/15 space-y-4 shadow-md">
-            <div className="flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-[#b2e01e]" />
-              <h5 className="font-alexandria font-bold text-xs sm:text-sm text-white">
+          <div className="bg-[#0b0b0d] p-4 sm:p-5 rounded border border-[var(--card-border)] space-y-3.5 min-w-0">
+            <div className="flex items-center gap-2 min-w-0">
+              <MessageSquare className="w-4 h-4 text-[#b2e01e] shrink-0" />
+              <h5 className="font-alexandria font-bold text-xs sm:text-sm text-white truncate">
                 اسأل الكوتش سؤالاً تكتيكياً فورياً:
               </h5>
             </div>
 
             {/* Quick Prompts */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 min-w-0">
               {quickQuestions.map((q, idx) => (
                 <button
                   key={idx}
                   type="button"
                   onClick={() => setUserQuestion(q)}
-                  className="text-[11px] px-3 py-1.5 rounded-lg theme-subcard hover:bg-white/15 border border-white/15 hover:border-white/30 text-white/85 transition-all text-right font-medium"
+                  className="text-[11px] px-2.5 py-1 rounded bg-[#16161a] hover:border-white/30 border border-[var(--card-border)] text-[#f2f7ff]/80 transition-colors text-right font-medium cursor-pointer shrink-0"
                 >
                   {q}
                 </button>
@@ -428,25 +427,25 @@ export const CoachFeedbackSection: React.FC = () => {
             </div>
 
             {/* Question Form */}
-            <form onSubmit={handleAskCoach} className="flex gap-2">
+            <form onSubmit={handleAskCoach} className="flex gap-2 min-w-0">
               <input
                 type="text"
                 value={userQuestion}
                 onChange={(e) => setUserQuestion(e.target.value)}
                 placeholder="اكتب سؤالك للكوتش (مثال: كيف أتحرك مع زميلي بعد اللوب؟)..."
-                className="flex-1 theme-subcard border border-white/20 focus:border-[#b2e01e] rounded-lg px-4 py-2.5 text-xs text-white placeholder-white/40 focus:outline-none transition"
+                className="flex-1 bg-[#16161a] border border-[var(--card-border)] focus:border-[#b2e01e] rounded px-3 py-2 text-xs text-white placeholder-white/40 focus:outline-none transition min-w-0 font-medium"
               />
               <button
                 type="submit"
                 disabled={askingCoach || !userQuestion.trim()}
-                className="btn-neon px-5 py-2.5 text-xs font-black flex items-center gap-1.5 shrink-0 disabled:opacity-50"
+                className="btn-neon px-4 py-2 text-xs font-black flex items-center gap-1.5 shrink-0 disabled:opacity-50 cursor-pointer"
               >
                 {askingCoach ? (
-                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#002255]" />
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#0b0b0d]" />
                 ) : (
                   <>
                     <span>إرسال</span>
-                    <Send className="w-3.5 h-3.5 rotate-180" />
+                    <Send className="w-3.5 h-3.5 rotate-180 text-[#0b0b0d]" />
                   </>
                 )}
               </button>
@@ -454,13 +453,13 @@ export const CoachFeedbackSection: React.FC = () => {
 
             {/* Answer Display */}
             {coachAnswer && (
-              <div className="p-4 rounded-xl theme-subcard border border-white/20 text-xs text-white leading-relaxed flex items-start gap-2.5 shadow-inner">
+              <div className="p-3.5 rounded bg-[#16161a] border border-[var(--card-border)] text-xs text-white leading-relaxed flex items-start gap-2.5 min-w-0">
                 <CheckCircle2 className="w-4 h-4 text-[#b2e01e] shrink-0 mt-0.5" />
-                <div>
-                  <span className="font-bold text-[#b2e01e] block mb-1">
+                <div className="min-w-0 flex-1">
+                  <span className="font-bold text-[#b2e01e] block mb-1 font-mono-tag">
                     إجابة كوتش البادل:
                   </span>
-                  <p className="text-white/90">{coachAnswer}</p>
+                  <p className="text-[#f2f7ff]/90 break-words font-medium">{coachAnswer}</p>
                 </div>
               </div>
             )}

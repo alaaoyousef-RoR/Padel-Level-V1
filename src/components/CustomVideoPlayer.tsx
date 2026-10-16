@@ -85,44 +85,44 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div 
         ref={containerRef}
-        className="card-dark rounded-3xl max-w-5xl w-full max-h-[96vh] overflow-y-auto border-2 border-white/20 shadow-2xl text-right p-4 sm:p-7 space-y-6 flex flex-col"
+        className="card-dark rounded max-w-5xl w-full max-h-[94vh] overflow-y-auto border border-[#b2e01e] bg-[#16161a] text-right p-4 sm:p-6 space-y-4 flex flex-col min-w-0"
         onClick={(e) => e.stopPropagation()}
       >
         
         {/* Top Header bar */}
-        <div className="flex items-center justify-between border-b border-white/15 pb-4 gap-4">
-          <div className="space-y-1">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono-tag text-[10px] text-[#002255] bg-[#b2e01e] font-black px-2.5 py-0.5 rounded-full">
+        <div className="flex items-center justify-between border-b border-[var(--card-border)] pb-3 gap-3 min-w-0">
+          <div className="space-y-1 min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+              <span className="font-mono-tag text-[10px] text-[#0b0b0d] bg-[#b2e01e] font-black px-2 py-0.5 rounded shrink-0">
                 {video.categoryAr}
               </span>
-              <span className="font-mono-tag text-[10px] text-white/80 bg-white/10 px-2 py-0.5 rounded-full">
+              <span className="font-mono-tag text-[10px] text-white/80 bg-[#0b0b0d] border border-[var(--card-border)] px-2 py-0.5 rounded shrink-0">
                 المستوى: {video.level}
               </span>
               {watchedState ? (
-                <span className="font-mono-tag text-[10px] text-[#b2e01e] bg-[#b2e01e]/15 border border-[#b2e01e]/30 px-2.5 py-0.5 rounded-full flex items-center gap-1 font-bold">
-                  <CheckCircle2 className="w-3 h-3" />
+                <span className="font-mono-tag text-[10px] text-[#b2e01e] bg-[#0b0b0d] border border-[#b2e01e] px-2 py-0.5 rounded flex items-center gap-1 font-bold shrink-0">
+                  <CheckCircle2 className="w-3 h-3 text-[#b2e01e]" />
                   <span>تم إتقان الدرس</span>
                 </span>
               ) : (
                 <button
                   type="button"
                   onClick={handleMarkWatchedToggle}
-                  className="font-mono-tag text-[10px] text-white/70 hover:text-[#b2e01e] bg-white/5 border border-white/15 px-2.5 py-0.5 rounded-full transition-colors"
+                  className="font-mono-tag text-[10px] text-white/70 hover:text-[#b2e01e] bg-[#0b0b0d] border border-[var(--card-border)] px-2 py-0.5 rounded transition-colors cursor-pointer shrink-0"
                 >
                   [ تعليم كمكتمل ✓ ]
                 </button>
               )}
             </div>
-            <h2 className="font-alexandria font-black text-lg sm:text-2xl text-white mt-1 leading-snug">
+            <h2 className="font-alexandria font-black text-base sm:text-xl text-white mt-1 leading-snug break-words">
               {video.titleAr}
             </h2>
-            <p className="font-mono-tag text-xs text-white/50">
+            <p className="font-mono-tag text-xs text-[#f2f7ff]/60 truncate">
               المدرب المحترف: {video.coachName} • المدة الرسمية: {video.duration}
             </p>
           </div>
@@ -132,13 +132,13 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
               type="button"
               onClick={handleMarkWatchedToggle}
               title="تعليم كمكتمل"
-              className={`p-2.5 rounded-xl border transition-all ${
+              className={`p-2 rounded border transition-colors cursor-pointer ${
                 watchedState 
-                  ? 'bg-[#b2e01e] text-[#002255] border-[#b2e01e]' 
-                  : 'theme-card-solid text-white/80 hover:text-[#b2e01e] border-white/15'
+                  ? 'bg-[#b2e01e] text-[#0b0b0d] border-[#b2e01e]' 
+                  : 'bg-[#0b0b0d] text-white/80 hover:text-[#b2e01e] border-[var(--card-border)]'
               }`}
             >
-              <CheckCircle2 className="w-5 h-5" />
+              <CheckCircle2 className="w-4 h-4" />
             </button>
 
             {onClose && (
@@ -146,16 +146,16 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 type="button"
                 onClick={onClose}
                 aria-label="إغلاق المشغل"
-                className="text-white/60 hover:text-[#b2e01e] hover:bg-white/10 p-2.5 rounded-xl transition-colors border border-white/15"
+                className="text-white/60 hover:text-[#b2e01e] p-2 rounded bg-[#0b0b0d] transition-colors border border-[var(--card-border)] cursor-pointer"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4 text-[#b2e01e]" />
               </button>
             )}
           </div>
         </div>
 
         {/* Custom Video Player Stage with YouTube Embed & Overlay Controls */}
-        <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black border-2 border-[#b2e01e]/40 shadow-[0_0_30px_rgba(178,224,30,0.15)] group">
+        <div className="relative aspect-video w-full rounded overflow-hidden bg-black border border-[var(--card-border)] group min-w-0">
           
           <iframe
             className="w-full h-full border-0 absolute inset-0 pointer-events-auto"
@@ -165,53 +165,53 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             allowFullScreen
           />
 
-          {/* Custom Overlay Bottom Bar for Enhanced Aesthetic */}
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end space-y-2 pointer-events-none">
+          {/* Custom Overlay Bottom Bar */}
+          <div className="absolute bottom-0 left-0 right-0 bg-black/80 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end space-y-2 pointer-events-none">
             
             {/* Scrub Bar */}
-            <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden relative cursor-pointer pointer-events-auto">
+            <div className="w-full bg-white/20 h-1.5 rounded overflow-hidden relative cursor-pointer pointer-events-auto">
               <div 
                 className="bg-[#b2e01e] h-full transition-all duration-300"
                 style={{ width: '45%' }}
               ></div>
             </div>
 
-            <div className="flex items-center justify-between text-xs text-white pointer-events-auto">
-              <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between text-xs text-white pointer-events-auto min-w-0">
+              <div className="flex items-center gap-2.5 min-w-0">
                 <button
                   type="button"
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-8 h-8 rounded-lg bg-[#b2e01e] text-[#002255] flex items-center justify-center font-bold shadow hover:scale-105 transition-transform"
+                  className="w-7 h-7 rounded bg-[#b2e01e] text-[#0b0b0d] flex items-center justify-center font-bold transition-transform cursor-pointer shrink-0"
                 >
-                  {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current" />}
+                  {isPlaying ? <Pause className="w-3.5 h-3.5 fill-[#0b0b0d]" /> : <Play className="w-3.5 h-3.5 fill-[#0b0b0d]" />}
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setIsMuted(!isMuted)}
-                  className="text-white/80 hover:text-[#b2e01e] transition-colors"
+                  className="text-white/80 hover:text-[#b2e01e] transition-colors cursor-pointer shrink-0"
                 >
-                  {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                 </button>
 
-                <span className="font-mono-tag text-[10px] text-white/85">
+                <span className="font-mono-tag text-[10px] text-white/85 truncate">
                   HD 1080p • {video.duration}
                 </span>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 shrink-0">
                 {/* Speed Selector */}
                 <div className="relative">
                   <button
                     type="button"
                     onClick={() => setShowSpeedMenu(!showSpeedMenu)}
-                    className="px-2.5 py-1 rounded-lg theme-card-solid border border-white/20 text-[10px] font-mono-tag text-[#b2e01e] font-bold flex items-center gap-1"
+                    className="px-2 py-0.5 rounded bg-[#0b0b0d] border border-[var(--card-border)] text-[10px] font-mono-tag text-[#b2e01e] font-bold flex items-center gap-1 cursor-pointer"
                   >
                     <span>{playbackSpeed}x</span>
                   </button>
 
                   {showSpeedMenu && (
-                    <div className="absolute bottom-full right-0 mb-2 theme-card-solid rounded-xl border border-white/20 p-1.5 shadow-2xl flex flex-col gap-1 min-w-[70px] z-30">
+                    <div className="absolute bottom-full right-0 mb-1.5 bg-[#0b0b0d] rounded border border-[var(--card-border)] p-1 flex flex-col gap-1 min-w-[65px] z-30">
                       {speeds.map((s) => (
                         <button
                           key={s}
@@ -219,8 +219,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                             setPlaybackSpeed(s);
                             setShowSpeedMenu(false);
                           }}
-                          className={`px-2 py-1 rounded text-center text-xs font-mono-tag font-bold transition-colors ${
-                            playbackSpeed === s ? 'bg-[#b2e01e] text-[#002255]' : 'text-white/80 hover:bg-white/10'
+                          className={`px-2 py-0.5 rounded text-center text-xs font-mono-tag font-bold transition-colors cursor-pointer ${
+                            playbackSpeed === s ? 'bg-[#b2e01e] text-[#0b0b0d]' : 'text-white/80 hover:bg-white/10'
                           }`}
                         >
                           {s}x
@@ -233,9 +233,9 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                 <button
                   type="button"
                   onClick={toggleFullscreen}
-                  className="text-white/80 hover:text-[#b2e01e] transition-colors p-1"
+                  className="text-white/80 hover:text-[#b2e01e] transition-colors p-1 cursor-pointer"
                 >
-                  {isFullscreen ? <Minimize className="w-4 h-4" /> : <Maximize className="w-4 h-4" />}
+                  {isFullscreen ? <Minimize className="w-3.5 h-3.5" /> : <Maximize className="w-3.5 h-3.5" />}
                 </button>
               </div>
             </div>
@@ -244,14 +244,14 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         </div>
 
         {/* Tab Switcher: Key Takeaways vs Playlist Queue */}
-        <div className="flex items-center gap-2 border-b border-white/15 pb-3">
+        <div className="flex items-center gap-2 border-b border-[var(--card-border)] pb-2.5 min-w-0">
           <button
             type="button"
             onClick={() => setActiveTab('takeaways')}
-            className={`py-2 px-4 rounded-xl text-xs font-mono-tag font-bold transition-all flex items-center gap-2 ${
+            className={`py-1.5 px-3 rounded text-xs font-mono-tag font-bold transition-colors flex items-center gap-1.5 cursor-pointer shrink-0 ${
               activeTab === 'takeaways'
-                ? 'bg-[#b2e01e] text-[#002255] font-black'
-                : 'theme-card-solid text-white/70 hover:text-white border border-white/10'
+                ? 'bg-[#b2e01e] text-[#0b0b0d] font-black'
+                : 'bg-[#0b0b0d] text-white/70 hover:text-white border border-[var(--card-border)]'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5" />
@@ -262,38 +262,38 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             <button
               type="button"
               onClick={() => setActiveTab('playlist')}
-              className={`py-2 px-4 rounded-xl text-xs font-mono-tag font-bold transition-all flex items-center gap-2 ${
+              className={`py-1.5 px-3 rounded text-xs font-mono-tag font-bold transition-colors flex items-center gap-1.5 cursor-pointer shrink-0 ${
                 activeTab === 'playlist'
-                  ? 'bg-[#b2e01e] text-[#002255] font-black'
-                  : 'theme-card-solid text-white/70 hover:text-white border border-white/10'
+                  ? 'bg-[#b2e01e] text-[#0b0b0d] font-black'
+                  : 'bg-[#0b0b0d] text-white/70 hover:text-white border border-[var(--card-border)]'
               }`}
             >
               <ListVideo className="w-3.5 h-3.5" />
-              <span>[ قائمة التشغيل والدورات ({playlist.length}) ]</span>
+              <span>[ قائمة التشغيل ({playlist.length}) ]</span>
             </button>
           )}
         </div>
 
         {/* Tab 1: Takeaways & Breakdown */}
         {activeTab === 'takeaways' && (
-          <div className="space-y-4 animate-in fade-in duration-200">
-            <div className="theme-card-solid p-4 rounded-2xl border border-white/15 space-y-2">
+          <div className="space-y-3 min-w-0">
+            <div className="bg-[#0b0b0d] p-3.5 rounded border border-[var(--card-border)] space-y-1.5 min-w-0">
               <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ DRILL COACHING SUMMARY ]</span>
-              <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-medium">
+              <p className="text-xs sm:text-sm text-[#f2f7ff]/80 leading-relaxed font-medium break-words">
                 {video.descriptionAr}
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-2 min-w-0">
               <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ KEY TECHNICAL TAKEAWAYS // أهم نقاط المهارة ]</span>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 min-w-0">
                 {video.keyTakeaways.map((point: string, idx: number) => (
                   <div 
                     key={idx} 
-                    className="theme-card-solid p-3.5 rounded-2xl border border-white/15 flex items-start gap-3 shadow"
+                    className="bg-[#0b0b0d] p-3 rounded border border-[var(--card-border)] flex items-start gap-2 min-w-0"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-[#b2e01e] shrink-0 mt-0.5" />
-                    <span className="text-xs text-white/90 leading-relaxed font-medium">{point}</span>
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#b2e01e] shrink-0 mt-0.5" />
+                    <span className="text-xs text-[#f2f7ff]/85 leading-relaxed font-medium break-words">{point}</span>
                   </div>
                 ))}
               </div>
@@ -303,7 +303,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
 
         {/* Tab 2: Playlist Queue */}
         {activeTab === 'playlist' && (
-          <div className="space-y-3 max-h-60 overflow-y-auto pr-1 animate-in fade-in duration-200">
+          <div className="space-y-2 max-h-52 overflow-y-auto pr-1 min-w-0">
             {playlist.map((item) => {
               const isCurrent = item.id === video.id;
               return (
@@ -312,14 +312,14 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                   onClick={() => {
                     if (onSelectVideo) onSelectVideo(item);
                   }}
-                  className={`p-3 rounded-xl border flex items-center justify-between gap-3 cursor-pointer transition-all ${
+                  className={`p-2.5 rounded border flex items-center justify-between gap-3 cursor-pointer transition-colors min-w-0 ${
                     isCurrent
-                      ? 'bg-[#b2e01e]/15 border-[#b2e01e] text-white shadow'
-                      : 'theme-card-solid border-white/10 hover:border-white/30 text-white/80'
+                      ? 'bg-[#0b0b0d] border-[#b2e01e] text-white'
+                      : 'bg-[#0b0b0d] border-[var(--card-border)] hover:border-white/30 text-white/80'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-16 aspect-video rounded bg-black overflow-hidden relative shrink-0">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-14 aspect-video rounded bg-black overflow-hidden relative shrink-0 border border-[var(--card-border)]">
                       <img
                         src={item.thumbnailUrl || `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
                         alt={item.titleAr}
@@ -327,13 +327,13 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                       />
                       {isCurrent && (
                         <div className="absolute inset-0 bg-[#b2e01e]/30 flex items-center justify-center">
-                          <Play className="w-4 h-4 fill-[#b2e01e] text-[#002255]" />
+                          <Play className="w-3.5 h-3.5 fill-[#b2e01e] text-[#0b0b0d]" />
                         </div>
                       )}
                     </div>
-                    <div>
-                      <span className="font-mono-tag text-[9px] text-[#b2e01e] font-bold block">{item.categoryAr}</span>
-                      <h4 className="font-bold text-xs line-clamp-1">{item.titleAr}</h4>
+                    <div className="min-w-0">
+                      <span className="font-mono-tag text-[9px] text-[#b2e01e] font-bold block truncate">{item.categoryAr}</span>
+                      <h4 className="font-bold text-xs truncate">{item.titleAr}</h4>
                     </div>
                   </div>
 
@@ -345,13 +345,13 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
         )}
 
         {/* Modal Footer Navigation */}
-        <div className="pt-3 border-t border-white/15 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+        <div className="pt-2.5 border-t border-[var(--card-border)] flex flex-wrap items-center justify-between gap-3 min-w-0">
+          <div className="flex items-center gap-2 min-w-0">
             {prevVideo && onSelectVideo && (
               <button
                 type="button"
                 onClick={() => onSelectVideo(prevVideo)}
-                className="btn-outline-ink px-4 py-2 text-xs font-mono-tag font-bold flex items-center gap-1.5"
+                className="btn-outline-ink px-3.5 py-1.5 text-xs font-mono-tag font-bold flex items-center gap-1.5 cursor-pointer"
               >
                 <ChevronRight className="w-3.5 h-3.5" />
                 <span>الدرس السابق</span>
@@ -362,7 +362,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
               <button
                 type="button"
                 onClick={() => onSelectVideo(nextVideo)}
-                className="btn-outline-ink px-4 py-2 text-xs font-mono-tag font-bold flex items-center gap-1.5"
+                className="btn-outline-ink px-3.5 py-1.5 text-xs font-mono-tag font-bold flex items-center gap-1.5 cursor-pointer"
               >
                 <span>الدرس التالي</span>
                 <ChevronLeft className="w-3.5 h-3.5" />
@@ -370,22 +370,22 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             )}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <a
               href={video.youtubeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline-ink px-4 py-2 text-xs font-mono-tag font-bold flex items-center gap-1.5 hover:text-red-400 hover:border-red-500"
+              className="btn-outline-ink px-3.5 py-1.5 text-xs font-mono-tag font-bold flex items-center gap-1.5 hover:text-red-400 hover:border-red-500"
             >
               <Youtube className="w-3.5 h-3.5 text-red-500" />
-              <span>فتح في YouTube</span>
+              <span>YouTube</span>
             </a>
 
             {onClose && (
               <button
                 type="button"
                 onClick={onClose}
-                className="btn-neon px-6 py-2 text-xs font-bold"
+                className="btn-neon px-5 py-1.5 text-xs font-black cursor-pointer"
               >
                 إغلاق المشغل
               </button>

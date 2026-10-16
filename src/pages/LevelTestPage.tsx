@@ -130,7 +130,6 @@ export const LevelTestPage: React.FC = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
-      // Calculate and save results
       const results = calculateTestResults(answers);
       saveTestResult(results);
       navigateTo('test-result');
@@ -159,7 +158,6 @@ export const LevelTestPage: React.FC = () => {
     }
 
     setIsLoggingIn(true);
-    // If any questions answered, compute partial or full results to save
     if (Object.keys(answers).length > 0) {
       const currentResults = calculateTestResults(answers);
       await saveTestResult(currentResults);
@@ -177,61 +175,61 @@ export const LevelTestPage: React.FC = () => {
 
   const getPillarIcon = (category: AssessmentCategory) => {
     switch (category) {
-      case 'serve_return': return <Zap className="w-4 h-4 text-[#b2e01e]" />;
-      case 'net_volleys': return <Activity className="w-4 h-4 text-[#b2e01e]" />;
-      case 'overhead_shots': return <Sparkles className="w-4 h-4 text-[#b2e01e]" />;
-      case 'wall_defense': return <Shield className="w-4 h-4 text-[#b2e01e]" />;
-      case 'tactics_positioning': return <Maximize2 className="w-4 h-4 text-[#b2e01e]" />;
-      default: return <Zap className="w-4 h-4 text-[#b2e01e]" />;
+      case 'serve_return': return <Zap className="w-4 h-4 text-[#b2e01e] shrink-0" />;
+      case 'net_volleys': return <Activity className="w-4 h-4 text-[#b2e01e] shrink-0" />;
+      case 'overhead_shots': return <Sparkles className="w-4 h-4 text-[#b2e01e] shrink-0" />;
+      case 'wall_defense': return <Shield className="w-4 h-4 text-[#b2e01e] shrink-0" />;
+      case 'tactics_positioning': return <Maximize2 className="w-4 h-4 text-[#b2e01e] shrink-0" />;
+      default: return <Zap className="w-4 h-4 text-[#b2e01e] shrink-0" />;
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-2 text-right space-y-6 font-alexandria">
+    <div className="w-full max-w-4xl mx-auto py-2 text-right space-y-4 sm:space-y-6 font-alexandria min-w-0">
       
-      {/* 1. Top Header Cockpit Card (100% Solid Flat) */}
-      <div className="card-dark p-5 sm:p-7 rounded border border-[var(--card-border)] bg-[#16161a] space-y-5">
+      {/* 1. Top Header Cockpit Card */}
+      <div className="card-dark p-4 sm:p-6 md:p-7 rounded border border-[var(--card-border)] bg-[#16161a] space-y-4 sm:space-y-5 min-w-0">
         
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 min-w-0">
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
               <span className="label-mono mb-0" style={{ color: '#b2e01e' }}>[ PLAYTOMIC BENCHMARK SYSTEM ]</span>
-              <span className="bg-[#111216] border border-[#005cd7] text-[#b2e01e] text-[10px] font-mono-tag font-bold px-2 py-0.5 rounded">
+              <span className="bg-[#0b0b0d] border border-[#005cd7] text-[#b2e01e] text-[10px] font-mono-tag font-bold px-2 py-0.5 rounded shrink-0">
                 20 Q COMPETENCY TEST
               </span>
             </div>
-            <h1 className="font-alexandria font-black text-2xl sm:text-3xl text-white tracking-tight">
+            <h1 className="font-alexandria font-black text-xl sm:text-2xl md:text-3xl text-white tracking-tight leading-snug break-words">
               اختبار تقييم مستوى لاعب البادل المعتمد
             </h1>
-            <p className="text-xs text-[#f2f7ff]/75 mt-1 max-w-xl leading-relaxed">
+            <p className="text-xs text-[#f2f7ff]/75 mt-1 leading-relaxed break-words">
               تمت هيكلة هذا الاختبار وفق معايير Playtomic الدولية على 5 محاور تقنية رئيسية لتشخيص مستواك وتوليد برنامجك التدريبي.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 font-mono-tag text-xs self-start sm:self-center">
-            <div className="bg-[#0b0b0d] border border-[var(--card-border)] px-3 py-2 rounded">
-              <span className="text-white/50 block text-[10px]">PROGRESS</span>
-              <span className="text-[#b2e01e] font-bold">{answeredCount} / {totalQuestions} Q</span>
+          <div className="flex items-center gap-2.5 font-mono-tag text-xs self-start sm:self-center shrink-0">
+            <div className="bg-[#0b0b0d] border border-[var(--card-border)] px-3 py-1.5 sm:py-2 rounded text-center">
+              <span className="text-white/50 block text-[9px] sm:text-[10px]">PROGRESS</span>
+              <span className="text-[#b2e01e] font-bold text-xs sm:text-sm">{answeredCount} / {totalQuestions}</span>
             </div>
-            <div className="bg-[#0b0b0d] border border-[var(--card-border)] px-3 py-2 rounded">
-              <span className="text-white/50 block text-[10px]">BENCHMARK</span>
-              <span className="text-white font-bold">PLAYTOMIC 1.0 - 7.0</span>
+            <div className="bg-[#0b0b0d] border border-[var(--card-border)] px-3 py-1.5 sm:py-2 rounded text-center">
+              <span className="text-white/50 block text-[9px] sm:text-[10px]">BENCHMARK</span>
+              <span className="text-white font-bold text-xs sm:text-sm">1.0 - 7.0</span>
             </div>
           </div>
         </div>
 
         {/* 5 Pillars Quick Tracker Indicator */}
-        <div className="pt-3 border-t border-[var(--card-border)]">
-          <div className="text-[11px] font-mono-tag text-white/70 mb-2 flex items-center justify-between">
-            <span className="flex items-center gap-1.5 text-[#b2e01e] font-bold">
+        <div className="pt-3 border-t border-[var(--card-border)] space-y-2">
+          <div className="text-[11px] font-mono-tag text-white/70 flex flex-wrap items-center justify-between gap-1.5">
+            <span className="flex items-center gap-1.5 text-[#b2e01e] font-bold min-w-0">
               {getPillarIcon(currentQuestion.category)}
-              <span>المحور {currentPillar.pillarNumber} من 5: {currentPillar.shortTitleAr}</span>
+              <span className="truncate">المحور {currentPillar.pillarNumber} من 5: {currentPillar.shortTitleAr}</span>
             </span>
-            <span>السؤال [{qNum}/20] • {progressPercent}%</span>
+            <span className="shrink-0 font-jetbrains text-[10px] sm:text-[11px]">السؤال [{qNum}/20] • {progressPercent}%</span>
           </div>
 
-          {/* Pillars Visual Track */}
-          <div className="grid grid-cols-5 gap-2">
+          {/* Pillars Responsive Visual Track */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1.5 sm:gap-2">
             {ASSESSMENT_PILLARS.map((p) => {
               const questionsInPillar = ASSESSMENT_QUESTIONS.filter(q => q.category === p.key);
               const answeredInPillar = questionsInPillar.filter(q => answers[q.id] !== undefined).length;
@@ -240,7 +238,7 @@ export const LevelTestPage: React.FC = () => {
               return (
                 <div 
                   key={p.key} 
-                  className={`p-1.5 rounded border transition-colors text-center bg-[#0b0b0d] ${
+                  className={`p-1.5 sm:p-2 rounded border transition-colors text-center bg-[#0b0b0d] min-w-0 ${
                     isCurrentPillar 
                       ? 'border-[#b2e01e]' 
                       : answeredInPillar === 4 
@@ -248,16 +246,16 @@ export const LevelTestPage: React.FC = () => {
                       : 'border-white/10'
                   }`}
                 >
-                  <div className="flex items-center justify-center gap-1 text-[10px] font-bold">
+                  <div className="flex items-center justify-center gap-1 text-[10px] font-bold truncate">
                     <span className={isCurrentPillar ? 'text-[#b2e01e]' : answeredInPillar === 4 ? 'text-[#b2e01e]' : 'text-white/40'}>
                       {p.shortTitleAr}
                     </span>
                   </div>
-                  <div className="w-full bg-[#16161a] h-1 rounded mt-1 overflow-hidden">
+                  <div className="w-full bg-[#16161a] h-1.5 rounded mt-1 overflow-hidden">
                     <div 
                       className="bg-[#b2e01e] h-full transition-all duration-200"
                       style={{ width: `${(answeredInPillar / 4) * 100}%` }}
-                    ></div>
+                    />
                   </div>
                 </div>
               );
@@ -270,39 +268,39 @@ export const LevelTestPage: React.FC = () => {
           <div 
             className="h-full bg-[#b2e01e] transition-all duration-200"
             style={{ width: `${progressPercent}%` }}
-          ></div>
+          />
         </div>
       </div>
 
-      {/* 2. Main Question Card (100% Solid Flat) */}
-      <div className="card-dark p-6 sm:p-8 rounded border border-[var(--card-border)] bg-[#16161a] space-y-6">
+      {/* 2. Main Question Card */}
+      <div className="card-dark p-4 sm:p-6 md:p-8 rounded border border-[var(--card-border)] bg-[#16161a] space-y-4 sm:space-y-6 min-w-0">
         
         {/* Category & Step Header */}
-        <div className="flex flex-wrap items-center justify-between border-b border-[var(--card-border)] pb-4 gap-2">
-          <div className="flex items-center gap-2">
-            <span className="font-mono-tag text-[11px] text-[#0b0b0d] bg-[#b2e01e] font-black px-2.5 py-1 rounded flex items-center gap-1.5">
+        <div className="flex flex-wrap items-center justify-between border-b border-[var(--card-border)] pb-3 sm:pb-4 gap-2 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap min-w-0">
+            <span className="font-mono-tag text-[11px] text-[#0b0b0d] bg-[#b2e01e] font-black px-2.5 py-1 rounded flex items-center gap-1.5 shrink-0">
               {getPillarIcon(currentQuestion.category)}
               <span>محور {currentPillar.pillarNumber}: {currentQuestion.categoryAr}</span>
             </span>
-            <span className="font-mono-tag text-xs text-white/50">
+            <span className="font-mono-tag text-xs text-white/50 shrink-0">
               سؤال #{currentQuestion.id} من 20
             </span>
           </div>
 
-          <span className="font-mono-tag text-[11px] text-[#f2f7ff]/70 bg-[#0b0b0d] border border-[var(--card-border)] px-2.5 py-1 rounded">
+          <span className="font-mono-tag text-[10px] sm:text-[11px] text-[#f2f7ff]/70 bg-[#0b0b0d] border border-[var(--card-border)] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shrink-0">
             سؤال {((currentQuestionIndex % 4) + 1)} من 4 في هذا المحور
           </span>
         </div>
 
         {/* Tactical Game Scenario Callout */}
         {currentQuestion.scenarioAr && (
-          <div className="bg-[#0b0b0d] border border-[var(--card-border)] p-3.5 rounded flex items-start gap-3 text-right">
-            <Info className="w-4 h-4 text-[#b2e01e] flex-shrink-0 mt-0.5" />
-            <div>
+          <div className="bg-[#0b0b0d] border border-[var(--card-border)] p-3 sm:p-3.5 rounded flex items-start gap-2.5 sm:gap-3 text-right min-w-0">
+            <Info className="w-4 h-4 text-[#b2e01e] shrink-0 mt-0.5" />
+            <div className="min-w-0 flex-1">
               <span className="text-[10px] font-mono-tag text-[#b2e01e] block uppercase font-bold">
                 [ GAME SCENARIO / سيناريو اللعب العملي ]
               </span>
-              <p className="text-xs text-[#f2f7ff]/90 leading-relaxed mt-0.5">
+              <p className="text-xs text-[#f2f7ff]/90 leading-relaxed mt-0.5 break-words">
                 {currentQuestion.scenarioAr}
               </p>
             </div>
@@ -310,33 +308,33 @@ export const LevelTestPage: React.FC = () => {
         )}
 
         {/* Question Text */}
-        <div className="space-y-1.5">
-          <h2 className="font-black text-xl sm:text-2xl text-white leading-relaxed">
+        <div className="space-y-1.5 min-w-0">
+          <h2 className="font-black text-lg sm:text-xl md:text-2xl text-white leading-relaxed break-words">
             {currentQuestion.questionAr}
           </h2>
           {currentQuestion.hintAr && (
-            <p className="text-xs text-[#f2f7ff]/60 flex items-center gap-1.5 font-medium pt-1">
-              <HelpCircle className="w-3.5 h-3.5 text-[#b2e01e] flex-shrink-0" />
+            <p className="text-xs text-[#f2f7ff]/65 flex items-start sm:items-center gap-1.5 font-medium pt-1 break-words">
+              <HelpCircle className="w-3.5 h-3.5 text-[#b2e01e] shrink-0 mt-0.5 sm:mt-0" />
               <span>معيار التقييم: {currentQuestion.hintAr}</span>
             </p>
           )}
         </div>
 
-        {/* Intuitive Inline Padel Terms Explanations (Requirement 3) */}
+        {/* Intuitive Inline Padel Terms Explanations */}
         {terms.length > 0 && (
-          <div className="p-3.5 rounded bg-[#0b0b0d] border border-[#003b8b] space-y-2">
+          <div className="p-3 sm:p-3.5 rounded bg-[#0b0b0d] border border-[#003b8b] space-y-2 min-w-0">
             <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#b2e01e]">
-              <HelpCircle className="w-3.5 h-3.5" />
+              <HelpCircle className="w-3.5 h-3.5 shrink-0" />
               <span>شرح مبسط لمصطلحات هذا السؤال (Padel Terms):</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
               {terms.map((t, idx) => (
-                <div key={idx} className="p-2.5 rounded bg-[#16161a] border border-white/10 text-right">
-                  <div className="flex items-center justify-between font-bold text-white text-[11px] mb-0.5">
-                    <span className="text-[#b2e01e]">{t.term}</span>
-                    <span className="font-jetbrains text-[10px] text-white/50">{t.termEn}</span>
+                <div key={idx} className="p-2 sm:p-2.5 rounded bg-[#16161a] border border-white/10 text-right min-w-0">
+                  <div className="flex items-center justify-between font-bold text-white text-[11px] mb-0.5 gap-2">
+                    <span className="text-[#b2e01e] truncate">{t.term}</span>
+                    <span className="font-jetbrains text-[10px] text-white/50 shrink-0">{t.termEn}</span>
                   </div>
-                  <p className="text-[11px] text-[#f2f7ff]/75 leading-relaxed">{t.definition}</p>
+                  <p className="text-[11px] text-[#f2f7ff]/75 leading-relaxed break-words">{t.definition}</p>
                 </div>
               ))}
             </div>
@@ -344,7 +342,7 @@ export const LevelTestPage: React.FC = () => {
         )}
 
         {/* Question Options */}
-        <div className="space-y-3">
+        <div className="space-y-2.5 sm:space-y-3 min-w-0">
           {currentQuestion.options.map((option, idx) => {
             const isSelected = answers[currentQuestion.id] === idx;
             return (
@@ -352,14 +350,14 @@ export const LevelTestPage: React.FC = () => {
                 key={idx}
                 type="button"
                 onClick={() => handleSelectOption(idx)}
-                className={`w-full p-4 rounded border text-right transition-colors flex items-start gap-3.5 cursor-pointer bg-[#0b0b0d] ${
+                className={`w-full p-3.5 sm:p-4 rounded border text-right transition-colors flex items-start gap-3 cursor-pointer bg-[#0b0b0d] min-w-0 ${
                   isSelected
                     ? 'border-[#b2e01e] bg-[#003b8b]/30 text-white'
                     : 'border-[var(--card-border)] hover:border-white/30 text-white/80'
                 }`}
               >
                 {/* Radio indicator */}
-                <div className={`w-5 h-5 rounded flex-shrink-0 mt-0.5 flex items-center justify-center border font-mono-tag text-[10px] font-bold ${
+                <div className={`w-5 h-5 rounded shrink-0 mt-0.5 flex items-center justify-center border font-mono-tag text-[10px] font-bold ${
                   isSelected
                     ? 'border-[#b2e01e] bg-[#b2e01e] text-[#0b0b0d]'
                     : 'border-white/20 bg-transparent text-transparent'
@@ -367,23 +365,23 @@ export const LevelTestPage: React.FC = () => {
                   ✓
                 </div>
 
-                <div className="flex-1 space-y-1">
+                <div className="flex-1 space-y-1 min-w-0">
                   <div className="flex items-center justify-between gap-2">
-                    <span className={`text-xs sm:text-sm font-semibold leading-relaxed ${isSelected ? 'text-[#b2e01e]' : 'text-white'}`}>
+                    <span className={`text-xs sm:text-sm font-semibold leading-relaxed break-words ${isSelected ? 'text-[#b2e01e]' : 'text-white'}`}>
                       {option.text}
                     </span>
                   </div>
 
                   {option.tierTag && (
-                    <div className="flex items-center gap-2 pt-1 font-mono-tag text-[10px]">
-                      <span className={`px-2 py-0.5 rounded font-bold ${
+                    <div className="flex items-center gap-2 pt-1 font-mono-tag text-[10px] flex-wrap">
+                      <span className={`px-2 py-0.5 rounded font-bold shrink-0 ${
                         isSelected 
                           ? 'bg-[#b2e01e] text-[#0b0b0d]' 
                           : 'bg-[#16161a] text-white/50 border border-white/10'
                       }`}>
                         {option.tierTag}
                       </span>
-                      <span className="text-white/40">
+                      <span className="text-white/40 shrink-0">
                         [+{option.score} نقطة]
                       </span>
                     </div>
@@ -397,29 +395,29 @@ export const LevelTestPage: React.FC = () => {
         {/* Error Notification */}
         {errorMessage && (
           <div className="bg-red-950 border border-red-800 text-red-200 p-3 rounded text-xs flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-400" />
-            <span>{errorMessage}</span>
+            <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+            <span className="break-words">{errorMessage}</span>
           </div>
         )}
 
         {/* Actions Bar */}
-        <div className="pt-4 border-t border-[var(--card-border)] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="pt-3 sm:pt-4 border-t border-[var(--card-border)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 min-w-0">
           <button
             type="button"
             onClick={handlePrev}
             disabled={currentQuestionIndex === 0}
-            className={`w-full sm:w-auto px-5 py-2.5 rounded text-xs font-mono-tag uppercase transition-colors flex items-center justify-center gap-2 ${
+            className={`px-4 sm:px-5 py-2.5 rounded text-xs font-mono-tag uppercase transition-colors flex items-center justify-center gap-2 ${
               currentQuestionIndex === 0
                 ? 'opacity-30 cursor-not-allowed text-white/40 border border-white/10'
                 : 'btn-outline-ink'
             }`}
           >
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
             <span>السابق (PREV)</span>
           </button>
 
-          {/* Quick jump indicators */}
-          <div className="hidden lg:flex items-center gap-1 font-mono-tag">
+          {/* Jump indicators */}
+          <div className="hidden sm:flex items-center gap-1 font-mono-tag flex-wrap justify-center">
             {ASSESSMENT_QUESTIONS.map((q, idx) => {
               const isAnswered = answers[q.id] !== undefined;
               const isCurrent = currentQuestionIndex === idx;
@@ -445,16 +443,16 @@ export const LevelTestPage: React.FC = () => {
           <button
             type="button"
             onClick={handleNext}
-            className="btn-neon w-full sm:w-auto px-7 py-2.5 text-xs font-extrabold flex items-center justify-center gap-2"
+            className="btn-neon px-6 sm:px-7 py-2.5 text-xs font-extrabold flex items-center justify-center gap-2"
           >
             {currentQuestionIndex < totalQuestions - 1 ? (
               <>
                 <span>السؤال التالي (NEXT)</span>
-                <ArrowLeft className="w-4 h-4" />
+                <ArrowLeft className="w-4 h-4 shrink-0" />
               </>
             ) : (
               <>
-                <Sparkles className="w-4 h-4" />
+                <Sparkles className="w-4 h-4 shrink-0" />
                 <span>إصدار تقرير Playtomic المعتمد</span>
               </>
             )}
@@ -463,47 +461,47 @@ export const LevelTestPage: React.FC = () => {
 
       </div>
 
-      {/* 3. Streamlined Save / Login Section (Requirement 3) */}
-      <div className="card-dark p-5 sm:p-6 rounded border border-[var(--card-border)] bg-[#16161a] space-y-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#b2e01e]"></span>
+      {/* 3. Streamlined Save / Login Section */}
+      <div className="card-dark p-4 sm:p-6 rounded border border-[var(--card-border)] bg-[#16161a] space-y-3.5 sm:space-y-4 min-w-0">
+        <div className="space-y-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="w-2 h-2 rounded-full bg-[#b2e01e] shrink-0"></span>
             <span className="font-jetbrains text-[10px] text-[#b2e01e] font-bold uppercase tracking-wider">
               ACCOUNT & DATA PRESERVATION
             </span>
           </div>
-          <h3 className="font-alexandria font-bold text-sm sm:text-base text-white">
+          <h3 className="font-alexandria font-bold text-sm sm:text-base text-white break-words">
             Log in with any username to save your results, track your daily training progress, and access customized drill plans.
           </h3>
-          <p className="text-xs text-[#f2f7ff]/70 leading-relaxed">
+          <p className="text-xs text-[#f2f7ff]/70 leading-relaxed break-words">
             سجّل الدخول بأي اسم مستخدم لحفظ نتائجك، وتتبع تقدمك التدريبي اليومي، والوصول إلى خطط التمارين المخصصة.
           </p>
         </div>
 
         {user ? (
-          <div className="p-3.5 rounded bg-[#0b0b0d] border border-[#005cd7] flex items-center justify-between">
-            <div className="text-xs text-[#f2f7ff]">
-              <span>أنت مسجّل الدخول كـ: </span>
-              <strong className="text-[#b2e01e] font-bold">{user.fullName || user.email}</strong>
+          <div className="p-3 sm:p-3.5 rounded bg-[#0b0b0d] border border-[#005cd7] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 min-w-0">
+            <div className="text-xs text-[#f2f7ff] min-w-0">
+              <span className="text-white/80">أنت مسجّل الدخول كـ: </span>
+              <strong className="text-[#b2e01e] font-bold break-words">{user.fullName || user.email}</strong>
               <span className="text-white/60 block text-[11px] mt-0.5">
                 نتائج تقييمك ستحفظ وتحدث فورياً في سجلك الرياضي.
               </span>
             </div>
             <button
               onClick={() => navigateTo('dashboard')}
-              className="btn-neon text-xs px-3.5 py-1.5 font-bold"
+              className="btn-neon text-xs px-4 py-2 font-bold shrink-0 self-stretch sm:self-auto text-center justify-center"
             >
               لوحة التحكم
             </button>
           </div>
         ) : (
-          <form onSubmit={handleInlineSaveLogin} className="space-y-3 pt-2 border-t border-[var(--card-border)]">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
+          <form onSubmit={handleInlineSaveLogin} className="space-y-3 pt-2 border-t border-[var(--card-border)] min-w-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 min-w-0">
+              <div className="min-w-0">
                 <label className="block text-[11px] text-[#f2f7ff]/80 font-bold mb-1">
                   اسم المستخدم (Username)
                 </label>
-                <div className="relative">
+                <div className="relative min-w-0">
                   <input
                     type="text"
                     required
@@ -516,11 +514,11 @@ export const LevelTestPage: React.FC = () => {
                   <User className="w-3.5 h-3.5 text-white/40 absolute top-2.5 right-2.5 pointer-events-none" />
                 </div>
               </div>
-              <div>
+              <div className="min-w-0">
                 <label className="block text-[11px] text-[#f2f7ff]/80 font-bold mb-1">
                   كلمة المرور (Password)
                 </label>
-                <div className="relative">
+                <div className="relative min-w-0">
                   <input
                     type="password"
                     required
@@ -537,18 +535,18 @@ export const LevelTestPage: React.FC = () => {
 
             {loginFeedback && (
               <div className={`p-2.5 rounded text-xs flex items-center gap-2 ${loginFeedback.isError ? 'bg-red-950 text-red-200 border border-red-800' : 'bg-green-950 text-green-200 border border-green-800'}`}>
-                <span>{loginFeedback.text}</span>
+                <span className="break-words">{loginFeedback.text}</span>
               </div>
             )}
 
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
-              <span className="text-[10px] text-[#f2f7ff]/50">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-1 min-w-0">
+              <span className="text-[10px] text-[#f2f7ff]/50 leading-relaxed break-words">
                 * يدعم تسجيل الدخول المباشر أو إنشاء حساب تلقائي فوري دون تعقيد.
               </span>
               <button
                 type="submit"
                 disabled={isLoggingIn}
-                className="btn-neon px-5 py-2 text-xs font-black rounded cursor-pointer disabled:opacity-50 w-full sm:w-auto"
+                className="btn-neon px-5 py-2 text-xs font-black rounded cursor-pointer disabled:opacity-50 w-full sm:w-auto shrink-0 text-center justify-center"
               >
                 {isLoggingIn ? 'جاري الحفظ والتحقق...' : 'حفظ ومتابعة (Save & Continue)'}
               </button>
