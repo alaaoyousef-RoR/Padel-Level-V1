@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { 
   PageRoute, 
   PadelLevelNumber, 
@@ -7,6 +7,7 @@ import {
   UserProfile 
 } from '../types';
 import { PADEL_LEVELS } from '../data/assessmentData';
+import { VIDEO_TUTORIALS } from '../data/videoData';
 import { 
   auth, 
   db, 
@@ -19,7 +20,8 @@ import {
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
   signOut as fbSignOut, 
-  onAuthStateChanged 
+  onAuthStateChanged,
+  updateProfile
 } from 'firebase/auth';
 import { 
   doc, 
@@ -57,11 +59,28 @@ function cleanForFirestore(obj: any): any {
   return cleaned;
 }
 
-function usernameToEmail(username: string): string {
-  const trimmed = username.trim().toLowerCase();
-  if (/^[a-z0-9_.-]+$/.test(trimmed)) {
+export function usernameToEmail(username: string): string {
+  const trimmed = username.trim().toLowerCase().replace(/\s+/g, '_');
+  if (trimmed.includes('@')) {
+    return trimmed;
+  }
+  // Standard ASCII alphanumeric usernames
+  if (/^[a-z0-9_.-]+$/.test(trimmed) && trimmed.length >= 2) {
     return `${trimmed}@padellevel.pro`;
   }
+  // Deterministic safe mapping for Arabic and UTF-8 usernames to valid email format
+  let hash = 0;
+  for (let i = 0; i < trimmed.length; i++) {
+    hash = ((hash << 5) - hash) + trimmed.charCodeAt(i);
+    hash |= 0;
+  }
+  const cleanAscii = trimmed.replace(/[^a-z0-9_]/g, '');
+  const prefix = cleanAscii ? cleanAscii.slice(0, 15) : 'athlete';
+  return `${prefix}_${Math.abs(hash)}@padellevel.pro`;
+}
+
+export function legacyUsernameToEmail(username: string): string {
+  const trimmed = username.trim().toLowerCase();
   let hash = 0;
   for (let i = 0; i < trimmed.length; i++) {
     hash = ((hash << 5) - hash) + trimmed.charCodeAt(i);
@@ -123,6 +142,14 @@ interface AppContextType {
   toggleSkillMastered: (skillId: string) => void;
   theme: 'court-blue' | 'athletic-pink';
   setTheme: (theme: 'court-blue' | 'athletic-pink') => void;
+  watchedVideoIds: string[];
+  toggleVideoWatched: (videoId: string) => void;
+  isVideoWatched: (videoId: string) => boolean;
+  videoCompletionStats: {
+    watchedCount: number;
+    totalCount: number;
+    percentage: number;
+  };
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -131,7 +158,8 @@ const STORAGE_KEYS = {
   USER: 'padellevel_user',
   TEST_RESULT: 'padellevel_test_result',
   SESSIONS: 'padellevel_sessions',
-  SKILLS: 'padellevel_mastered_skills'
+  SKILLS: 'padellevel_mastered_skills',
+  WATCHED_VIDEOS: 'padellevel_watched_videos'
 };
 
 const DEFAULT_DEMO_SESSIONS: TrainingSession[] = [
@@ -219,6 +247,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [masteredSkills, setMasteredSkills] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.SKILLS);
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  const [watchedVideoIds, setWatchedVideoIds] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEYS.WATCHED_VIDEOS);
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -338,6 +375,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.setItem(STORAGE_KEYS.SKILLS, JSON.stringify(masteredSkills));
   }, [masteredSkills]);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEYS.WATCHED_VIDEOS, JSON.stringify(watchedVideoIds));
+    } catch {
+      // ignore
+    }
+  }, [watchedVideoIds]);
+
   const navigateTo = (page: PageRoute, params?: { techniqueSlug?: string }) => {
     setCurrentPage(page);
     if (params?.techniqueSlug) {
@@ -398,71 +443,79 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
-  // Username-to-Email mapped Firebase Authentication
-  const loginWithUsername = async (username: string, pass: string) => {
+  function getFirebaseAuthErrorMessage(error: any): string {
+    if (!error) return 'حدث خطأ أثناء المصادقة.';
+    const code = error.code || '';
+    switch (code) {
+      case 'auth/invalid-credential':
+      case 'auth/wrong-password':
+      case 'auth/user-not-found':
+        return 'اسم المستخدم أو كلمة المرور غير صحيحة. يرجى التأكد من البيانات أو إنشاء حساب جديد.';
+      case 'auth/email-already-in-use':
+        return 'اسم المستخدم هذا مسجل مسبقاً. يرجى اختيار اسم مستخدم آخر أو تسجيل الدخول.';
+      case 'auth/weak-password':
+        return 'كلمة المرور ضعيفة جداً. يجب أن تتكون من 6 خانات على الأقل.';
+      case 'auth/invalid-email':
+        return 'صيغة اسم المستخدم غير صالحة. يرجى استخدام أحرف وأرقام صالحة.';
+      case 'auth/user-disabled':
+        return 'تم تعطيل هذا الحساب. يرجى التواصل مع إدارة المنصة.';
+      case 'auth/too-many-requests':
+        return 'تم حظر المحاولات مؤقتاً لتكرار المحاولات الخاطئة. يرجى الانتظار دقيقة والمحاولة مجدداً.';
+      case 'auth/network-request-failed':
+        return 'تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت والمحاولة مجدداً.';
+      default:
+        return error.message || 'فشلت العملية. يرجى التأكد من صحة البيانات.';
+    }
+  }
+
+  // Pure Username and Password Login with Firebase Auth
+  const login = async (identifier: string, pass: string) => {
     try {
-      if (!username || !pass) {
+      if (!identifier.trim() || !pass.trim()) {
         return { success: false, message: 'يرجى إدخال اسم المستخدم وكلمة المرور.' };
       }
-      const mappedEmail = usernameToEmail(username);
 
+      const cleanUsername = identifier.trim().toLowerCase().replace(/\s+/g, '_');
+      let targetEmail = usernameToEmail(cleanUsername);
+
+      let result;
       try {
-        const result = await signInWithEmailAndPassword(auth, mappedEmail, pass);
-        const fbUser = result.user;
-        const userDocRef = doc(db, 'users', fbUser.uid);
-        const userSnap = await getDoc(userDocRef);
-        if (userSnap.exists()) {
-          setUser(userSnap.data() as UserProfile);
-        }
-      } catch {
-        // If sign in fails, try registering the username
-        try {
-          const createRes = await createUserWithEmailAndPassword(auth, mappedEmail, pass);
-          const fbUser = createRes.user;
-          const newProfile: UserProfile = {
-            id: fbUser.uid,
-            fullName: username.trim(),
-            email: mappedEmail,
-            testTaken: !!testResult,
-            ...(testResult ? {
-              padelLevel: testResult.levelTitle,
-              levelNumber: testResult.levelNumber,
-              testScore: testResult.totalScore,
-              playtomicScore: testResult.playtomicScore,
-              playtomicTier: testResult.playtomicTier,
-              pillarBreakdown: testResult.pillarBreakdown
-            } : {}),
-            createdAt: new Date().toISOString()
-          };
-          await setDoc(doc(db, 'users', fbUser.uid), cleanForFirestore(newProfile));
-          setUser(newProfile);
-        } catch {
-          return { success: false, message: 'اسم المستخدم أو كلمة المرور غير صحيحة.' };
+        result = await signInWithEmailAndPassword(auth, targetEmail, pass);
+      } catch (err: any) {
+        // Fallback to legacy hash email if identifier is not an explicit @ email
+        if (!cleanUsername.includes('@')) {
+          const legacyEmail = legacyUsernameToEmail(cleanUsername);
+          if (legacyEmail !== targetEmail) {
+            try {
+              result = await signInWithEmailAndPassword(auth, legacyEmail, pass);
+              targetEmail = legacyEmail;
+            } catch {
+              throw err;
+            }
+          } else {
+            throw err;
+          }
+        } else {
+          throw err;
         }
       }
-      closeAuthModal();
-      navigateTo('dashboard');
-      return { success: true };
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'فشل تسجيل الدخول.';
-      return { success: false, message };
-    }
-  };
 
-  const registerWithUsername = async (username: string, fullName: string, pass: string) => {
-    try {
-      if (!username || !fullName || !pass) {
-        return { success: false, message: 'يرجى تعبئة كافة الحقول المطلوبة.' };
-      }
-      const mappedEmail = usernameToEmail(username);
+      const fbUser = result.user;
+      const userDocRef = doc(db, 'users', fbUser.uid);
+      const userSnap = await getDoc(userDocRef);
 
-      try {
-        const result = await createUserWithEmailAndPassword(auth, mappedEmail, pass);
-        const fbUser = result.user;
-        const newProfile: UserProfile = {
+      let profile: UserProfile;
+      if (userSnap.exists()) {
+        profile = userSnap.data() as UserProfile;
+        if (!profile.username) {
+          profile.username = cleanUsername.includes('@') ? (profile.fullName || 'athlete') : cleanUsername;
+        }
+      } else {
+        profile = {
           id: fbUser.uid,
-          fullName: fullName.trim(),
-          email: mappedEmail,
+          fullName: fbUser.displayName || cleanUsername,
+          username: cleanUsername.includes('@') ? (fbUser.displayName || 'athlete') : cleanUsername,
+          email: targetEmail,
           testTaken: !!testResult,
           ...(testResult ? {
             padelLevel: testResult.levelTitle,
@@ -470,35 +523,103 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             testScore: testResult.totalScore,
             playtomicScore: testResult.playtomicScore,
             playtomicTier: testResult.playtomicTier,
+            testResultDate: testResult.takenAt,
+            strengths: testResult.strengths || [],
+            weaknesses: testResult.weaknesses || [],
             pillarBreakdown: testResult.pillarBreakdown
           } : {}),
           createdAt: new Date().toISOString()
         };
-        await setDoc(doc(db, 'users', fbUser.uid), cleanForFirestore(newProfile));
-        setUser(newProfile);
-        closeAuthModal();
-        navigateTo('dashboard');
-        return { success: true };
-      } catch (err: any) {
-        if (err?.code === 'auth/email-already-in-use') {
-          return loginWithUsername(username, pass);
+        try {
+          await setDoc(userDocRef, cleanForFirestore(profile));
+        } catch (err) {
+          handleFirestoreError(err, OperationType.CREATE, `users/${fbUser.uid}`);
         }
-        const message = err instanceof Error ? err.message : 'فشل إنشاء الحساب.';
-        return { success: false, message };
       }
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'فشل إنشاء الحساب.';
+
+      setUser(profile);
+      closeAuthModal();
+      navigateTo('dashboard');
+      return { success: true };
+    } catch (err: any) {
+      const message = getFirebaseAuthErrorMessage(err);
       return { success: false, message };
     }
   };
 
-  // Legacy Email & Password Login compatibility
-  const login = async (email: string, pass: string) => {
-    return loginWithUsername(email.split('@')[0], pass);
+  // Pure Athlete Registration with chosen Username and Password
+  const registerWithUsername = async (username: string, fullName: string, pass: string) => {
+    try {
+      const cleanUsername = username.trim().toLowerCase().replace(/\s+/g, '_');
+      const cleanFullName = fullName.trim() || cleanUsername;
+
+      if (!cleanUsername || !pass.trim()) {
+        return { success: false, message: 'يرجى إدخال اسم المستخدم وكلمة المرور المطلوبة.' };
+      }
+
+      if (cleanUsername.length < 3) {
+        return { success: false, message: 'اسم المستخدم يجب ألا يقل عن 3 أحرف.' };
+      }
+
+      if (pass.length < 6) {
+        return { success: false, message: 'كلمة المرور يجب ألا تقل عن 6 خانات.' };
+      }
+
+      const targetEmail = usernameToEmail(cleanUsername);
+
+      const result = await createUserWithEmailAndPassword(auth, targetEmail, pass);
+      const fbUser = result.user;
+
+      try {
+        await updateProfile(fbUser, { displayName: cleanFullName });
+      } catch {
+        // non-critical
+      }
+
+      const newProfile: UserProfile = {
+        id: fbUser.uid,
+        fullName: cleanFullName,
+        username: cleanUsername,
+        email: targetEmail,
+        testTaken: !!testResult,
+        ...(testResult ? {
+          padelLevel: testResult.levelTitle,
+          levelNumber: testResult.levelNumber,
+          testScore: testResult.totalScore,
+          playtomicScore: testResult.playtomicScore,
+          playtomicTier: testResult.playtomicTier,
+          testResultDate: testResult.takenAt,
+          strengths: testResult.strengths || [],
+          weaknesses: testResult.weaknesses || [],
+          pillarBreakdown: testResult.pillarBreakdown
+        } : {}),
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        await setDoc(doc(db, 'users', fbUser.uid), cleanForFirestore(newProfile));
+      } catch (err) {
+        handleFirestoreError(err, OperationType.CREATE, `users/${fbUser.uid}`);
+      }
+
+      setUser(newProfile);
+      closeAuthModal();
+      navigateTo('dashboard');
+      return { success: true };
+    } catch (err: any) {
+      const message = getFirebaseAuthErrorMessage(err);
+      return { success: false, message };
+    }
   };
 
-  const register = async (fullName: string, email: string, pass: string) => {
-    return registerWithUsername(email.split('@')[0], fullName, pass);
+  const register = async (fullNameOrUsername: string, emailOrUsername: string, pass: string) => {
+    const username = emailOrUsername ? emailOrUsername : fullNameOrUsername;
+    const fullName = fullNameOrUsername !== emailOrUsername ? fullNameOrUsername : '';
+    return registerWithUsername(username, fullName, pass);
+  };
+
+  const loginWithUsername = async (username: string, pass: string) => {
+    return login(username, pass);
   };
 
   const loginDemo = () => {
@@ -687,6 +808,21 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     );
   };
 
+  const toggleVideoWatched = (videoId: string) => {
+    setWatchedVideoIds(prev => 
+      prev.includes(videoId) ? prev.filter(id => id !== videoId) : [...prev, videoId]
+    );
+  };
+
+  const isVideoWatched = (videoId: string) => watchedVideoIds.includes(videoId);
+
+  const videoCompletionStats = useMemo(() => {
+    const totalCount = VIDEO_TUTORIALS.length;
+    const watchedCount = watchedVideoIds.length;
+    const percentage = totalCount > 0 ? Math.round((watchedCount / totalCount) * 100) : 0;
+    return { watchedCount, totalCount, percentage };
+  }, [watchedVideoIds]);
+
   return (
     <AppContext.Provider
       value={{
@@ -717,7 +853,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         deleteTrainingSession,
         toggleSkillMastered,
         theme,
-        setTheme
+        setTheme,
+        watchedVideoIds,
+        toggleVideoWatched,
+        isVideoWatched,
+        videoCompletionStats
       }}
     >
       {children}

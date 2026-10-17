@@ -33,7 +33,7 @@ export const Variation3Layout: React.FC<Variation3LayoutProps> = ({ children }) 
   const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   const isGuest = !user;
-  const playerName = user?.fullName || (isGuest ? 'رياضي جديد (Guest)' : 'كابتن البادل');
+  const playerName = user?.fullName || user?.username || (isGuest ? 'رياضي جديد (Guest)' : 'كابتن البادل');
   const levelNum = testResult?.levelNumber || user?.levelNumber || 1;
 
   const railItems: { code: string; label: string; page: PageRoute; icon: React.ReactNode; short: string }[] = [

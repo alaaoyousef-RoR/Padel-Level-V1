@@ -7,6 +7,7 @@
       "properties": {
         "id": { "type": "string" },
         "fullName": { "type": "string", "maxLength": 100 },
+        "username": { "type": "string", "maxLength": 100 },
         "email": { "type": "string", "format": "email", "maxLength": 150 },
         "padelLevel": { "type": "string" },
         "levelNumber": { "type": "integer" },
@@ -14,6 +15,11 @@
         "playtomicScore": { "type": "number" },
         "playtomicTier": { "type": "string" },
         "testTaken": { "type": "boolean" },
+        "testResultDate": { "type": "string" },
+        "strengths": { "type": "array", "items": { "type": "string" } },
+        "weaknesses": { "type": "array", "items": { "type": "string" } },
+        "photoURL": { "type": "string" },
+        "pillarBreakdown": { "type": "object" },
         "createdAt": { "type": "string" }
       },
       "required": ["id", "fullName", "email", "createdAt"]

@@ -126,20 +126,40 @@ export interface TechniqueItem {
   courtPositionAr: string;
 }
 
+export type VideoTopicCategory = 
+  | 'fundamentals' 
+  | 'partner' 
+  | 'solo' 
+  | 'net_tactics' 
+  | 'walls' 
+  | 'overhead' 
+  | 'serve_return' 
+  | 'footwork' 
+  | 'warmup';
+
 export interface VideoTutorial {
   id: string;
   youtubeId: string;
   youtubeUrl: string;
+  playlistUrl?: string;
   thumbnailUrl?: string;
   titleAr: string;
+  titleEn?: string;
   category: 'basic' | 'advanced' | 'tactics' | 'footwork' | 'walls' | 'warmup' | 'serve_return' | 'net' | 'overhead';
   categoryAr: string;
+  topicCategory: VideoTopicCategory;
+  topicCategoryAr: string;
   level: 'مبتدئ' | 'متوسط' | 'متقدم' | 'الكل';
+  levelNumbers: PadelLevelNumber[];
+  levelBadgeText: string;
   duration: string;
   descriptionAr: string;
   coachName: string;
+  sourceSeries?: string;
   courtDiagramType: 'net' | 'baseline' | 'walls' | 'full';
   keyTakeaways: string[];
+  drillSteps?: string[];
+  equipmentNeeded?: string;
 }
 
 export interface TrainingSession {
@@ -158,6 +178,7 @@ export interface TrainingSession {
 export interface UserProfile {
   id: string;
   fullName: string;
+  username?: string;
   email: string;
   photoURL?: string;
   padelLevel?: string;

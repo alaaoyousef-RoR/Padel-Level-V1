@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 export const TrainingProgramPage: React.FC = () => {
-  const { testResult, user, navigateTo } = useApp();
+  const { testResult, user, navigateTo, toggleVideoWatched, isVideoWatched } = useApp();
 
   const initialLevel: PadelLevelNumber = testResult?.levelNumber || user?.levelNumber || 1;
   const [selectedLevel, setSelectedLevel] = useState<PadelLevelNumber>(initialLevel);
@@ -455,6 +455,8 @@ export const TrainingProgramPage: React.FC = () => {
           playlist={PADEL_VIDEOS}
           onSelectVideo={(vid) => setActiveVideoModal(vid)}
           onClose={() => setActiveVideoModal(null)}
+          onMarkWatched={(vidId) => toggleVideoWatched(vidId)}
+          isWatched={isVideoWatched(activeVideoModal.id)}
         />
       )}
 

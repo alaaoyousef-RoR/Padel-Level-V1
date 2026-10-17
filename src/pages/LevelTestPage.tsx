@@ -97,7 +97,7 @@ const PADEL_TERMS_MAP: Record<number, { term: string; termEn: string; definition
 };
 
 export const LevelTestPage: React.FC = () => {
-  const { user, saveTestResult, navigateTo, loginWithUsername, openAuthModal } = useApp();
+  const { user, saveTestResult, navigateTo, loginWithUsername, registerWithUsername, openAuthModal } = useApp();
   
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -152,12 +152,20 @@ export const LevelTestPage: React.FC = () => {
     e.preventDefault();
     setLoginFeedback(null);
 
-    if (!loginUsername.trim() || !loginPassword.trim()) {
+    const cleanUser = loginUsername.trim().toLowerCase().replace(/\s+/g, '_');
+    const cleanPass = loginPassword.trim();
+
+    if (!cleanUser || !cleanPass) {
       setLoginFeedback({ text: 'يرجى إدخال اسم المستخدم وكلمة المرور.', isError: true });
       return;
     }
 
-    if (loginPassword.length < 6) {
+    if (cleanUser.length < 3) {
+      setLoginFeedback({ text: 'اسم المستخدم يجب ألا يقل عن 3 أحرف أو أرقام.', isError: true });
+      return;
+    }
+
+    if (cleanPass.length < 6) {
       setLoginFeedback({ text: 'كلمة المرور يجب ألا تقل عن 6 أحرف.', isError: true });
       return;
     }
@@ -168,13 +176,20 @@ export const LevelTestPage: React.FC = () => {
       await saveTestResult(currentResults);
     }
 
-    const res = await loginWithUsername(loginUsername.trim(), loginPassword.trim());
+    let res = await loginWithUsername(cleanUser, cleanPass);
+    if (!res.success) {
+      // If login didn't succeed, attempt frictionless registration for new athlete
+      const regRes = await registerWithUsername(cleanUser, cleanUser, cleanPass);
+      if (regRes.success) {
+        res = regRes;
+      }
+    }
     setIsLoggingIn(false);
 
     if (res.success) {
-      setLoginFeedback({ text: '✓ تم حفظ بياناتك بنجاح وتسجيل الدخول!', isError: false });
+      setLoginFeedback({ text: '✓ تم حفظ بياناتك بنجاح وتفعيل ملفك الرياضي!', isError: false });
     } else {
-      setLoginFeedback({ text: res.message || 'فشل تسجيل الدخول.', isError: true });
+      setLoginFeedback({ text: res.message || 'فشلت العملية. يرجى التأكد من صحة البيانات.', isError: true });
     }
   };
 
@@ -554,7 +569,7 @@ export const LevelTestPage: React.FC = () => {
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#b2e01e]"></span>
                 <span className="text-white/70">أنت متصل بحساب موثق:</span>
-                <strong className="text-[#b2e01e] font-bold break-words">{user.fullName || user.email}</strong>
+                <strong className="text-[#b2e01e] font-bold break-words">{user.fullName || user.username || 'لاعب بادل'}</strong>
               </div>
               <p className="text-white/60 text-[11px] leading-relaxed">
                 نتائج تقييمك والمحاور المكتملة مرتبطة بملفك الرياضي الدائم ومحدثة فورياً.
@@ -586,13 +601,23 @@ export const LevelTestPage: React.FC = () => {
                   أدخل أي اسم مستخدم وكلمة مرور لحفظ نتائج هذا الاختبار ومتابعة البرنامج.
                 </span>
               </div>
-              <button
-                type="button"
-                onClick={() => openAuthModal('login')}
-                className="text-xs text-[#b2e01e] hover:underline font-bold self-start sm:self-auto cursor-pointer"
-              >
-                نافذة تسجيل الدخول (Login Modal)
-              </button>
+              <div className="flex items-center gap-2 flex-wrap self-start sm:self-auto">
+                <button
+                  type="button"
+                  onClick={() => openAuthModal('login')}
+                  className="text-xs text-[#b2e01e] hover:underline font-bold cursor-pointer"
+                >
+                  تسجيل الدخول
+                </button>
+                <span className="text-white/40">•</span>
+                <button
+                  type="button"
+                  onClick={() => openAuthModal('register')}
+                  className="text-xs text-[#b2e01e] hover:underline font-bold cursor-pointer"
+                >
+                  + حساب لاعب جديد
+                </button>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 min-w-0">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PADEL_TECHNIQUES } from '../data/techniquesData';
 import { PADEL_GLOSSARY_ITEMS, GlossaryTerm } from '../data/glossaryData';
 import { PADEL_VIDEOS } from '../data/videoData';
+import { useApp } from '../context/AppContext';
 import { PadelTechnique, PadelVideoTutorial } from '../types';
 import { CustomVideoPlayer } from '../components/CustomVideoPlayer';
 import { 
@@ -14,10 +15,12 @@ import {
   BookMarked,
   ShieldCheck,
   Compass,
-  Play
+  Play,
+  Youtube
 } from 'lucide-react';
 
 export const LearnPadelPage: React.FC = () => {
+  const { navigateTo, toggleVideoWatched, isVideoWatched } = useApp();
   const [activeMainTab, setActiveMainTab] = useState<'techniques' | 'glossary'>('techniques');
   
   // Techniques state
@@ -122,6 +125,15 @@ export const LearnPadelPage: React.FC = () => {
               <line x1="10" y1="10" x2="16" y2="10"/>
             </svg>
             <span className="truncate">[02] قاموس مصطلحات البادل الشامل</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => navigateTo('video-tutorials')}
+            className="py-2.5 sm:py-3 px-4 sm:px-6 rounded font-bold text-xs sm:text-sm transition-colors flex items-center gap-2 cursor-pointer bg-[#0b0b0d] text-[#b2e01e] border border-[#b2e01e]/60 hover:bg-[#b2e01e] hover:text-[#0b0b0d]"
+          >
+            <Play className="w-4 h-4 shrink-0 fill-current" />
+            <span className="truncate">[03] مكتبة التمارين المرئية والفيديوهات (HD)</span>
           </button>
         </div>
       </div>
@@ -508,6 +520,8 @@ export const LearnPadelPage: React.FC = () => {
           playlist={PADEL_VIDEOS}
           onSelectVideo={(vid) => setActiveVideoModal(vid)}
           onClose={() => setActiveVideoModal(null)}
+          onMarkWatched={(vidId) => toggleVideoWatched(vidId)}
+          isWatched={isVideoWatched(activeVideoModal.id)}
         />
       )}
 
