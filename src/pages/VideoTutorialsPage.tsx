@@ -45,14 +45,15 @@ export const VideoTutorialsPage: React.FC = () => {
   const userLevel = (testResult?.levelNumber || user?.levelNumber || null) as PadelLevelNumber | null;
 
   // Filter definitions
-  const levelFilterOptions = [
-    { id: 'all', label: 'جميع المستويات', short: 'الكل' },
-    { id: '1', label: 'المستوى 1 (مبتدئ)', short: 'L1', num: 1 },
-    { id: '2', label: 'المستوى 2 (متوسط أولي)', short: 'L2', num: 2 },
-    { id: '3', label: 'المستوى 3 (متوسط)', short: 'L3', num: 3 },
-    { id: '4', label: 'المستوى 4 (متقدم)', short: 'L4', num: 4 },
-    { id: '5', label: 'المستوى 5 (احترافي)', short: 'L5', num: 5 },
-  ];
+  // Filter definitions with dynamic count
+  const levelFilterOptions = useMemo(() => [
+    { id: 'all', label: 'جميع المستويات', short: 'الكل', count: PADEL_VIDEOS.length },
+    { id: '1', label: 'المستوى 1 (مبتدئ)', short: 'L1', num: 1, count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(1)).length },
+    { id: '2', label: 'المستوى 2 (متوسط أولي)', short: 'L2', num: 2, count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(2)).length },
+    { id: '3', label: 'المستوى 3 (متوسط)', short: 'L3', num: 3, count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(3)).length },
+    { id: '4', label: 'المستوى 4 (متقدم)', short: 'L4', num: 4, count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(4)).length },
+    { id: '5', label: 'المستوى 5 (احترافي)', short: 'L5', num: 5, count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(5)).length },
+  ], []);
 
   const categoryFilterOptions = [
     { id: 'all', label: 'جميع المواضيع', icon: Target },
@@ -64,11 +65,54 @@ export const VideoTutorialsPage: React.FC = () => {
     { id: 'warmup', label: 'التحمية والإحماء البدني', icon: Flame },
   ];
 
-  // Curated 4 Core Modules requested
-  const starterSeriesVideos = PADEL_VIDEOS.filter(v => v.topicCategory === 'fundamentals');
-  const pairDrillsVideo = PADEL_VIDEOS.find(v => v.id === 'vid-pair-essential-drills') || PADEL_VIDEOS[3];
-  const soloFootworkVideo = PADEL_VIDEOS.find(v => v.id === 'vid-solo-practice-footwork') || PADEL_VIDEOS[5];
-  const netMasteryVideo = PADEL_VIDEOS.find(v => v.id === 'vid-net-game-mastery') || PADEL_VIDEOS[7];
+  // Strictly level-segmented curriculum tiers (Levels 1 to 5)
+  const levelCurriculumTiers = useMemo(() => [
+    {
+      level: 1,
+      badge: 'LEVEL 1',
+      title: 'المستوى 1: المبتدئ (Novice)',
+      focus: 'مسكة المضرب القارية، وضعية الاستعداد المنخفضة، التمركز الدفاعي وتجنب المنطقة الميتة، والإرسال القانوني نحو الزجاج الجانبي.',
+      count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(1)).length,
+      topics: 'قبضة المضرب • وقفة الاستعداد • التمركز الدفاعي • الإرسال القانوني',
+      tag: 'Grip & Stance'
+    },
+    {
+      level: 2,
+      badge: 'LEVEL 2',
+      title: 'المستوى 2: التأسيسي (Foundation)',
+      focus: 'ميكانيكا الفورهاند والباكهاند بالتحضير القصير (Short Backswing)، اللوب الدفاعي للخروج من الضغط، وتمارين الجدار الفردية.',
+      count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(2)).length,
+      topics: 'الضربات الأرضية • اللوب الدفاعي • تمارين الجدار والتوافق الفردي',
+      tag: 'Groundstrokes & Lob'
+    },
+    {
+      level: 3,
+      badge: 'LEVEL 3',
+      title: 'المستوى 3: المتوسط (Intermediate)',
+      focus: 'التحرك التزامني للشركاء كحبل واحد (Tandem) وتبادل الفولي، إتقان الدفاع بالزجاج الخلفي، وأساسيات ضربة البانديخا.',
+      count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(3)).length,
+      topics: 'تناغم الشركاء • ارتداد الزجاج الخلفي • أساسيات ضربة البانديخا',
+      tag: 'Pairs & Bandeja'
+    },
+    {
+      level: 4,
+      badge: 'LEVEL 4',
+      title: 'المستوى 4: المتقدم (Advanced)',
+      focus: 'الدفاع المعقد عن الزاوية المزدوجة (Doble Pared)، ضربة الباخادا الهجومية من الزجاج الخلفي، والفيبورا الحادة بالدوران الجانبي.',
+      count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(4)).length,
+      topics: 'الزاوية المزدوجة • الباخادا الهجومية • الفيبورا الحادة بالدوران',
+      tag: 'Double Glass & Vibora'
+    },
+    {
+      level: 5,
+      badge: 'LEVEL 5',
+      title: 'المستوى 5: الاحترافي (Elite / Pro)',
+      focus: 'ضربة الرولو العلوية الساقطة على الشبك المعدني، وتكتيكات السحق الاحترافي وحسم النقاط Por 3 / Por 4.',
+      count: PADEL_VIDEOS.filter(v => v.levelNumbers.includes(5)).length,
+      topics: 'ضربة الرولو على الشبك • السحق المستقيم • Por 3 وحسم النقطة',
+      tag: 'Rulo & Smashes'
+    },
+  ], []);
 
   // Filtering logic
   const filteredVideos = useMemo(() => {
@@ -199,148 +243,65 @@ export const VideoTutorialsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. Four Core Curated Modules Showcase */}
+      {/* 2. Strictly Level-Segmented Training Library Architecture (Levels 1 to 5) */}
       <div className="space-y-3 min-w-0">
-        <div className="flex items-center justify-between border-b border-[var(--card-border)] pb-2 min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[var(--card-border)] pb-2 gap-2 min-w-0">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#b2e01e]"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#b2e01e] shadow-[0_0_8px_rgba(178,224,30,0.6)]"></span>
             <h2 className="font-alexandria font-bold text-sm sm:text-base text-white">
-              المحاور التدريبية الرئيسية الأربعة (Core Video Curriculum)
+              المسارات التدريبية المخصصة حسب المستوى (Levels 1 to 5 Skill Tiers)
             </h2>
           </div>
-          <span className="text-[10px] font-mono-tag text-white/50">4 MODULES • ACCREDITED</span>
+          <span className="text-[10px] font-mono-tag text-[#b2e01e]">
+            [ 5 DEDICATED TIERS • STRICT EXCLUSIVITY ]
+          </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 min-w-0">
-          
-          {/* Module 1: Starter Series */}
-          <div 
-            onClick={() => setSelectedCategoryFilter('fundamentals')}
-            className="p-4 rounded bg-[#16161a] border border-[var(--card-border)] hover:border-[#b2e01e] transition-colors cursor-pointer space-y-2.5 min-w-0 flex flex-col justify-between group"
-          >
-            <div className="space-y-1.5 min-w-0">
-              <div className="flex items-center justify-between gap-1">
-                <span className="font-jetbrains text-[9px] text-[#0b0b0d] bg-[#b2e01e] font-black px-2 py-0.5 rounded">
-                  LEVEL 1–2
-                </span>
-                <span className="text-[10px] text-white/50 font-jetbrains">Starter</span>
-              </div>
-              <h3 className="font-alexandria font-bold text-xs sm:text-sm text-white group-hover:text-[#b2e01e] transition-colors leading-snug break-words">
-                1. سلسلة المبتدئين والأساسيات
-              </h3>
-              <p className="text-[11px] text-[#f2f7ff]/70 leading-relaxed line-clamp-3">
-                قبضة المضرب القارية (Continental Grip)، وضعية الاستعداد المنخفضة، ومناطق الأمان في عمق الملعب وتجنب No-man's land.
-              </p>
-            </div>
-            <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-[#b2e01e] font-jetbrains font-bold">
-              <span>{starterSeriesVideos.length} دروس تأسيسية</span>
-              <a 
-                href="https://www.youtube.com/playlist?list=PLB5mO0D8A5B3JkXbH" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="hover:underline flex items-center gap-1 text-white/60 hover:text-[#b2e01e]"
-                title="فتح قائمة تشغيل The Padel School على يوتيوب"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 min-w-0">
+          {levelCurriculumTiers.map((tier) => {
+            const isSelected = selectedLevelFilter === String(tier.level);
+            return (
+              <div 
+                key={tier.level}
+                onClick={() => setSelectedLevelFilter(String(tier.level))}
+                className={`p-3.5 rounded border transition-all cursor-pointer flex flex-col justify-between group min-w-0 relative ${
+                  isSelected 
+                    ? 'bg-[#1b1f13] border-[#b2e01e] shadow-[0_0_15px_rgba(178,224,30,0.25)]' 
+                    : 'bg-[#16161a] border-[var(--card-border)] hover:border-[#b2e01e]/60'
+                }`}
               >
-                <span>قائمة التشغيل</span>
-                <ExternalLink className="w-2.5 h-2.5" />
-              </a>
-            </div>
-          </div>
+                <div className="space-y-2 min-w-0">
+                  <div className="flex items-center justify-between gap-1">
+                    <span className={`font-jetbrains text-[9px] font-black px-2 py-0.5 rounded ${
+                      isSelected 
+                        ? 'bg-[#b2e01e] text-[#0b0b0d]' 
+                        : 'bg-[#0b0b0d] text-[#b2e01e] border border-[#b2e01e]/40'
+                    }`}>
+                      {tier.badge}
+                    </span>
+                    <span className="text-[10px] font-mono-tag text-white/50">{tier.tag}</span>
+                  </div>
 
-          {/* Module 2: Pair Drills */}
-          <div 
-            onClick={() => {
-              setSelectedCategoryFilter('partner');
-              if (pairDrillsVideo) setActiveVideoModal(pairDrillsVideo);
-            }}
-            className="p-4 rounded bg-[#16161a] border border-[var(--card-border)] hover:border-[#b2e01e] transition-colors cursor-pointer space-y-2.5 min-w-0 flex flex-col justify-between group"
-          >
-            <div className="space-y-1.5 min-w-0">
-              <div className="flex items-center justify-between gap-1">
-                <span className="font-jetbrains text-[9px] text-[#0b0b0d] bg-[#b2e01e] font-black px-2 py-0.5 rounded">
-                  LEVEL 2–3
-                </span>
-                <span className="text-[10px] text-white/50 font-jetbrains">Pairs</span>
+                  <h3 className={`font-alexandria font-bold text-xs sm:text-sm leading-snug break-words transition-colors ${
+                    isSelected ? 'text-[#b2e01e]' : 'text-white group-hover:text-[#b2e01e]'
+                  }`}>
+                    {tier.title}
+                  </h3>
+
+                  <p className="text-[11px] text-[#f2f7ff]/75 leading-relaxed line-clamp-3">
+                    {tier.focus}
+                  </p>
+                </div>
+
+                <div className="pt-2.5 mt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-jetbrains font-bold">
+                  <span className="text-[#b2e01e]">{tier.count} دروس مخصصة</span>
+                  <span className={`text-[10px] font-mono-tag ${isSelected ? 'text-[#b2e01e]' : 'text-white/40 group-hover:text-white'}`}>
+                    {isSelected ? '✓ مفعل' : 'تصفية ←'}
+                  </span>
+                </div>
               </div>
-              <h3 className="font-alexandria font-bold text-xs sm:text-sm text-white group-hover:text-[#b2e01e] transition-colors leading-snug break-words">
-                2. تمارين ثنائية لشركاء البادل
-              </h3>
-              <p className="text-[11px] text-[#f2f7ff]/70 leading-relaxed line-clamp-3">
-                تمارين تبادل الفولي السريع عند الشبكة، ارتدادات الزجاج المشتركة، والتحرك التزامني كحبل واحد لسد ثغرات الوسط.
-              </p>
-            </div>
-            <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-[#b2e01e] font-jetbrains font-bold">
-              <span>Essential Pair Drills</span>
-              <span className="flex items-center gap-1 text-[#b2e01e]">
-                <Play className="w-2.5 h-2.5 fill-current" />
-                <span>تشغيل الفيديو</span>
-              </span>
-            </div>
-          </div>
-
-          {/* Module 3: Solo Practice */}
-          <div 
-            onClick={() => {
-              setSelectedCategoryFilter('solo');
-              if (soloFootworkVideo) setActiveVideoModal(soloFootworkVideo);
-            }}
-            className="p-4 rounded bg-[#16161a] border border-[var(--card-border)] hover:border-[#b2e01e] transition-colors cursor-pointer space-y-2.5 min-w-0 flex flex-col justify-between group"
-          >
-            <div className="space-y-1.5 min-w-0">
-              <div className="flex items-center justify-between gap-1">
-                <span className="font-jetbrains text-[9px] text-[#0b0b0d] bg-[#b2e01e] font-black px-2 py-0.5 rounded">
-                  ALL LEVELS
-                </span>
-                <span className="text-[10px] text-white/50 font-jetbrains">Solo</span>
-              </div>
-              <h3 className="font-alexandria font-bold text-xs sm:text-sm text-white group-hover:text-[#b2e01e] transition-colors leading-snug break-words">
-                3. التدريب الفردي ورشاقة القدمين
-              </h3>
-              <p className="text-[11px] text-[#f2f7ff]/70 leading-relaxed line-clamp-3">
-                تمارين الجدار الزجاجي الفردية للتحكم بالكرة ورد الفعل، تمارين السلم الحركي، وتطوير سرعة القفزة التحضيرية.
-              </p>
-            </div>
-            <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-[#b2e01e] font-jetbrains font-bold">
-              <span>Solo Footwork & Glass</span>
-              <span className="flex items-center gap-1 text-[#b2e01e]">
-                <Play className="w-2.5 h-2.5 fill-current" />
-                <span>تشغيل الفيديو</span>
-              </span>
-            </div>
-          </div>
-
-          {/* Module 4: Net Game Mastery */}
-          <div 
-            onClick={() => {
-              setSelectedCategoryFilter('net_tactics');
-              if (netMasteryVideo) setActiveVideoModal(netMasteryVideo);
-            }}
-            className="p-4 rounded bg-[#16161a] border border-[var(--card-border)] hover:border-[#b2e01e] transition-colors cursor-pointer space-y-2.5 min-w-0 flex flex-col justify-between group"
-          >
-            <div className="space-y-1.5 min-w-0">
-              <div className="flex items-center justify-between gap-1">
-                <span className="font-jetbrains text-[9px] text-[#0b0b0d] bg-[#b2e01e] font-black px-2 py-0.5 rounded">
-                  LEVEL 3–5
-                </span>
-                <span className="text-[10px] text-white/50 font-jetbrains">Tactics</span>
-              </div>
-              <h3 className="font-alexandria font-bold text-xs sm:text-sm text-white group-hover:text-[#b2e01e] transition-colors leading-snug break-words">
-                4. إتقان الهيمنة على الشبكة والتكتيك
-              </h3>
-              <p className="text-[11px] text-[#f2f7ff]/70 leading-relaxed line-clamp-3">
-                أسرار تنفيذ البانديخا والفيبورا تحت الضغط، كرات الدروب شوت والتشكيكا الساقطة، وتكتيكات استغلال نقطة الإرسال.
-              </p>
-            </div>
-            <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-[#b2e01e] font-jetbrains font-bold">
-              <span>Winning The Net Tactics</span>
-              <span className="flex items-center gap-1 text-[#b2e01e]">
-                <Play className="w-2.5 h-2.5 fill-current" />
-                <span>تشغيل الفيديو</span>
-              </span>
-            </div>
-          </div>
-
+            );
+          })}
         </div>
       </div>
 
@@ -436,13 +397,18 @@ export const VideoTutorialsPage: React.FC = () => {
               <button
                 key={lvl.id}
                 onClick={() => setSelectedLevelFilter(lvl.id)}
-                className={`py-1.5 px-3 rounded whitespace-nowrap transition-colors font-bold cursor-pointer shrink-0 ${
+                className={`py-1.5 px-3 rounded whitespace-nowrap transition-colors font-bold cursor-pointer shrink-0 flex items-center gap-1.5 ${
                   isSelected
                     ? 'bg-[#b2e01e] text-[#0b0b0d] font-black shadow-sm'
                     : 'bg-[#0b0b0d] text-[#f2f7ff]/70 hover:text-white border border-[var(--card-border)]'
                 }`}
               >
-                {lvl.label}
+                <span>{lvl.label}</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded font-jetbrains ${
+                  isSelected ? 'bg-[#0b0b0d] text-[#b2e01e]' : 'bg-[#16161a] text-white/50 border border-white/5'
+                }`}>
+                  {lvl.count}
+                </span>
               </button>
             );
           })}
@@ -615,6 +581,30 @@ export const VideoTutorialsPage: React.FC = () => {
                         ))}
                       </ul>
                     </div>
+
+                    {/* Step-by-Step Court Practice Routine */}
+                    {vid.drillSteps && vid.drillSteps.length > 0 && (
+                      <div className="bg-[#0b0b0d] p-3 rounded border border-white/5 space-y-1.5 min-w-0">
+                        <div className="flex items-center justify-between text-[9px] font-jetbrains text-[#b2e01e] uppercase tracking-wider gap-1">
+                          <span>[ DRILL ROUTINE // روتين التطبيق ]</span>
+                          {vid.equipmentNeeded && (
+                            <span className="text-white/50 text-[9px] font-normal truncate max-w-[150px]">
+                              {vid.equipmentNeeded}
+                            </span>
+                          )}
+                        </div>
+                        <ol className="space-y-1 min-w-0">
+                          {vid.drillSteps.map((step, sIdx) => (
+                            <li key={sIdx} className="flex items-start gap-1.5 text-[11px] text-[#f2f7ff]/80 leading-relaxed min-w-0">
+                              <span className="w-4 h-4 rounded-full bg-[#16161a] border border-[#b2e01e]/40 text-[#b2e01e] text-[9px] font-mono font-bold flex items-center justify-center shrink-0 mt-0.5">
+                                {sIdx + 1}
+                              </span>
+                              <span className="break-words line-clamp-2">{step}</span>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    )}
 
                   </div>
                 </div>

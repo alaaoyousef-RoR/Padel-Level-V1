@@ -6,7 +6,8 @@ import {
   PadelRacketOfficialVector,
   WaterBottleVector,
   PadelBallVector,
-  AngledRacketIllustration
+  AngledRacketIllustration,
+  Icons02Vector
 } from '../components/BrandEquipmentVectors';
 import { 
   Trophy, 
@@ -126,7 +127,7 @@ export const DashboardPage: React.FC = () => {
           <div className="flex items-center justify-between mb-3 min-w-0">
             <span className="label-mono mb-0 truncate" style={{ color: '#b2e01e' }}>[ SKILLS MASTERED ]</span>
             <div className="p-2 rounded bg-[#0b0b0d] border border-white/10 flex items-center justify-center shrink-0">
-              <PadelRacketOfficialVector className="w-8 h-8 sm:w-9 sm:h-9" />
+              <Trophy className="w-7 h-7 text-[#b2e01e]" />
             </div>
           </div>
           <div className="space-y-1 min-w-0">
@@ -163,7 +164,7 @@ export const DashboardPage: React.FC = () => {
               <div className="bg-[#0b0b0d] p-4 sm:p-5 rounded border border-[var(--card-border)] text-center space-y-4 min-w-0">
                 <div className="flex justify-center items-center py-1">
                   <div className="flex items-center justify-center gap-3">
-                    <AngledRacketIllustration className="w-16 h-16 sm:w-20 sm:h-20 shrink-0" />
+                    <Icons02Vector className="w-16 h-16 sm:w-20 sm:h-20 shrink-0" />
                     <div className="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded bg-[#16161a] border-2 border-[#b2e01e]">
                       <span className="text-[10px] font-mono-tag text-[#b2e01e] font-bold">LEVEL</span>
                       <span className="font-alexandria font-black text-2xl sm:text-3xl text-white leading-none">

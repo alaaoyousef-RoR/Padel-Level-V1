@@ -149,7 +149,7 @@ export interface VideoTutorial {
   categoryAr: string;
   topicCategory: VideoTopicCategory;
   topicCategoryAr: string;
-  level: 'مبتدئ' | 'متوسط' | 'متقدم' | 'الكل';
+  level: 'مبتدئ' | 'متوسط أولي' | 'متوسط' | 'متقدم' | 'احترافي' | 'الكل';
   levelNumbers: PadelLevelNumber[];
   levelBadgeText: string;
   duration: string;

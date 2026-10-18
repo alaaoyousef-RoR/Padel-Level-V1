@@ -47,7 +47,7 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   const [duration, setDuration] = useState<number>(300); // 5 mins default estimate for simulated scrub if embed
   const [showSpeedMenu, setShowSpeedMenu] = useState<boolean>(false);
   const [watchedState, setWatchedState] = useState<boolean>(isWatched);
-  const [activeTab, setActiveTab] = useState<'takeaways' | 'playlist'>('takeaways');
+  const [activeTab, setActiveTab] = useState<'takeaways' | 'drills' | 'playlist'>('takeaways');
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -234,8 +234,8 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
           </div>
         </div>
 
-        {/* Tab Switcher: Key Takeaways vs Playlist Queue */}
-        <div className="flex items-center gap-2 border-b border-[var(--card-border)] pb-2.5 min-w-0">
+        {/* Tab Switcher: Key Takeaways vs Court Drill Steps vs Playlist Queue */}
+        <div className="flex items-center gap-2 border-b border-[var(--card-border)] pb-2.5 min-w-0 overflow-x-auto">
           <button
             type="button"
             onClick={() => setActiveTab('takeaways')}
@@ -248,6 +248,21 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
             <Sparkles className="w-3.5 h-3.5" />
             <span>[ نقاط الإتقان والتحليل الفني ]</span>
           </button>
+
+          {video.drillSteps && video.drillSteps.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setActiveTab('drills')}
+              className={`py-1.5 px-3 rounded text-xs font-mono-tag font-bold transition-colors flex items-center gap-1.5 cursor-pointer shrink-0 ${
+                activeTab === 'drills'
+                  ? 'bg-[#b2e01e] text-[#0b0b0d] font-black'
+                  : 'bg-[#0b0b0d] text-white/70 hover:text-white border border-[var(--card-border)]'
+              }`}
+            >
+              <Award className="w-3.5 h-3.5" />
+              <span>[ خطوات التطبيق الميداني والروتين ]</span>
+            </button>
+          )}
 
           {playlist.length > 0 && (
             <button
@@ -285,6 +300,36 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
                   >
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#b2e01e] shrink-0 mt-0.5" />
                     <span className="text-xs text-[#f2f7ff]/85 leading-relaxed font-medium break-words">{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 2: Court Practice Routines */}
+        {activeTab === 'drills' && video.drillSteps && (
+          <div className="space-y-3 min-w-0">
+            <div className="bg-[#0b0b0d] p-3.5 rounded border border-[var(--card-border)] space-y-2.5 min-w-0">
+              <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-2">
+                <span className="label-mono mb-0 text-[#b2e01e] text-[10px]">
+                  [ STEP-BY-STEP COURT PRACTICE ROUTINE // خطة التطبيق الميداني ]
+                </span>
+                {video.equipmentNeeded && (
+                  <span className="text-[10px] text-white/60 font-mono-tag">
+                    الأدوات: <strong className="text-[#b2e01e]">{video.equipmentNeeded}</strong>
+                  </span>
+                )}
+              </div>
+              <div className="space-y-2">
+                {video.drillSteps.map((step: string, sIdx: number) => (
+                  <div key={sIdx} className="flex items-start gap-2.5 p-2 rounded bg-[#16161a] border border-white/5">
+                    <span className="w-5 h-5 rounded-full bg-[#b2e01e] text-[#0b0b0d] text-[10px] font-black flex items-center justify-center shrink-0 mt-0.5">
+                      {sIdx + 1}
+                    </span>
+                    <p className="text-xs text-white/90 leading-relaxed font-medium">
+                      {step}
+                    </p>
                   </div>
                 ))}
               </div>

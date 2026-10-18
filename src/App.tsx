@@ -16,6 +16,8 @@ import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
 import { RacketsPage } from './pages/RacketsPage';
 
+import { AICoachChatWidget } from './components/AICoachChatWidget';
+
 const AppContent: React.FC = () => {
   const { currentPage, isAuthenticated, isAuthLoading, testResult } = useApp();
 
@@ -73,6 +75,7 @@ const AppContent: React.FC = () => {
         <Footer />
       </Variation3Layout>
       <AuthModal />
+      <AICoachChatWidget />
     </>
   );
 };

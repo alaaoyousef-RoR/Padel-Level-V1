@@ -2,407 +2,437 @@ import { VideoTutorial } from '../types';
 
 export const VIDEO_TUTORIALS: VideoTutorial[] = [
   // =========================================================================
-  // 1. PADEL STARTER SERIES & BASIC TECHNIQUES (Level 1–2)
-  // Curated from The Padel School Starter Series
+  // LEVEL 1: المبتدئ تماماً (Novice / Starter)
+  // التركيز: مسكة المضرب، وضعية الاستعداد، التمركز، والإرسال الأساسي
   // =========================================================================
   {
-    id: 'vid-starter-grip',
+    id: 'vid-l1-grip-ready',
     youtubeId: 'wCAqvaqrnZ4',
     youtubeUrl: 'https://www.youtube.com/watch?v=wCAqvaqrnZ4',
-    playlistUrl: 'https://www.youtube.com/playlist?list=PLB5mO0D8A5B3JkXbH',
     thumbnailUrl: 'https://img.youtube.com/vi/wCAqvaqrnZ4/hqdefault.jpg',
-    titleAr: 'سلسلة المبتدئين: قبضة المضرب القارية (Continental Grip) ووضعية الاستعداد',
-    titleEn: 'Padel Starter Series: Continental Grip & Ready Stance Fundamentals',
+    titleAr: 'المستوى 1: مسكة المضرب القارية (Continental Grip) ووضعية الاستعداد',
+    titleEn: 'Level 1: Continental Grip & Ready Stance Fundamentals',
     category: 'basic',
     categoryAr: 'الأساسيات والميكانيكا',
     topicCategory: 'fundamentals',
     topicCategoryAr: 'أساسيات وميكانيكا اللعب',
     level: 'مبتدئ',
-    levelNumbers: [1, 2],
-    levelBadgeText: 'المستوى 1–2 (Level 1–2)',
+    levelNumbers: [1],
+    levelBadgeText: 'المستوى 1 (Level 1)',
     duration: '09:40 دقيقة',
     coachName: 'The Padel School',
-    sourceSeries: 'Padel Starter Series & Basic Techniques',
+    sourceSeries: 'Padel Starter Series',
     courtDiagramType: 'baseline',
-    descriptionAr: 'الدرس التأسيسي الأول من The Padel School؛ كيفية مسك المضرب بالقبضة القارية المحايدة (قبضة المطرقة) التي تمكنك من لعب كافة الضربات الأرضية والهوائية دون تغيير، مع وضعية الاستعداد المنخفضة وخفة الحركة.',
+    descriptionAr: 'الدرس الأساسي لضبط مسكة المطرقة المحايدة التي تتيح لك تسديد كافة الكرات دون تغيير القبضة، وضبط وقفة الاستعداد المنخفضة.',
     keyTakeaways: [
-      'القبضة القارية المحايدة: V اليد بين الإبهام والسبابة تستقر على الحافة العلوية لمقبض المضرب',
-      'وضعية الاستعداد (Ready Stance): ثني الركبتين للأمام ورفع رأس المضرب أمام الصدر بكلتا اليدين',
-      'القفزة التحضيرية (Split Step): حركة قفز خفيفة في نفس لحظة ملامسة مضرب الخصم للكرة لتنشيط رد الفعل'
+      'حرف V بين الإبهام والسبابة يستقر على الحافة العلوية لمقبض المضرب',
+      'ثني الركبتين ورفع رأس المضرب أمام الصدر بكلتا اليدين لتسريع رد الفعل',
+      'تنفيذ القفزة التحضيرية (Split Step) لحظة ملامسة مضرب الخصم للكرة'
     ],
     drillSteps: [
-      'امسك المضرب وتأكد من ثبات المعصم بزاوية 90 درجة مع الساعد.',
-      'تدرب على القفزة التحضيرية في نقطة التمركز الدفاعية 10 مرات متتالية.',
-      'تبادل كرات أرضية هادئة مع التركيز على بقاء المضرب أمام الصدر بين كل ضربة.'
+      'تثبيت قبضة المضرب بزاوية 90 درجة مع الساعد وفحصها قبل كل إرسال.',
+      'التدرب على 20 قفزة تحضيرية سريعة في خط الدفاع بالتزامن مع ضربات الزميل.'
     ],
     equipmentNeeded: 'مضرب بادل + كرة تدريب'
   },
   {
-    id: 'vid-starter-positioning',
+    id: 'vid-l1-positioning',
     youtubeId: 'NRVnfbe4Ox4',
     youtubeUrl: 'https://www.youtube.com/watch?v=NRVnfbe4Ox4',
-    playlistUrl: 'https://www.youtube.com/playlist?list=PLB5mO0D8A5B3JkXbH',
     thumbnailUrl: 'https://img.youtube.com/vi/NRVnfbe4Ox4/hqdefault.jpg',
-    titleAr: 'سلسلة المبتدئين: التمركز الدفاعي الصحيح وتجنب منطقة الفراغ (No-Man\'s Land)',
-    titleEn: 'Padel Starter Series: Court Positioning & Avoiding No-Man\'s Land',
+    titleAr: 'المستوى 1: التمركز الدفاعي وتجنب الوقوف في المنطقة الميتة (No-Man\'s Land)',
+    titleEn: 'Level 1: Defensive Court Positioning & No-Man\'s Land',
     category: 'tactics',
     categoryAr: 'التكتيك والتمركز',
     topicCategory: 'fundamentals',
     topicCategoryAr: 'أساسيات وميكانيكا اللعب',
     level: 'مبتدئ',
-    levelNumbers: [1, 2],
-    levelBadgeText: 'المستوى 1–2 (Level 1–2)',
+    levelNumbers: [1],
+    levelBadgeText: 'المستوى 1 (Level 1)',
     duration: '08:15 دقيقة',
     coachName: 'The Padel School',
-    sourceSeries: 'Padel Starter Series & Basic Techniques',
+    sourceSeries: 'Padel Starter Series',
     courtDiagramType: 'full',
-    descriptionAr: 'فهم الأبعاد الهندسية لملعب البادل الزجاجي؛ أين تقف في وضعية الدفاع خلف خط الإرسال، متى تتقدم إلى الشبكة، وكيف تتجنب الوقوع في المنطقة الميتة الخطرة في منتصف الملعب.',
+    descriptionAr: 'تعلم أبعاد الملعب الدفاعية؛ أين تقف خلف خط الإرسال والمسافة الآمنة من الجدار الجانبي لتفادي الوقوع في مصيدة منتصف الملعب.',
     keyTakeaways: [
-      'موقع التمركز الدفاعي المثالي: خطوة ونصف خلف خط الإرسال ونصف متر بعيداً عن الزجاج الجانبي',
-      'منطقة الخطر (No-Man\'s Land): ممنوع الوقوف بين خط الإرسال والشبكة لأن الكرات تسقط مباشرة عند أقدامك',
-      'موقع الهجوم عند الشبكة: مسافة مترين إلى ثلاثة أمتار من الشباك لتأمين ضربات الفولي القاطعة'
+      'نقطة الدفاع الأساسية: خطوة ونصف خلف خط الإرسال ونصف متر بعيداً عن الجدار الجانبي',
+      'تجنب التوقف في منتصف الملعب حتى لا تسقط الكرة مباشرة عند قدميك',
+      'التحرك بخطوات جانبية سلسة دون تقاطع القدمين'
     ],
     drillSteps: [
-      'حدد بقدميك موقع نقطة الدفاع الأساسية وتمرن على العودة السريعة إليها بعد كل ضربة.',
-      'تدرب على التحرك بخطوات جانبية مائلة دون تقاطع القدمين.',
-      'انطلق للأمام عند ضرب لوب دفاعي عالٍ للسيطرة الفورية على الشبكة.'
+      'وضع علامة تمركز في الملعب والتدرب على الرجوع السريع إليها بعد كل ضربة.'
     ],
-    equipmentNeeded: 'ملعب بادل كامل + مخاريط تحديد'
+    equipmentNeeded: 'ملعب بادل كامل + مخاريط'
   },
   {
-    id: 'vid-starter-groundstrokes',
+    id: 'vid-l1-serve',
+    youtubeId: 'BIsD8Kg0yfs',
+    youtubeUrl: 'https://www.youtube.com/watch?v=BIsD8Kg0yfs',
+    thumbnailUrl: 'https://img.youtube.com/vi/BIsD8Kg0yfs/hqdefault.jpg',
+    titleAr: 'المستوى 1: إتقان الإرسال القانوني وتوجيه الكرة للزجاج الجانبي',
+    titleEn: 'Level 1: Legal Underhand Serve & Direction Control',
+    category: 'serve_return',
+    categoryAr: 'الإرسال والاستقبال',
+    topicCategory: 'fundamentals',
+    topicCategoryAr: 'أساسيات وميكانيكا اللعب',
+    level: 'مبتدئ',
+    levelNumbers: [1],
+    levelBadgeText: 'المستوى 1 (Level 1)',
+    duration: '07:50 دقيقة',
+    coachName: 'The Padel School',
+    sourceSeries: 'Core Padel Shots',
+    courtDiagramType: 'baseline',
+    descriptionAr: 'كيفية أداء الإرسال السليم تحت مستوى الخصر، وتوجيه الكرة بقصة خفيفة باتجاه الزجاج الجانبي للمنافس لبدء النقطة بأمان.',
+    keyTakeaways: [
+      'إسقاط الكرة وتركها ترتد للأرض قبل ضربها بارتفاع الحزام',
+      'توجيه الإرسال نحو الزجاج الجانبي لتعقيد زاوية الرد على الخصم',
+      'الانطلاق بخطوات سريعة للأمام فور تسديد الكرة'
+    ],
+    drillSteps: [
+      'تنفيذ 20 إرسال موجه نحو الزجاج الجانبي و20 إرسال نحو زاوية المنتصف T.'
+    ],
+    equipmentNeeded: 'سلة كرات بادل'
+  },
+
+  // =========================================================================
+  // LEVEL 2: المتوسط الأولي (Foundation / Improver)
+  // التركيز: الضربات الأرضية، اللوب الدفاعي، والتدريب الفردي مع الجدار
+  // =========================================================================
+  {
+    id: 'vid-l2-groundstrokes',
     youtubeId: 'OWgxm7Ob65g',
     youtubeUrl: 'https://www.youtube.com/watch?v=OWgxm7Ob65g',
-    playlistUrl: 'https://www.youtube.com/playlist?list=PLB5mO0D8A5B3JkXbH',
     thumbnailUrl: 'https://img.youtube.com/vi/OWgxm7Ob65g/hqdefault.jpg',
-    titleAr: 'سلسلة المبتدئين: ميكانيكا ضربات الأرضية (Forehand & Backhand) ونقل الوزن',
-    titleEn: 'Padel Starter Series: Forehand & Backhand Groundstroke Mechanics',
+    titleAr: 'المستوى 2: ميكانيكا الفورهاند والباكهاند بالتحضير القصير (Short Backswing)',
+    titleEn: 'Level 2: Forehand & Backhand Groundstroke Mechanics',
     category: 'basic',
     categoryAr: 'الأساسيات والميكانيكا',
     topicCategory: 'fundamentals',
     topicCategoryAr: 'أساسيات وميكانيكا اللعب',
-    level: 'مبتدئ',
-    levelNumbers: [1, 2],
-    levelBadgeText: 'المستوى 1–2 (Level 1–2)',
+    level: 'متوسط أولي',
+    levelNumbers: [2],
+    levelBadgeText: 'المستوى 2 (Level 2)',
     duration: '10:05 دقيقة',
     coachName: 'The Padel School',
-    sourceSeries: 'Padel Starter Series & Basic Techniques',
+    sourceSeries: 'Groundstroke Mastery',
     courtDiagramType: 'baseline',
-    descriptionAr: 'التوجيه الميكانيكي لضربتي الفورهاند والباكهاند في البادل؛ الفارق بين ضربات التنس والبادل، التحضير القصير للمضرب، واستخدام دوران الكتف لتوليد الدقة والثبات العالي.',
+    descriptionAr: 'ضبط حركة سحب المضرب القصيرة لتفادي التأخر في استقبال الكرات السريعة، مع تدوير الجذع ونقل الوزن للأمام.',
     keyTakeaways: [
-      'تقصير حركة سحب المضرب للخلف (Short Backswing) لتفادي التأخر في توقيت الضربة',
-      'نقل ثقل الجسم من القدم الخلفية إلى القدم الأمامية أثناء ملاقاة الكرة',
-      'إنهاء حركة المضرب (Follow-through) باتجاه الهدف والكتف المعاكس بهدوء'
+      'تقصير حركة سحب المضرب لمنع التأخر في استقبال الكرات السريعة',
+      'نقل ثقل الجسم من الساق الخلفية إلى الأمامية عند التلامس مع الكرة',
+      'إنهاء حركة المضرب نحو الكتف المعاكس بنعومة للتحكم بارتفاع الكرة'
     ],
     drillSteps: [
-      'أداء 20 تكرار فورهاند أرضي مع التركيز على ثبات زاوية وجه المضرب.',
-      'أداء 20 تكرار باكهاند باليدين أو باليد الواحدة مع دعم المضرب باليد غير الضاربة.',
-      'استهداف منطقة عمق الملعب لتفادي ارتطام الكرات بالشبكة.'
+      'أداء 25 كرة فورهاند أرضية منخفضة ترتد قبل خط الإرسال للمنافس.',
+      'أداء 25 كرة باكهاند دفاعية مركزة على زاوية الخصم البعيدة.'
     ],
     equipmentNeeded: 'سلة كرات بادل + مضرب'
   },
+  {
+    id: 'vid-l2-lob-mechanics',
+    youtubeId: '3dzag7521pU',
+    youtubeUrl: 'https://www.youtube.com/watch?v=3dzag7521pU',
+    thumbnailUrl: 'https://img.youtube.com/vi/3dzag7521pU/hqdefault.jpg',
+    titleAr: 'المستوى 2: ميكانيكا ضربة اللوب الدفاعية (The Lob) للخروج من الضغط',
+    titleEn: 'Level 2: Defensive Lob Execution & Height Control',
+    category: 'tactics',
+    categoryAr: 'التكتيك والتمركز',
+    topicCategory: 'fundamentals',
+    topicCategoryAr: 'أساسيات وميكانيكا اللعب',
+    level: 'متوسط أولي',
+    levelNumbers: [2],
+    levelBadgeText: 'المستوى 2 (Level 2)',
+    duration: '08:35 دقيقة',
+    coachName: 'The Padel School',
+    sourceSeries: 'Defensive Fundamentals',
+    courtDiagramType: 'full',
+    descriptionAr: 'تعلم استخدام الساقين في رفع الكرات الدفاعية عالياً وعميقاً فوق لاعبي الشبكة لإجبارهم على التراجع واستعادة السيطرة.',
+    keyTakeaways: [
+      'استخدام قوة الساقين في رفع الكرة وليس حركة المعصم فقط',
+      'استهداف الزاوية العميقة فوق كتف الخصم غير الضارب',
+      'التحضير السريع والانطلاق للشبكة بمجرد تجاوز الكرة لمستوى الخصوم'
+    ],
+    drillSteps: [
+      'تغذية كرات أرضية وإسقاط 15 كرة لوب متتالية داخل المتر الأخير من الملعب.'
+    ],
+    equipmentNeeded: 'سلة كرات + شريك'
+  },
+  {
+    id: 'vid-l2-solo-wall-drills',
+    youtubeId: '3rpgg3IIzyg',
+    youtubeUrl: 'https://www.youtube.com/watch?v=3rpgg3IIzyg',
+    thumbnailUrl: 'https://img.youtube.com/vi/3rpgg3IIzyg/hqdefault.jpg',
+    titleAr: 'المستوى 2: تمارين الجدار الفردية لضبط التوافق العضلي ولمس الكرة',
+    titleEn: 'Level 2: Solo Wall Rebound Conditioning & Control',
+    category: 'footwork',
+    categoryAr: 'تدريب فردي ورشاقة',
+    topicCategory: 'solo',
+    topicCategoryAr: 'تدريب فردي ورشاقة وقدمين',
+    level: 'متوسط أولي',
+    levelNumbers: [2],
+    levelBadgeText: 'المستوى 2 (Level 2)',
+    duration: '13:20 دقيقة',
+    coachName: 'The Padel School',
+    sourceSeries: 'Solo Mastery',
+    courtDiagramType: 'walls',
+    descriptionAr: 'تمارين فردية بواسطة الحائط لتعويد اليد على دقة لمس الكرة وسرعة حركة القدمين دون الحاجة لمدرب أو شريك.',
+    keyTakeaways: [
+      'ضرب الكرة المتكرر على الجدار الزجاجي يرفع حساسية لمس الكرة وسرعة المعصم',
+      'تدريبات الخطوات الجانبية السريعة على أطراف الأصابع تزيد خفة الحركة',
+      'تحسين التوازن الجسدي قبل الشروع في أداء أي ضربة'
+    ],
+    drillSteps: [
+      '50 ضربة متتالية على الجدار بارتداد أرضي واحد.',
+      '30 ضربة فولي هوائي مباشر على الجدار دون ارتداد.'
+    ],
+    equipmentNeeded: 'جدار زجاجي أو حائط تدريب + مضرب + 3 كرات'
+  },
 
   // =========================================================================
-  // 2. ESSENTIAL PADEL DRILLS FOR PAIRS (Level 2–3)
-  // Featured: https://www.youtube.com/watch?v=KyakdKHsbnk
+  // LEVEL 3: المتوسط (Intermediate)
+  // التركيز: التحرك التزامني للشركاء، فولي الشبكة، والزجاج الخلفي
   // =========================================================================
   {
-    id: 'vid-pair-essential-drills',
+    id: 'vid-l3-partner-movement',
     youtubeId: 'KyakdKHsbnk',
     youtubeUrl: 'https://www.youtube.com/watch?v=KyakdKHsbnk',
     thumbnailUrl: 'https://img.youtube.com/vi/KyakdKHsbnk/hqdefault.jpg',
-    titleAr: 'تمارين ثنائية أساسية لشركاء البادل: تبادلات الفولي، ارتداد الزجاج، والتحرك المتزامن',
-    titleEn: 'Essential Padel Drills for Pairs: Volley Exchanges, Glass & Court Movement',
+    titleAr: 'المستوى 3: التحرك التزامني للشركاء كحبل واحد (Tandem) وتبادل الفولي',
+    titleEn: 'Level 3: Tandem Partner Court Movement & Volley Drills',
     category: 'tactics',
     categoryAr: 'تمارين ثنائية للشركاء',
     topicCategory: 'partner',
     topicCategoryAr: 'تمارين ثنائية للشركاء',
     level: 'متوسط',
-    levelNumbers: [2, 3],
-    levelBadgeText: 'المستوى 2–3 (Level 2–3)',
+    levelNumbers: [3],
+    levelBadgeText: 'المستوى 3 (Level 3)',
     duration: '11:45 دقيقة',
     coachName: 'The Padel School',
-    sourceSeries: 'Essential Padel Drills for Pairs',
+    sourceSeries: 'Drills for Pairs',
     courtDiagramType: 'full',
-    descriptionAr: 'التدريب الثنائي الاحترافي المخصص لشركاء البادل؛ تمارين تبادل الفولي السريع عند الشبكة، إدارة ارتدادات الزجاج الخلفي والمزدوج في خط الدفاع، وتطوير التناغم الحركي المشترك كحبل واحد (Tandem Movement) لسد كافة الثغرات.',
+    descriptionAr: 'تمارين عملية للاعبين اثنين لضبط صعود وهبوط الخطوط معاً عند الهجوم والدفاع، مع إغلاق ثغرة الوسط.',
     keyTakeaways: [
-      'تمرين الحبل المتصل (The Rope Principle): التحرك التزامني مع الزميل صعوداً وهبوطاً بنفس المسافة',
-      'تغطية كرات المنتصف: الاتفاق المسبق على من يتولى كرة الوسط (صاحب الفورهاند في المنتصف)',
-      'تبادل الفولي المتقاطع والمستقيم: زيادة سرعة رد الفعل وتثبيت قبضة المضرب عند ضغط المنافس',
-      'إدارة ارتداد الزجاج الثنائي: كيفية التواصل الصوتي (Mine / Yours / زجاجي) قبل لمس الكرة'
+      'مبدأ الحبل المتصل: تحرك الشريكين بنفس المسافة للحفاظ على توازن الخط الدفاعي والهجومي',
+      'التواصل الصوتي الصريح لكرات المنتصف (كرتي / كرتك)',
+      'تثبيت قبضة المضرب عند تبادل الكرات الهجومية السريعة عند الشباك'
     ],
     drillSteps: [
-      'تمرين الفولي الثنائي: الوقوف وجهاً لوجه وتبادل 30 كرة فولي متتالية دون سقوط الكرة.',
-      'تمرين التراجع الدفاعي: ضرب لوب عميق ثم تراجع الشريكين معاً للدفاع عن الزجاج الخلفي.',
-      'تمرين كرات المنتصف: مدرب يرسل كرات عشوائية في المنتصف مع إلزام اللاعبين بالنداء الصوتي.'
+      'تبادل 30 كرة فولي متتالية وجهاً لوجه دون ارتداد الكرة على الأرض.'
     ],
-    equipmentNeeded: 'ملعب كامل + شريك تدريب + 20 كرة بادل'
+    equipmentNeeded: 'ملعب بادل + شريك + 10 كرات'
   },
   {
-    id: 'vid-pair-volleys-glass',
-    youtubeId: 'KyakdKHsbnk',
-    youtubeUrl: 'https://www.youtube.com/watch?v=KyakdKHsbnk',
-    thumbnailUrl: 'https://img.youtube.com/vi/KyakdKHsbnk/hqdefault.jpg',
-    titleAr: 'تمرين التناغم والضغط الثنائي عند الشبكة (Partner Net Pressure & Reflexes)',
-    titleEn: 'Partner Net Pressure & Reflexes Drill',
-    category: 'net',
-    categoryAr: 'الفولي والشبكة',
-    topicCategory: 'partner',
-    topicCategoryAr: 'تمارين ثنائية للشركاء',
+    id: 'vid-l3-back-glass',
+    youtubeId: 'd2rml7MoJhk',
+    youtubeUrl: 'https://www.youtube.com/watch?v=d2rml7MoJhk',
+    thumbnailUrl: 'https://img.youtube.com/vi/d2rml7MoJhk/hqdefault.jpg',
+    titleAr: 'المستوى 3: إتقان الدفاع بالزجاج الخلفي (Back Glass Mastery)',
+    titleEn: 'Level 3: Back Glass Rebound Timing & Defense',
+    category: 'walls',
+    categoryAr: 'الجدران الزجاجية',
+    topicCategory: 'walls',
+    topicCategoryAr: 'الجدران الزجاجية والدفاع',
     level: 'متوسط',
-    levelNumbers: [2, 3],
-    levelBadgeText: 'المستوى 2–3 (Level 2–3)',
-    duration: '09:30 دقيقة',
+    levelNumbers: [3],
+    levelBadgeText: 'المستوى 3 (Level 3)',
+    duration: '09:20 دقيقة',
     coachName: 'The Padel School',
-    sourceSeries: 'Essential Padel Drills for Pairs',
-    courtDiagramType: 'net',
-    descriptionAr: 'تطبيق عملي للثنائي عند الشبكة؛ كيف تمنعان المنافس من تمرير كرات من بينكما أو فوقكما، وتدريب العين على قراءة اتجاه مضرب الخصم للانقضاض على الكرات السائبة.',
+    sourceSeries: 'Glass Defense Specialty',
+    courtDiagramType: 'walls',
+    descriptionAr: 'قراءة سرعة الكرة بعد ارتطامها بالزجاج الخلفي، ترك مسافة كافية للخروج، وتسديد ضربات دفاعية دقيقة.',
     keyTakeaways: [
-      'إغلاق زاوية الوسط للاعب البعيد عن الكرة وزاوية الخط للاعب القريب',
-      'تثبيت الفولي القاطع وتوجيهه نحو قدمي الخصم لتجريده من خيارات الهجوم',
-      'توليد الضغط النفسي والتكتيكي على المنافس عبر التمركز الهجومي المتقدم'
+      'التحرك للخلف بالتوازي مع مسار الكرة وترك مسافة كافية بينك وبين الزجاج',
+      'انتظار خروج الكرة من الزجاج والوصول لقمة ارتدادها قبل ضربها',
+      'تجهيز المضرب مبكراً أسفل مستوى الركبتين للضربات المنخفضة'
     ],
     drillSteps: [
-      'تبادل فولي سريع بوتيرة تصاعدية (Slow to Fast).',
-      'التدريب على حسم الكرات العائمة في الوسط بالانقضاض المتبادل.',
-      'تطبيق سيناريو شوط تدريبي يركز فقط على إنهاء النقطة من الشبكة.'
+      'تغذية 25 كرة قطرية ترتد من الزجاج الخلفي والرد بلوب دفاعي عميق.'
     ],
-    equipmentNeeded: 'شريك تدريب + شبكة البادل + سلة كرات'
+    equipmentNeeded: 'ملعب بزجاج خلفي + كرات تدريب'
+  },
+  {
+    id: 'vid-l3-intro-bandeja',
+    youtubeId: 'fXx8SflbEIQ',
+    youtubeUrl: 'https://www.youtube.com/watch?v=fXx8SflbEIQ',
+    thumbnailUrl: 'https://img.youtube.com/vi/fXx8SflbEIQ/hqdefault.jpg',
+    titleAr: 'المستوى 3: أساسيات ضربة البانديخا (Bandeja) لاستعادة الشبكة',
+    titleEn: 'Level 3: Introductory Bandeja Technique & Net Recovery',
+    category: 'overhead',
+    categoryAr: 'اللعب عند الشبكة والتكتيك',
+    topicCategory: 'net_tactics',
+    topicCategoryAr: 'اللعب عند الشبكة والتكتيك المتقدم',
+    level: 'متوسط',
+    levelNumbers: [3],
+    levelBadgeText: 'المستوى 3 (Level 3)',
+    duration: '10:40 دقيقة',
+    coachName: 'The Padel School',
+    sourceSeries: 'Overhead Mastery',
+    courtDiagramType: 'net',
+    descriptionAr: 'الخطوات الفنية لتنفيذ البانديخا بهدوء؛ ضرب الكرة بجانب الرأس بزاوية قطع مسطحة لتثبيت المنافسين في الخلف واستعادة موقع الهجوم.',
+    keyTakeaways: [
+      'ضرب الكرة بجانب الجسم وبارتفاع الرأس بوضعية صينية التقديم المفتوحة',
+      'توجيه الكرة بعمق نحو الزجاج المتقاطع للخصم لمنع ارتدادها العالي',
+      'التقدم الفوري للشبكة فور إتمام متابعة الضربة'
+    ],
+    drillSteps: [
+      'تنفيذ 20 تكرار بانديخا متتالية مع التركيز على العمق والهدوء بدلاً من القوة العشوائية.'
+    ],
+    equipmentNeeded: 'مضرب بادل + سلة كرات'
   },
 
   // =========================================================================
-  // 3. SOLO PRACTICE & FOOTWORK DRILLS (All Levels)
-  // Featured: https://www.youtube.com/watch?v=3rpgg3IIzyg
+  // LEVEL 4: المتقدم (Advanced)
+  // التركيز: الزاوية المزدوجة، ضربة الباخادا الهجومية، والفيبورا السريعة
   // =========================================================================
   {
-    id: 'vid-solo-practice-footwork',
-    youtubeId: '3rpgg3IIzyg',
-    youtubeUrl: 'https://www.youtube.com/watch?v=3rpgg3IIzyg',
-    thumbnailUrl: 'https://img.youtube.com/vi/3rpgg3IIzyg/hqdefault.jpg',
-    titleAr: 'تمارين التدريب الفردي ورشاقة القدمين: تمارين الجدار الزجاجي والتحكم الفردي بالكرة',
-    titleEn: 'Solo Practice & Footwork Drills (Agility & Wall Rebound Conditioning)',
-    category: 'footwork',
-    categoryAr: 'تدريب فردي ورشاقة',
-    topicCategory: 'solo',
-    topicCategoryAr: 'تدريب فردي ورشاقة وقدمين',
-    level: 'الكل',
-    levelNumbers: [1, 2, 3, 4, 5],
-    levelBadgeText: 'جميع المستويات (All Levels)',
-    duration: '13:20 دقيقة',
-    coachName: 'The Padel School',
-    sourceSeries: 'Solo Practice & Footwork Drills',
-    courtDiagramType: 'walls',
-    descriptionAr: 'الدليل المتكامل لتطوير مستواك بشكل فردي دون الحاجة لشريك؛ تمارين ارتداد الكرة الفردية من الجدار الزجاجي لتحسين الإحساس بمركز المضرب، تمارين السلم الرياضي لسرعة رد فعل القدمين، وتدريبات التوازن واللياقة الخاصة بلاعبي البادل.',
-    keyTakeaways: [
-      'تمرين الجدار الفردي (Wall Rebound Control): ضرب الكرة باستمرار على الزجاج بالتبادل لبناء ذاكرة عضلية فائقة',
-      'سرعة القدمين والقفزة التحضيرية: تمارين الركض الخفيف والخطوات المتلاحقة على أطراف الأصابع',
-      'التحكم الدقيق بمسار الكرة وقوة اللمسة (Soft Touch Drills) لإتقان كرات الدروب شوت والتشكيكا',
-      'تدريبات التوازن والثبات الميكانيكي قبل الضربة لمنع التذبذب أثناء التسديد'
-    ],
-    drillSteps: [
-      'تمرين 50 ضربة متتالية على الجدار بارتداد واحد من الأرض.',
-      'تمرين 30 ضربة فولي مباشر هوائي على الجدار بدون ارتداد أرضي.',
-      'تمرين السلم الحركي: 5 جولات خطوات سريعة جانبية مع قفزة تحضيرية عند كل زاوية.'
-    ],
-    equipmentNeeded: 'جدار زجاجي أو جدار تدريب + مضرب + 3 كرات بادل'
-  },
-  {
-    id: 'vid-solo-agility-speed',
-    youtubeId: '3rpgg3IIzyg',
-    youtubeUrl: 'https://www.youtube.com/watch?v=3rpgg3IIzyg',
-    thumbnailUrl: 'https://img.youtube.com/vi/3rpgg3IIzyg/hqdefault.jpg',
-    titleAr: 'تمارين الرشاقة وتغيير الاتجاه السريع داخل القفص الزجاجي (Agility & Recovery)',
-    titleEn: 'On-Court Agility & Recovery Drills for Padel',
-    category: 'footwork',
-    categoryAr: 'تدريب فردي ورشاقة',
-    topicCategory: 'solo',
-    topicCategoryAr: 'تدريب فردي ورشاقة وقدمين',
-    level: 'الكل',
-    levelNumbers: [1, 2, 3, 4, 5],
-    levelBadgeText: 'جميع المستويات (All Levels)',
+    id: 'vid-l4-double-glass',
+    youtubeId: '5KMcj7Qjhso',
+    youtubeUrl: 'https://www.youtube.com/watch?v=5KMcj7Qjhso',
+    thumbnailUrl: 'https://img.youtube.com/vi/5KMcj7Qjhso/hqdefault.jpg',
+    titleAr: 'المستوى 4: الدفاع المعقد عن الزاوية المزدوجة (Doble Pared)',
+    titleEn: 'Level 4: Advanced Double Glass Rebounds with Confidence',
+    category: 'walls',
+    categoryAr: 'الجدران الزجاجية',
+    topicCategory: 'walls',
+    topicCategoryAr: 'الجدران الزجاجية والدفاع',
+    level: 'متقدم',
+    levelNumbers: [4],
+    levelBadgeText: 'المستوى 4 (Level 4)',
     duration: '08:45 دقيقة',
     coachName: 'The Padel School',
-    sourceSeries: 'Solo Practice & Footwork Drills',
-    courtDiagramType: 'full',
-    descriptionAr: 'تدريبات لياقة ورشاقة مخصصة للتحرك بين الزجاج والشبكة بأعلى كفاءة طاقة وأقل مجهود؛ كيف تحافظ على وضعية منخفضة واستعادة الموقع (Recovery) بعد كل هجمة.',
+    sourceSeries: 'Glass Defense Specialty',
+    courtDiagramType: 'walls',
+    descriptionAr: 'فك لغز الزوايا المزدوجة؛ تحديد ترتيب ارتداد الكرة (جانبي ثم خلفي أو العكس) وتدوير الجسد مع مسار الكرة لضربها بثبات.',
     keyTakeaways: [
-      'الخطوات الجانبية الانزلاقية (Side Shuffles) لتفادي الانزلاق أو فقدان التوازن على العشب الصناعي',
-      'الانطلاق المتفجر للأمام عند رد كرات الشورت بول',
-      'تليين مفاصل الكاحل والركبة لتحمل الهبوط المتكرر بعد الكرات العالية'
+      'قاعدة اتجاه الدوران: الدوران دائماً مع مسار الكرة وليس في مواجهتها',
+      'الهدوء التام والانتظار حتى تفقد الكرة سرعتها بعد الارتداد الثاني',
+      'تجنب حشر نفسك داخل زاوية الملعب أثناء دوران الكرة'
     ],
     drillSteps: [
-      'تمرين الجري المكوكي بين الزجاج الخلفي وخط الشبكة 6 مرات.',
-      'تمرين الالتفاف حول المخاريط مع أخذ وضعية الضربة في كل زاوية.',
-      'تطبيق تدريب التوازن أحادي الساق لتقوية عضلات الكاحل والركبة.'
+      'التدرب على قراءة 20 كرة في الزاوية المزدوجة اليمنى واليسرى.'
     ],
-    equipmentNeeded: '4 مخاريط تدريب + ساعة توقيت'
+    equipmentNeeded: 'ملعب بادل كامل + كرات تدريب'
   },
-
-  // =========================================================================
-  // 4. NET GAME MASTERY & TACTICS (Level 3–5)
-  // Featured: https://www.youtube.com/watch?v=c-QLd9ec-zo
-  // =========================================================================
   {
-    id: 'vid-net-game-mastery',
-    youtubeId: 'c-QLd9ec-zo',
-    youtubeUrl: 'https://www.youtube.com/watch?v=c-QLd9ec-zo',
-    thumbnailUrl: 'https://img.youtube.com/vi/c-QLd9ec-zo/hqdefault.jpg',
-    titleAr: 'إتقان الهيمنة على الشبكة وتكتيكات البادل: أسرار البانديخا والفيبورا وحسم النقاط',
-    titleEn: 'Net Game Mastery & Tactics: Winning the Net, Bandeja, Vibora & Strategies',
+    id: 'vid-l4-bajada-attack',
+    youtubeId: 'ZA-F3AR5vgE',
+    youtubeUrl: 'https://www.youtube.com/watch?v=ZA-F3AR5vgE',
+    thumbnailUrl: 'https://img.youtube.com/vi/ZA-F3AR5vgE/hqdefault.jpg',
+    titleAr: 'المستوى 4: ضربة الباخادا الهجومية (Bajada de Pared) وأماكن التسديد',
+    titleEn: 'Level 4: Offensive Bajada de Pared Placement & Tactics',
+    category: 'walls',
+    categoryAr: 'الجدران الزجاجية',
+    topicCategory: 'walls',
+    topicCategoryAr: 'الجدران الزجاجية والدفاع',
+    level: 'متقدم',
+    levelNumbers: [4],
+    levelBadgeText: 'المستوى 4 (Level 4)',
+    duration: '08:20 دقيقة',
+    coachName: 'The Padel School',
+    sourceSeries: 'Glass Defense Specialty',
+    courtDiagramType: 'walls',
+    descriptionAr: 'تحويل ارتداد الكرة العالي من الزجاج الخلفي إلى هجوم قاطع؛ اختيار زوايا التسديد بين كرات المنتصف والهجوم على القدم البعيدة.',
+    keyTakeaways: [
+      'التسديد في المنتصف بين الخصمين هو الخيار الأكثر أماناً وفاعلية',
+      'رفع المضرب عالياً خلف الرأس أثناء ارتداد الكرة من الزجاج',
+      'الانطلاق للأمام فور تسديد الباخادا لمتابعة الكرة عند الشبكة'
+    ],
+    drillSteps: [
+      'تنفيذ 15 ضربة باخادا سريعة موجهة للمنتصف و10 ضربات موجهة للقدم البعيدة.'
+    ],
+    equipmentNeeded: 'ملعب بزجاج خلفي + سلة كرات'
+  },
+  {
+    id: 'vid-l4-vibora-sidespin',
+    youtubeId: 'PihyQF3EnHk',
+    youtubeUrl: 'https://www.youtube.com/watch?v=PihyQF3EnHk',
+    thumbnailUrl: 'https://img.youtube.com/vi/PihyQF3EnHk/hqdefault.jpg',
+    titleAr: 'المستوى 4: ضربة الفيبورا الحادة (The Vibora) بالدوران الجانبي',
+    titleEn: 'Level 4: Vibora Mechanics & Aggressive Sidespin',
     category: 'overhead',
     categoryAr: 'اللعب عند الشبكة والتكتيك',
     topicCategory: 'net_tactics',
     topicCategoryAr: 'اللعب عند الشبكة والتكتيك المتقدم',
     level: 'متقدم',
-    levelNumbers: [3, 4, 5],
-    levelBadgeText: 'المستوى 3–5 (Level 3–5)',
-    duration: '14:15 دقيقة',
+    levelNumbers: [4],
+    levelBadgeText: 'المستوى 4 (Level 4)',
+    duration: '09:15 دقيقة',
     coachName: 'The Padel School',
-    sourceSeries: 'Net Game Mastery & Tactics',
+    sourceSeries: 'Advanced Overheads',
     courtDiagramType: 'net',
-    descriptionAr: 'الدليل الاحترافي الكامل للسيطرة على الشبكة وحسم المباريات؛ التفرقة الدقيقة بين البانديخا الدفاعية والفيبورا الهجومية، زوايا التسديد القاتلة التي تجعل الكرة تلتف على الزجاج، وتكتيكات خنق الخصم وحسم النقطة الذهبية (Punto de Oro).',
+    descriptionAr: 'التكنيك الحركي لتوليد دوران جانبي حاد يلتف بالكرة على الجدران الزجاجية ويجعلها تزحف على الأرض بصعوبة بالغة.',
     keyTakeaways: [
-      'ضربة البانديخا (Bandeja): ضرب الكرة بوضعية صينية التقديم بزاوية قطع عميقة لإجبار الخصم على الدفاع المنخفض واستعادة الشبكة',
-      'ضربة الفيبورا (Víbora): توليد دوران جانبي حاد يلتف بالكرة على الجدار الزجاجي ويزحف بها على الأرض',
-      'استراتيجية كرات اللوب العالية: كيف تتعامل مع اللوب العميق بالرجوع السريع والتسديد قبل ارتداد الكرة',
-      'تكتيك الشكيكا (Chiquita) الساقطة: إسقاط الكرة بلطف في أقدام لاعبي الشبكة لإجبارهم على رفعها والافتراس'
+      'التفاف المضرب حول الجانب الأيمن للكرة بزاوية سريعة ومباغتة',
+      'توجيه الضربة نحو أقدام المدافعين أو زاوية التقاء الزجاجين',
+      'استخدام قوة دوران الجذع لتوليد السرعة دون إجهاد مفصل الكوع'
     ],
     drillSteps: [
-      'تمرين 20 تكرار بانديخا موجهة نحو الزاوية المتقاطعة للزجاج الجانبي.',
-      'تمرين 15 تكرار فيبورا سريعة تهدف للزجاج الخلفي بارتفاع منخفض جداً.',
-      'تمرين سيناريو اللوب والهجوم: الزميل يرسل لوب عميق وأنت تنفذ بانديخا وتتقدم فوراً للشبكة.'
+      'ممارسة ضرب كرات بارتفاع الكتف مع التركيز على صوت الاحتكاك والدوران الجانبي.'
     ],
-    equipmentNeeded: 'سلة كرات + مضرب بادل احترافي + شركاء تدريب'
+    equipmentNeeded: 'مضرب احترافي + كرات تدريب'
   },
+
+  // =========================================================================
+  // LEVEL 5: الاحترافي والتنافسي (Elite / Pro)
+  // التركيز: ضربة الرولو على الشبك، ضربات السحق، وحسم النقطة
+  // =========================================================================
   {
-    id: 'vid-net-tactics-serve-return',
-    youtubeId: 'c-QLd9ec-zo',
-    youtubeUrl: 'https://www.youtube.com/watch?v=c-QLd9ec-zo',
-    thumbnailUrl: 'https://img.youtube.com/vi/c-QLd9ec-zo/hqdefault.jpg',
-    titleAr: 'تكتيكات الإرسال والاستقبال المتقدمة: صناعة الفرصة الهجومية الأولى',
-    titleEn: 'Advanced Serve & Return Strategies to Win the Net',
-    category: 'serve_return',
-    categoryAr: 'الإرسال والاستقبال',
+    id: 'vid-l5-rulo-fence',
+    youtubeId: 'c6_RpU4hsFY',
+    youtubeUrl: 'https://www.youtube.com/watch?v=c6_RpU4hsFY',
+    thumbnailUrl: 'https://img.youtube.com/vi/c6_RpU4hsFY/hqdefault.jpg',
+    titleAr: 'المستوى 5: ضربة الرولو العلوية الساقطة على الشبك المعدني (The Rulo)',
+    titleEn: 'Level 5: Topspin Rulo into the Fence Mastery',
+    category: 'overhead',
+    categoryAr: 'اللعب عند الشبكة والتكتيك',
     topicCategory: 'net_tactics',
     topicCategoryAr: 'اللعب عند الشبكة والتكتيك المتقدم',
-    level: 'متقدم',
-    levelNumbers: [3, 4, 5],
-    levelBadgeText: 'المستوى 3–5 (Level 3–5)',
-    duration: '10:50 دقيقة',
+    level: 'احترافي',
+    levelNumbers: [5],
+    levelBadgeText: 'المستوى 5 (Level 5)',
+    duration: '08:50 دقيقة',
     coachName: 'The Padel School',
-    sourceSeries: 'Net Game Mastery & Tactics',
-    courtDiagramType: 'baseline',
-    descriptionAr: 'كيف تستغل إرسالك لتحتل موقع الشبكة على الفور بنسبة نجاح تفوق 80%؛ إرسال السلايس القريب من السلك والزجاج الجانبي، وتكتيكات رد الإرسال باللوب أو الشكيكا لسرقة الهجوم من المنافس.',
+    sourceSeries: 'Elite Overheads',
+    courtDiagramType: 'net',
+    descriptionAr: 'تنفيذ ضربة الرولو الهجومية بدوران علوي مقوس لإسقاط الكرة بدقة على الشبك السلكي الجانبي وإحداث ارتداد عشوائي يستحيل صده.',
     keyTakeaways: [
-      'الإرسال نحو الزجاج الجانبي (Glass Serve): أصعب إرسال في الاستقبال لإرباك زاوية المدافع',
-      'الإرسال نحو زاوية المنتصف (T-Serve): حرمان المستقبل من الزوايا الحادة وسرعة الصعود للشبكة',
-      'رد الإرسال باللوب المتقن لإجبار الخصم المتقدم على التراجع للخلف فوراً'
+      'استخدام ضربة التوب سبين لإسقاط الكرة بحدة خلف الشباك',
+      'استهداف الشبك السلكي الجانبي لإحداث ارتداد عشوائي',
+      'خيار تكتيكي بديل ومنخفض المخاطر مقارنة بالسحق العنيف'
     ],
     drillSteps: [
-      'تطبيق 20 إرسال سلايس مع التركيز على دوران الكرة باتجاه الزجاج.',
-      'الانطلاق الفوري بعد كل إرسال لاحتلال موقع الشبكة خلال ثانيتين فقط.',
-      'ممارسة رد الإرسال نحو أقدام اللاعب المتقدم.'
+      'توجيه 15 ضربة رولو خفيفة تستهدف الشبك المعدني الأيمن والأيسر.'
     ],
-    equipmentNeeded: '20 كرة بادل + مضرب'
-  },
-
-  // =========================================================================
-  // 5. WALL & GLASS DEFENSE SPECIALTY (Levels 1 to 4)
-  // =========================================================================
-  {
-    id: 'vid-walls-bajada',
-    youtubeId: 'yHAJ5XjFUNg',
-    youtubeUrl: 'https://www.youtube.com/watch?v=yHAJ5XjFUNg',
-    thumbnailUrl: 'https://img.youtube.com/vi/yHAJ5XjFUNg/hqdefault.jpg',
-    titleAr: 'ضربة الباخادا الهجومية من الزجاج الخلفي (Bajada de Pared Mastery)',
-    titleEn: 'Bajada de Pared: Turning Defense into Lethal Attack',
-    category: 'walls',
-    categoryAr: 'الجدران الزجاجية',
-    topicCategory: 'walls',
-    topicCategoryAr: 'الجدران الزجاجية والدفاع',
-    level: 'متقدم',
-    levelNumbers: [3, 4, 5],
-    levelBadgeText: 'المستوى 3–5 (Level 3–5)',
-    duration: '07:50 دقيقة',
-    coachName: 'الكوتش كارلوس مارتينيز',
-    sourceSeries: 'Glass & Wall Defense Specialty',
-    courtDiagramType: 'walls',
-    descriptionAr: 'كيف تحول كرة الدفاع المرتدة عالية من الزجاج الخلفي إلى هجوم ساحق ومفاجئ يربك لاعبي الشبكة؛ التمركز الصحيح خلف مسار الكرة وتوجيه السحق لمنتصف الملعب أو الزجاج الجانبي.',
-    keyTakeaways: [
-      'التحرك للخلف مبكراً خلف مسار الكرة وترك مسافة كافية للارتداد',
-      'رفع المضرب عالياً فوق مستوى الرأس قبل وصول الكرة لذروتها',
-      'ضرب الكرة بقوة قطع سفلية سريعة تستهدف الفراغ بين لاعبي الشبكة'
-    ],
-    drillSteps: [
-      'المدرب يرسل لوب عالي يرتد من الزجاج واللاعب ينفذ باخادا هجومية.',
-      'توجيه 10 ضربات باخادا في خط مستقيم و10 ضربات متقاطعة.'
-    ],
-    equipmentNeeded: 'ملعب بادل مع زجاج خلفي + 15 كرة'
+    equipmentNeeded: 'كرات بادل + ملعب'
   },
   {
-    id: 'vid-walls-double-glass',
-    youtubeId: 'OWgxm7Ob65g',
-    youtubeUrl: 'https://www.youtube.com/watch?v=OWgxm7Ob65g',
-    thumbnailUrl: 'https://img.youtube.com/vi/OWgxm7Ob65g/hqdefault.jpg',
-    titleAr: 'قراءة الزاوية المزدوجة (Doble Pared): الزجاج الخلفي والجانبي بثقة وهدوء',
-    titleEn: 'Double Glass Defense: Mastering Corner Rebounds with Ease',
-    category: 'walls',
-    categoryAr: 'الجدران الزجاجية',
-    topicCategory: 'walls',
-    topicCategoryAr: 'الجدران الزجاجية والدفاع',
-    level: 'متوسط',
-    levelNumbers: [2, 3, 4],
-    levelBadgeText: 'المستوى 2–4 (Level 2–4)',
-    duration: '08:25 دقيقة',
-    coachName: 'الكوتش خوان كارلوس',
-    sourceSeries: 'Glass & Wall Defense Specialty',
-    courtDiagramType: 'walls',
-    descriptionAr: 'فك لغز الزوايا المزدوجة في البادل؛ كيف تعرف إن كانت الكرة ستضرب الزجاج الجانبي أولاً ثم الخلفي أم العكس، وتدوير الجسم بانسيابية لضرب الكرة بعد خروجها من الزاوية.',
+    id: 'vid-l5-smash-finishing',
+    youtubeId: '319Zj6kB-zA',
+    youtubeUrl: 'https://www.youtube.com/watch?v=319Zj6kB-zA',
+    thumbnailUrl: 'https://img.youtube.com/vi/319Zj6kB-zA/hqdefault.jpg',
+    titleAr: 'المستوى 5: تكتيكات السحق الاحترافي وحسم النقاط (Flat, Kick & Por 3)',
+    titleEn: 'Level 5: Advanced Smash Repertoire & Finishing Tactics',
+    category: 'overhead',
+    categoryAr: 'اللعب عند الشبكة والتكتيك',
+    topicCategory: 'net_tactics',
+    topicCategoryAr: 'اللعب عند الشبكة والتكتيك المتقدم',
+    level: 'احترافي',
+    levelNumbers: [5],
+    levelBadgeText: 'المستوى 5 (Level 5)',
+    duration: '12:10 دقيقة',
+    coachName: 'The Padel School',
+    sourceSeries: 'Smash Masterclass',
+    courtDiagramType: 'net',
+    descriptionAr: 'التفريق بين السحق المستقيم لاسترجاع الكرة فوق الشبكة لملعبك، وبين سحق Por 3 لإخراج الكرة خارج القفص لحسم النقاط.',
     keyTakeaways: [
-      'قاعدة اتجاه الدوران: الدوران مع مسار الكرة وليس ضدها',
-      'عدم الاستعجال والانتظار حتى تنتهي الكرة من الارتدادين وتخرج للأمام',
-      'لعب ضربة لوب دفاعية عالية لمنح نفسك وشريكك وقتاً كافياً للتنفس واستعادة التمركز'
+      'تحديد نوع السحق بناءً على مسافة الكرة وقربها من الشباك',
+      'سحق Por 3 يتطلب ضرب الكرة في أعلى نقطة ممكنة مع تدوير علوي حاد',
+      'عدم المجازفة بالسحق من عمق الملعب لتفادي المرتدات السريعة'
     ],
     drillSteps: [
-      'تغذية كرات في الزاوية بزوايا مختلفة للتعود على قراءة الدوران.',
-      'تنفيذ 20 ضربة دفاعية متتالية من الزاوية المزدوجة بنجاح.'
+      'التدرب على سحق 20 كرة قريبة من الشباك وإرجاعها لملعبك فوق الشبكة.'
     ],
-    equipmentNeeded: 'ملعب بادل + مضرب + سلة كرات'
-  },
-
-  // =========================================================================
-  // 6. PRE-MATCH MOBILITY & WARMUP (All Levels)
-  // =========================================================================
-  {
-    id: 'vid-warmup-mobility',
-    youtubeId: 'NRVnfbe4Ox4',
-    youtubeUrl: 'https://www.youtube.com/watch?v=NRVnfbe4Ox4',
-    thumbnailUrl: 'https://img.youtube.com/vi/NRVnfbe4Ox4/hqdefault.jpg',
-    titleAr: 'برنامج التحمية والإحماء الديناميكي قبل المباراة للوقاية من الإصابات',
-    titleEn: 'Pre-Match Dynamic Warmup & Mobility for Padel Athletes',
-    category: 'warmup',
-    categoryAr: 'التحمية والإحماء البدني',
-    topicCategory: 'warmup',
-    topicCategoryAr: 'التحمية والإحماء البدني',
-    level: 'الكل',
-    levelNumbers: [1, 2, 3, 4, 5],
-    levelBadgeText: 'جميع المستويات (All Levels)',
-    duration: '08:30 دقيقة',
-    coachName: 'الكوتش خافيير فرنانديز',
-    sourceSeries: 'Pre-Match Warmup & Mobility',
-    courtDiagramType: 'full',
-    descriptionAr: 'روتين إحماء مدته 8 دقائق مصمم خصيصاً للاعبي البادل؛ تليين مفاصل الكتف والمعصم والركبة، وتنشيط الجهاز العصبي العضلي لرفع كفاءة رد الفعل السريع وتفادي آلام الكوع والكتف.',
-    keyTakeaways: [
-      'تمارين الدوران الديناميكي للكتف والكوع بالتدريج لحماية أوتار الذراع',
-      'إطالات حركية لعضلات الحوض والظهر لمنع الشد العضلي في الحركات المباغتة',
-      'قفزات تفعيل الجهاز العصبي على أطراف الأصابع لتجهيز القفزة التحضيرية'
-    ],
-    drillSteps: [
-      'دقيقتان تليين مفاصل علوية (كتف، معصم، رقبة).',
-      '3 دقائق تمارين حركية للجذع والساقين (Squats, Lunges, Side Steps).',
-      '3 دقائق تسارعات خفيفة وتبادل كرات هادئة داخل الملعب.'
-    ],
-    equipmentNeeded: 'حبل مقاومة مطاطي (اختياري) + مضرب'
+    equipmentNeeded: 'سلة كرات بادل'
   }
 ];
 
